@@ -1,0 +1,15 @@
+{
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "eslint.codeAction.showDocumentation": {
+
+    "enable": true
+  },
+  "eslint.options": {
+    "configFile": "D:/Servers/ZiiMTest/data/resources//[ziim]//[ziim-ui]/notifications/ui/.eslintrc"
+  },
+  "eslint.lintTask.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.workingDirectories": [
+    "./[ziim-ui]/notifications/ui"
+  ],
+}
