@@ -5,8 +5,7 @@ end
 
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
-    'Logger', 
-    'Notifications'
+    'Logger'
   }, function(error)
     if error > 0 then
       return
@@ -29,12 +28,13 @@ RegisterCommand("testNotify", function(source, args)
   local Header = table.remove(args, 1);
   local Body = table.concat(args, " ");
   -- TriggerEvent("ziim:notify", Style, Type, "", Body);
-  Notifications:Notify(type, header, body)
+  Notifications:Notify(Type, "", Body)
   -- for i,v in pairs(ZRP["Notifications"]) do print(i,v) end
 end, false)
 
 Notifications = {
   Notify = function(self, type, header, body) 
+    print("Working?!?")
     SendNUIMessage({
       type = "Notify",
       payload = {type = type, text = body, style = 'notify', header = header},
