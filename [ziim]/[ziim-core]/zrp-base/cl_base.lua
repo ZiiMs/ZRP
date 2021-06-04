@@ -21,7 +21,7 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
   
 
 Logger = {
-    Error = function(self, msg, mod) 
+    Error = function(self, mod, msg) 
       if not tostring(msg) then return end
       if not tostring(mod) then mod = "No Module" end
       
@@ -31,7 +31,7 @@ Logger = {
   
       print(pMsg, msg2)
     end,
-    Trace = function(self, msg, mod) 
+    Trace = function(self, mod, msg) 
       if not tostring(msg) then return end
       if not tostring(mod) then mod = "No Module" end
       
@@ -41,7 +41,7 @@ Logger = {
   
       print(pMsg, msg2)
     end,
-    Warn = function(self, msg, mod) 
+    Warn = function(self, mod, msg) 
       if not tostring(msg) then return end
       if not tostring(mod) then mod = "No Module" end
       

@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalBody,
   FormControl,
-  FormHelperText,
+  FormErrorMessage,
   chakra,
   Input,
   ModalCloseButton,
@@ -38,7 +38,10 @@ const TextBox = () => {
   const show = useSelector((state) => state.Textbox.show);
   const title = useSelector((state) => state.Textbox.title);
   const placeholder = useSelector((state) => state.Textbox.placeholder);
+  const event = useSelector((state) => state.Textbox.event);
+  const resource = useSelector((state) => state.Textbox.resource);
   // useSelector((state) => console.log(state.Textbox.placeholder));
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const focus = useRef();
@@ -79,6 +82,7 @@ const TextBox = () => {
       store.dispatch({ type: 'Textbox', payload: { show: resp.state } });
       if (!resp.state) {
         console.log('Resseting!');
+        setLoading(false);
         setInput('');
         setErrorMsg('');
       }
@@ -90,9 +94,18 @@ const TextBox = () => {
   const handleSubmit = () => {
     // store.dispatch({ type: 'Textbox', payload: { show: false } });
     // dispatch({ type: 'SHOW',  });
-    Nui.post('submitBox', { input, state: false }).then((resp) => resp.json()).then((resp) => {
-      console.log(JSON.stringify(resp));
-      store.dispatch({ type: 'Textbox', payload: { show: resp.state, title, placeholder } });
+    setLoading(true);
+    console.log(event);
+    Nui.post(event, { input }, resource).then((resp) => resp.json()).then((resp) => {
+      // console.log(resp);
+      // console.log(JSON.stringify(resp));
+      setLoading(false);
+      store.dispatch({
+        type: 'Textbox',
+        payload: {
+          show: resp.state, title, placeholder, event, resource,
+        },
+      });
       if (resp.msg) {
         setErrorMsg(resp.msg);
       }
@@ -129,18 +142,18 @@ const TextBox = () => {
 
           >
             <ModalBody>
-              <FormControl>
+              <FormControl isInvalid={errorMsg}>
                 <Input
                   ref={focus}
                   placeholder={placeholder}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                 />
-                <FormHelperText>{errorMsg}</FormHelperText>
+                <FormErrorMessage>{errorMsg}</FormErrorMessage>
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button onClick={handleSubmit} type="submit">Submit</Button>
+              <Button onClick={handleSubmit} isLoading={loading} type="submit">Submit</Button>
               <Spacer />
               <Button flex onClick={onClose}>Close</Button>
             </ModalFooter>

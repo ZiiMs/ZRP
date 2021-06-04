@@ -10,6 +10,8 @@ const initialState = {
   show: false,
   title: 'Title',
   placeholder: 'Placeholder',
+  event: '',
+  resource: '',
 };
 
 const Textbox = (
@@ -24,6 +26,8 @@ const Textbox = (
         show: data.payload.show,
         title: data.payload.title,
         placeholder: data.payload.placeholder,
+        event: data.payload.event,
+        resource: data.payload.resource,
       };
     default:
       return state;
