@@ -8,6 +8,8 @@ AddEventHandler("zrp-base:waitForExports", function()
         if exports and exports["zrp-base"] then
             print("ClientRegister")
             TriggerEvent("Proxy:Shared:RegisterReady")
+            Citizen.Wait(50)
+            TriggerEvent('Core:Shared:Ready')
             return
         end
     end
@@ -23,9 +25,31 @@ Logger = {
       if not tostring(msg) then return end
       if not tostring(mod) then mod = "No Module" end
       
-      local pMsg = string.format("[^1ERROR^7] [^4%s^7] %s", mod, msg)
+      local pMsg = "[^1ERROR^7]"
+      local msg2 = ("[^4%s^7] %s"):format(mod, msg)
       if not pMsg then return end
   
-      print(pMsg)
-    end
+      print(pMsg, msg2)
+    end,
+    Trace = function(self, msg, mod) 
+      if not tostring(msg) then return end
+      if not tostring(mod) then mod = "No Module" end
+      
+      local pMsg = "^7[TRACE]"
+      local msg2 =  ("[^4%s^7] %s"):format(mod, msg)
+      if not pMsg then return end
+  
+      print(pMsg, msg2)
+    end,
+    Warn = function(self, msg, mod) 
+      if not tostring(msg) then return end
+      if not tostring(mod) then mod = "No Module" end
+      
+      local pMsg = "[^3TRACE^7]"  
+      local msg2 =  ("[^4%s^7] %s"):format(mod, msg)
+      if not pMsg then return end
+  
+      print(pMsg, msg2)
+    end,
+
   }

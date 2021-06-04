@@ -12,7 +12,6 @@ import {
   FormHelperText,
   chakra,
   Input,
-  Text,
   ModalCloseButton,
   Button,
   // Flex,
@@ -33,17 +32,20 @@ Nui.onEvent('Textbox', (payload) => {
 //     width: '100%',
 //     backgroundImage: 'url(https://cdn.discordapp.com/attachments/655453054522621964/669602739545964564/20190715004102_1.jpg)',
 //   },
-// };
+// };u
 
 const TextBox = () => {
-  const show = useSelector((state) => state.Show.show);
+  const show = useSelector((state) => state.Textbox.show);
+  const title = useSelector((state) => state.Textbox.title);
+  const placeholder = useSelector((state) => state.Textbox.placeholder);
+  // useSelector((state) => console.log(state.Textbox.placeholder));
   const [input, setInput] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const focus = useRef();
   // const dispatch = useDispatch();
   // const [open, setOpen] = useState(show);
 
-  // let toggle = true;
+  // const toggle = true;
 
   // useEffect(() => {
   //   setOpen(show);
@@ -90,7 +92,7 @@ const TextBox = () => {
     // dispatch({ type: 'SHOW',  });
     Nui.post('submitBox', { input, state: false }).then((resp) => resp.json()).then((resp) => {
       console.log(JSON.stringify(resp));
-      store.dispatch({ type: 'Textbox', payload: { show: resp.state } });
+      store.dispatch({ type: 'Textbox', payload: { show: resp.state, title, placeholder } });
       if (resp.msg) {
         setErrorMsg(resp.msg);
       }
@@ -117,7 +119,7 @@ const TextBox = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <chakra.form
             onSubmit={(e) => {
@@ -128,11 +130,12 @@ const TextBox = () => {
           >
             <ModalBody>
               <FormControl>
-                <Text mb={8}>
-                  Input: `
-                  {input}
-                </Text>
-                <Input ref={focus} placeholder="Basic usage" value={input} onChange={(e) => setInput(e.target.value)} />
+                <Input
+                  ref={focus}
+                  placeholder={placeholder}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                />
                 <FormHelperText>{errorMsg}</FormHelperText>
               </FormControl>
             </ModalBody>

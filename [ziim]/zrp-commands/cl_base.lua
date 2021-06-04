@@ -6,11 +6,12 @@ function RetrieveComponents()
 end
 
 AddEventHandler("Core:Shared:Ready", function()
+  print("core shared")
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger', 
     'Notifications'
   }, function(error)
-    if error > 0 then
+    if error == 0 then
       print('Error')
       return
     end

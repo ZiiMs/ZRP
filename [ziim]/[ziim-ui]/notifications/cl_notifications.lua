@@ -7,7 +7,7 @@ AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger'
   }, function(error)
-    if error > 0 then
+    if error == 0 then
       return
     end
     RetrieveComponents()

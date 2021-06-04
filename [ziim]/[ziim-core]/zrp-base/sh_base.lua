@@ -28,6 +28,7 @@ end)
 
 exports('FetchComponent', function(resource) 
   for i,v in pairs(ZRP) do print(i,v ) end
+  print("Fetch: ", ZRP[resource]);
   return ZRP[resource];
 end)
 
