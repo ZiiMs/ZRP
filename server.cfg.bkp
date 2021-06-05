@@ -1,0 +1,39 @@
+# This file is a minimal version of the default config file.
+# This is NOT supposed to be enough for a fully running server.
+# Please read the fivem documentation:
+#   https://docs.fivem.net/docs/server-manual/server-commands/
+#   https://docs.fivem.net/docs/server-manual/setting-up-a-server/
+
+## You CAN edit the following:
+endpoint_add_tcp "0.0.0.0:30120"
+endpoint_add_udp "0.0.0.0:30120"
+sv_maxclients 48
+set steam_webApiKey "none"
+sets tags "default, deployer"
+
+## You MAY edit the following:
+sv_licenseKey "hfm5o6to9fffxulmglaiswmkaqiqrt3o"
+sv_hostname "ZiiMTest built with CFX Default by Tabarra!"
+sets sv_projectName "[CFX Default] ZiiMTest"
+sets sv_projectDesc "Recipe for the base resources required to run a minimal FiveM server."
+sets locale "root-AQ" 
+
+## These resources will start by default.
+ensure mapmanager
+ensure chat
+ensure spawnmanager
+ensure sessionmanager
+ensure basic-gamemode
+ensure hardcap
+ensure zrp-base
+ensure proxy
+
+## Rest below
+ensure notifications
+ensure textbox
+
+
+## Add system admins
+add_ace group.admin command allow # allow all commands
+add_ace group.admin command.quit deny # but don't allow quit
+add_principal identifier.license:7e5a718514a9dfd78920a66998a036b14b3a2a37 group.admin #ZiiiM
