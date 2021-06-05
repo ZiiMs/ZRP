@@ -3,21 +3,19 @@ ZRP = ZRP or {}
 ZRP.ExportsReady = false
 
 exports('RequestDependencies', function(resource, dependencies, cb)
-  local count = 1;
+  local errors = {}
   for _,depends in pairs(dependencies) do  
+    local count = 1;
     for resources,_ in pairs(ZRP) do 
-      print(depends, resources)
-      if depends == resources then 
+      if depends == resources then
         count = count + 1;
       end
     end
+    if count == 1 then 
+      table.insert(errors, depends)
+    end
   end
-  if count ~= #dependencies then 
-    cb(count-#dependencies);
-  else
-    cb();
-  end
-  
+    cb(errors);
 end)
 
 
@@ -27,8 +25,8 @@ exports('RegisterComponent', function(resource, Component)
 end)
 
 exports('FetchComponent', function(resource) 
-  for i,v in pairs(ZRP) do print(i,v ) end
-  print("Fetch: ", ZRP[resource]);
+  -- for i,v in pairs(ZRP) do print(i,v ) end
+  -- print("Fetch: ", ZRP[resource]);
   return ZRP[resource];
 end)
 

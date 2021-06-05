@@ -1,8 +1,8 @@
-import React from 'react';
-import { Message, toaster, Notification } from 'rsuite';
-// import 'rsuite/lib/styles/themes/dark/index.less';
-import './Notifications.less';
+import { useToast } from '@chakra-ui/react';
+import React, { useCallback, useEffect } from 'react';
 import { store } from '../index';
+import Notify from '../components/Notify';
+import Alerts from '../components/Alerts';
 import Nui from '../Nui';
 
 Nui.onEvent('Notify', (payload) => {
@@ -10,21 +10,53 @@ Nui.onEvent('Notify', (payload) => {
 });
 
 const Notifications = () => {
+  const toast = useToast();
+
   const handleAlerts = (type, text, style, header) => {
     if (text !== '') {
       switch (style) {
         case 'alert': {
-          toaster.push(<Message showIcon type={type} header={header}>{text}</Message>, { duration: 500, placement: 'topEnd' });
+          toast({
+            position: 'top-right',
+            // eslint-disable-next-line react/display-name
+            render: () => (<Alerts text={text} header={header} type={type} />),
+          });
           break;
         }
         case 'notify': {
-          toaster.push(<Notification type={type} header={header}>{text}</Notification>, { duration: 500, placement: 'topEnd' });
+          toast({
+            position: 'top-right',
+            // eslint-disable-next-line react/display-name
+            render: () => (<Notify text={text} />),
+          });
           break;
         }
         default:
       }
     }
   };
+
+  const handleKeyPress = useCallback(
+    (e) => {
+      // Press U to trigger Event
+      if (e.keyCode === 85) {
+        e.preventDefault();
+        // console.log(show);
+        Nui.emitEvent('Notify', {
+          type: 'warn', text: 'Text', header: 'headers', style: 'notify',
+        });
+        // toggle = !toggle;
+      }
+    },
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress, false);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress, false);
+    };
+  }, [handleKeyPress]);
 
   store.subscribe(() => {
     const payload = store.getState();
@@ -36,7 +68,9 @@ const Notifications = () => {
     );
   });
 
-  return (<div />);
+  return (
+    <div />
+  );
 };
 
 export default Notifications;

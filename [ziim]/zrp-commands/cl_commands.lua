@@ -3,16 +3,15 @@ function RetrieveComponents()
   Notifications = exports['zrp-base']:FetchComponent('Notifications')
   Textbox = exports['zrp-base']:FetchComponent('Textbox')
   Logger = exports['zrp-base']:FetchComponent('Logger')
-  print('Retrieving', Notifications)
 end
 
 AddEventHandler("Core:Shared:Ready", function()
-  print("core shared")
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger', 
+    'Textbox',
     'Notifications'
   }, function(error)
-    if error == 0 then
+    if #error > 0 then
       print('Error')
       return
     end
@@ -26,7 +25,7 @@ RegisterCommand("gotols", function(source, args)
   FreezeEntityPosition(self, true);
   Notifications:Alert("success", "RequestsWork>?", "If you can read this, our object OOP style lua is working!!!")
   Notifications:Notify("info", "Is this Working", "I hope this works!!")
-  Logger:Error("test", "Is this working?")
+  Logger:Trace("commands", "Is this working?")
   Citizen.Wait(1500);
   FreezeEntityPosition(self, false);
 end, false)
@@ -47,7 +46,7 @@ RegisterNUICallback('spawnCarBox', function(data, cb)
   end
   print("Working23423?")
   if not IsModelInCdimage(vehicleName) or not IsModelAVehicle(vehicleName) then
-      cb({ state = true, msg = "Error: Invalid vehicle " .. vehicleName})
+      cb({ state = true, msg = ("Error: Invalid vehicle %s."):format(vehicleName)})
       return
   end
   print("Worki2345345ng?")

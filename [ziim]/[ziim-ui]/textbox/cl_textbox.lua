@@ -1,18 +1,16 @@
 function RetrieveComponents()
-  print("Fetching textbox")
   Logger = exports['zrp-base']:FetchComponent('Logger')
 end
 
 
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
-    'Logger'
+    'Logger',
   }, function(error)
-    if error == 0 then
-      print("Errors", error)
+    if #error > 0 then
+      print("Errors", error[1])
       return
     end
-    print("No Error: Retrieving");
     RetrieveComponents()
   end)
 end)
