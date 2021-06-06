@@ -5,8 +5,9 @@ AddEventHandler("onResourceStart", function(resource)
 
 	Citizen.CreateThread(function()
 		while true do 
-			Citizen.Wait(100)
+			Citizen.Wait(50)
 			if ZRP.ExportsReady then
+				Citizen.Wait(100);
 				TriggerEvent("Proxy:Shared:RegisterReady")
 				Citizen.Wait(500)
 				TriggerEvent('Core:Shared:Ready')

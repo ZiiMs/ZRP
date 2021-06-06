@@ -11,12 +11,19 @@ import {
   FormControl,
   FormErrorMessage,
   chakra,
-  Input,
+  // Input,
   ModalCloseButton,
   Button,
   // Flex,
   Spacer,
 } from '@chakra-ui/react';
+
+import {
+  AutoComplete,
+  AutoCompleteInput,
+  AutoCompleteItem,
+  AutoCompleteList,
+} from '@choc-ui/chakra-autocomplete';
 
 import { useSelector, store } from '../../index';
 import Nui from '../../Nui';
@@ -40,6 +47,8 @@ const TextBox = () => {
   const placeholder = useSelector((state) => state.Textbox.placeholder);
   const event = useSelector((state) => state.Textbox.event);
   const resource = useSelector((state) => state.Textbox.resource);
+  // const options = ['apple', 'bannana'];
+  const options = useSelector((state) => state.Textbox.autocomplete);
   // useSelector((state) => console.log(state.Textbox.placeholder));
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
@@ -78,8 +87,8 @@ const TextBox = () => {
     // store.dispatch({ type: 'Textbox', payload: { show: false } });
     // dispatch({ type: 'SHOW',  });
     Nui.post('closeBox', { state: false }).then((resp) => resp.json()).then((resp) => {
-      console.log(JSON.stringify(resp));
-      store.dispatch({ type: 'Textbox', payload: { show: resp.state } });
+      // console.log(JSON.stringify(resp));
+      store.dispatch({ type: 'Textbox', payload: { show: resp.state, autocomplete: [] } });
       if (!resp.state) {
         console.log('Resseting!');
         setLoading(false);
@@ -103,7 +112,7 @@ const TextBox = () => {
       store.dispatch({
         type: 'Textbox',
         payload: {
-          show: resp.state, title, placeholder, event, resource,
+          show: resp.state, title, placeholder, event, resource, autocomplete: options,
         },
       });
       if (resp.msg) {
@@ -143,13 +152,30 @@ const TextBox = () => {
           >
             <ModalBody>
               <FormControl isInvalid={errorMsg}>
-                <Input
-                  ref={focus}
-                  placeholder={placeholder}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                />
-                <FormErrorMessage>{errorMsg}</FormErrorMessage>
+                <AutoComplete
+                  rollNavigation
+                  suggestWhenEmpty={false}
+                  emptyState={false}
+                  onSelectOption={(e) => setInput(e.optionValue)}
+                >
+                  <AutoCompleteInput isDisabled={loading} variant="filled" ref={focus} placeholder={placeholder} value={input} onChange={(e) => setInput(e.target.value)} />
+                  <AutoCompleteList>
+                    {/* {console.log(options)} */}
+                    {options && options.map((option, oid) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <AutoCompleteItem key={`option-${oid}`} value={option}>
+                        {option}
+                      </AutoCompleteItem>
+                    ))}
+                  </AutoCompleteList>
+                  {/* <Input
+                    ref={focus}
+                    placeholder={placeholder}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                  /> */}
+                  <FormErrorMessage>{errorMsg}</FormErrorMessage>
+                </AutoComplete>
               </FormControl>
             </ModalBody>
             <ModalFooter>

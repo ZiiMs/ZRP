@@ -33,11 +33,12 @@ end, false)
 
 Textbox = {
   toggle = false;
-  TextBox = function(self, title, placeholder, event, resource) 
+  TextBox = function(self, title, placeholder, event, resource, autocomplete)
+    autocomplete = autocomplete or {}
     self.toggle = not self.toggle
     SendNUIMessage({
       type = "Textbox",
-      payload = {show = self.toggle, title = title, placeholder = placeholder, event = event, resource = resource},
+      payload = {show = self.toggle, title = title, placeholder = placeholder, event = event, resource = resource, autocomplete = autocomplete},
     })
     SetNuiFocus(self.toggle, self.toggle)
     print("toggle:", self.toggle)

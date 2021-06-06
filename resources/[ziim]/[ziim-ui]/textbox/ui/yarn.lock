@@ -1522,6 +1522,11 @@
   dependencies:
     "@chakra-ui/utils" "1.8.0"
 
+"@choc-ui/chakra-autocomplete@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@choc-ui/chakra-autocomplete/-/chakra-autocomplete-3.3.1.tgz#8a144460bdb56849c180326455a14e6eabbb4a01"
+  integrity sha512-unr6JdT7fF50or+Wu1peXh80Vgg4PMkPderDB0lrAE79O2YZ8ONiY71OrkPBCVQ3x82qc7SC2rXkBl++OkV4TQ==
+
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.3.tgz#90420f9f9c6d3987f176a19a7d8e764271a2f55d"

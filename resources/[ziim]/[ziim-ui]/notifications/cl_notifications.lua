@@ -44,5 +44,11 @@ Notifications = {
       type = "Notify",
       payload = {type = type, text = body, style = 'alert', header = header, duration = duration},
     })
+  end,
+  Testcb = function(self, cb)
+    cb("Test string2")
+  end,
+  Testreturn = function(self)
+    return("This is a test string?")
   end
 }

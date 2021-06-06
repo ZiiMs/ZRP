@@ -12,13 +12,14 @@ const initialState = {
   placeholder: 'Placeholder',
   event: '',
   resource: '',
+  autocomplete: [],
 };
 
 const Textbox = (
   state = initialState,
   data = IShow,
 ) => {
-  console.log(JSON.stringify(data.payload));
+  // console.log(JSON.stringify(data.payload));
   switch (data.type) {
     case 'Textbox':
       return {
@@ -28,6 +29,7 @@ const Textbox = (
         placeholder: data.payload.placeholder,
         event: data.payload.event,
         resource: data.payload.resource,
+        autocomplete: data.payload.autocomplete,
       };
     default:
       return state;
