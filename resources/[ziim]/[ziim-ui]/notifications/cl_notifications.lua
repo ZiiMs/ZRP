@@ -26,24 +26,26 @@ RegisterCommand("testNotify", function(source, args)
   local Type = table.remove(args, 1);
   -- local Style = table.remove(args, 1);
   local Header = table.remove(args, 1);
+  local duration = table.remove(args, 1);
   local Body = table.concat(args, " ");
   -- TriggerEvent("ziim:notify", Style, Type, "", Body);
-  Notifications:Notify(Type, "", Body)
+  Notifications:Alert(Type, Header, Body, duration)
   -- for i,v in pairs(ZRP["Notifications"]) do print(i,v) end
 end, false)
 
 Notifications = {
-  Notify = function(self, type, header, body) 
-    print("Working?!?")
+  Notify = function(self, type, header, body, duration) 
+    duration = duration or 5000
     SendNUIMessage({
       type = "Notify",
-      payload = {type = type, text = body, style = 'notify', header = header},
+      payload = {type = type, text = body, style = 'notify', header = header, duration = duration},
     })
   end,
-  Alert = function(self, type, header, body) 
+  Alert = function(self, type, header, body, duration) 
+    duration = duration or 5000
     SendNUIMessage({
       type = "Notify",
-      payload = {type = type, text = body, style = 'alert', header = header},
+      payload = {type = type, text = body, style = 'alert', header = header, duration = duration},
     })
   end
 }

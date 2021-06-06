@@ -8,7 +8,7 @@ AddEventHandler("onResourceStart", function(resource)
 			Citizen.Wait(100)
 			if ZRP.ExportsReady then
 				TriggerEvent("Proxy:Shared:RegisterReady")
-				Citizen.Wait(50)
+				Citizen.Wait(500)
 				TriggerEvent('Core:Shared:Ready')
 				return
 			else

@@ -37,7 +37,7 @@ function ZRP.WaitForExports(self)
           if exports and exports["zrp-base"] then
               TriggerEvent("Proxy:Shared:RegisterReady")
               ZRP.ExportsReady = true
-              Citizen.Wait(50)
+              Citizen.Wait(500)
               TriggerEvent('Core:Shared:Ready')
               return
           end

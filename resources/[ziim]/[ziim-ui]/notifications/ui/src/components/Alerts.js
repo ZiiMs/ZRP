@@ -4,7 +4,8 @@ import {
   chakra, Box, Icon, Flex, useColorModeValue,
 } from '@chakra-ui/react';
 
-import { IoMdCheckmarkCircle, IoMdAlert, BsLightningFill } from 'react-icons/io';
+import { IoMdCheckmarkCircle, IoMdAlert } from 'react-icons/io';
+import { BsLightningFill } from 'react-icons/bs';
 
 const Alerts = (props) => {
   const [data] = useState(props);

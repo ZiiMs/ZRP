@@ -11,6 +11,7 @@ const initialState = {
   type: 'info',
   style: 'alert',
   header: '',
+  duration: 5000,
 };
 
 const notification = (
@@ -26,6 +27,7 @@ const notification = (
         type: data.payload.type,
         style: data.payload.style,
         header: data.payload.header,
+        duration: data.payload.duration,
       };
     default:
       return state;

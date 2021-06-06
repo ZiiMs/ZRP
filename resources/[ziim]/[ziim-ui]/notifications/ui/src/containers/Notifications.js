@@ -1,5 +1,5 @@
 import { useToast } from '@chakra-ui/react';
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { store } from '../index';
 import Notify from '../components/Notify';
 import Alerts from '../components/Alerts';
@@ -12,12 +12,13 @@ Nui.onEvent('Notify', (payload) => {
 const Notifications = () => {
   const toast = useToast();
 
-  const handleAlerts = (type, text, style, header) => {
+  const handleAlerts = (type, text, style, header, duration) => {
     if (text !== '') {
       switch (style) {
         case 'alert': {
           toast({
             position: 'top-right',
+            duration,
             // eslint-disable-next-line react/display-name
             render: () => (<Alerts text={text} header={header} type={type} />),
           });
@@ -26,6 +27,7 @@ const Notifications = () => {
         case 'notify': {
           toast({
             position: 'top-right',
+            duration,
             // eslint-disable-next-line react/display-name
             render: () => (<Notify text={text} />),
           });
@@ -36,27 +38,27 @@ const Notifications = () => {
     }
   };
 
-  const handleKeyPress = useCallback(
-    (e) => {
-      // Press U to trigger Event
-      if (e.keyCode === 85) {
-        e.preventDefault();
-        // console.log(show);
-        Nui.emitEvent('Notify', {
-          type: 'warn', text: 'Text', header: 'headers', style: 'notify',
-        });
-        // toggle = !toggle;
-      }
-    },
-  );
+  // const handleKeyPress = useCallback(
+  //   (e) => {
+  //     // Press U to trigger Event
+  //     if (e.keyCode === 85) {
+  //       e.preventDefault();
+  //       // console.log(show);
+  //       Nui.emitEvent('Notify', {
+  //         type: 'warn', text: 'Text', header: 'headers', style: 'notify',
+  //       });
+  //       // toggle = !toggle;
+  //     }
+  //   },
+  // );
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress, false);
+  // useEffect(() => {
+  //   document.addEventListener('keydown', handleKeyPress, false);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress, false);
-    };
-  }, [handleKeyPress]);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyPress, false);
+  //   };
+  // }, [handleKeyPress]);
 
   store.subscribe(() => {
     const payload = store.getState();
@@ -65,6 +67,7 @@ const Notifications = () => {
       payload.notification.text,
       payload.notification.style,
       payload.notification.header,
+      payload.notification.duration,
     );
   });
 
