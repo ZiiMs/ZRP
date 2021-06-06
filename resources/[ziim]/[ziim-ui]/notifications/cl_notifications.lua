@@ -35,14 +35,14 @@ end, false)
 
 Notifications = {
   Notify = function(self, type, header, body, duration) 
-    duration = duration or 5000
+    duration = duration or 7500
     SendNUIMessage({
       type = "Notify",
       payload = {type = type, text = body, style = 'notify', header = header, duration = duration},
     })
   end,
   Alert = function(self, type, header, body, duration) 
-    duration = duration or 5000
+    duration = duration or 7500
     SendNUIMessage({
       type = "Notify",
       payload = {type = type, text = body, style = 'alert', header = header, duration = duration},
