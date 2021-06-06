@@ -15,7 +15,6 @@ AddEventHandler("Core:Shared:Ready", function()
 end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
-  -- print("TriggeringEvent?")
   exports['zrp-base']:RegisterComponent("Notifications", Notifications)
 end)
 
@@ -28,9 +27,7 @@ RegisterCommand("testNotify", function(source, args)
   local Header = table.remove(args, 1);
   local duration = table.remove(args, 1);
   local Body = table.concat(args, " ");
-  -- TriggerEvent("ziim:notify", Style, Type, "", Body);
   Notifications:Alert(Type, Header, Body, duration)
-  -- for i,v in pairs(ZRP["Notifications"]) do print(i,v) end
 end, false)
 
 Notifications = {
@@ -49,11 +46,3 @@ Notifications = {
     })
   end
 }
-
-
--- AddEventHandler("ziim:notify", function(style, type, header, body)
---   SendNUIMessage({
---     type = "Notify",
---     payload = {type = type, text = body, style = style, header = header},
---   })
--- end)
