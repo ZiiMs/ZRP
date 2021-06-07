@@ -4,7 +4,7 @@ import { useSelector as useReduxSelector, Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import TextBox from './containers/textBox';
+import App from './containers/App';
 import rootReducer from './reducers';
 import { EventListener } from './Nui';
 import theme from './theme';
@@ -17,7 +17,7 @@ ReactDOM.render(
   <>
     <Provider store={store}>
       <ChakraProvider theme={theme}>
-        <TextBox />
+        <App />
         <EventListener />
       </ChakraProvider>
     </Provider>

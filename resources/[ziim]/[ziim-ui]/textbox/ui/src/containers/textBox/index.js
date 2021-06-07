@@ -49,7 +49,6 @@ const TextBox = () => {
   const resource = useSelector((state) => state.Textbox.resource);
   // const options = ['apple', 'bannana'];
   const options = useSelector((state) => state.Textbox.autocomplete);
-  // useSelector((state) => console.log(state.Textbox.placeholder));
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -90,7 +89,6 @@ const TextBox = () => {
       // console.log(JSON.stringify(resp));
       store.dispatch({ type: 'Textbox', payload: { show: resp.state, autocomplete: [] } });
       if (!resp.state) {
-        console.log('Resseting!');
         setLoading(false);
         setInput('');
         setErrorMsg('');
@@ -104,7 +102,6 @@ const TextBox = () => {
     // store.dispatch({ type: 'Textbox', payload: { show: false } });
     // dispatch({ type: 'SHOW',  });
     setLoading(true);
-    console.log(event);
     Nui.post(event, { input }, resource).then((resp) => resp.json()).then((resp) => {
       // console.log(resp);
       // console.log(JSON.stringify(resp));
@@ -119,7 +116,6 @@ const TextBox = () => {
         setErrorMsg(resp.msg);
       }
       if (!resp.state) {
-        console.log('Resseting!');
         setInput('');
         setErrorMsg('');
       }
@@ -134,6 +130,7 @@ const TextBox = () => {
         onClose={onClose}
         isOpen={show}
         isCentered
+        colorScheme="gray.800"
         autoFocus={false}
         closeOnOverlayClick={false}
         closeOnEsc
@@ -154,13 +151,13 @@ const TextBox = () => {
               <FormControl isInvalid={errorMsg}>
                 <AutoComplete
                   rollNavigation
+                  maxSuggestions={25}
                   suggestWhenEmpty={false}
                   emptyState={false}
                   onSelectOption={(e) => setInput(e.optionValue)}
                 >
                   <AutoCompleteInput isDisabled={loading} variant="filled" ref={focus} placeholder={placeholder} value={input} onChange={(e) => setInput(e.target.value)} />
                   <AutoCompleteList>
-                    {/* {console.log(options)} */}
                     {options && options.map((option, oid) => (
                       // eslint-disable-next-line react/no-array-index-key
                       <AutoCompleteItem key={`option-${oid}`} value={option}>

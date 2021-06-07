@@ -14,13 +14,6 @@ const theme = extendTheme({
       },
     },
   },
-  components: {
-    Modal: {
-      baseStyle: {
-        bg: 'gray.880',
-      },
-    },
-  },
 });
 // 3. extend the theme
 // const theme = extendTheme({ config });
