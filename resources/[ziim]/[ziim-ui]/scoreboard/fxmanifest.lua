@@ -11,5 +11,5 @@ files {
   'ui/build/main.js'
 }
 
-client_script 'cl_textbox.lua'
-server_script 'sv_textbox.lua'
+client_script 'cl_scoreboard.lua'
+server_script 'sv_scoreboard.lua'

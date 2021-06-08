@@ -20,26 +20,30 @@ Citizen.CreateThread(function ()
   while true do 
       Wait(0)
       if IsControlJustReleased(0, 303) then
-          local players = {}
+          local tempPlayers = {}
           for i=1,255 do
             local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
             local temp = { id = i, license = license};
-            table.insert( players, temp );
+            table.insert( tempPlayers, temp );
           end
               toggle = not toggle
+              TriggerServerEvent("sb:fetch", function(data)
+                Logger:Trace("scoreboard", ("Data: %s"):format(data))
+              end)
               SendNUIMessage({
                 type = "scoreboardShow",
-                payload = {show = toggle, players = players},
+                payload = {show = toggle, players = tempPlayers},
               })
               SetNuiFocus(true, false)
       end
   end
 end)
 
+
 RegisterNUICallback('closeScoreboard', function(data, cb)
   toggle = false
   SetNuiFocus(toggle, toggle)
-  cb({ state = false })
+  cb(true)
 end)
 
 -- AddEventHandler("Proxy:Shared:RegisterReady", function()

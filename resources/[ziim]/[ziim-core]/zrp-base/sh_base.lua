@@ -18,23 +18,26 @@ exports('RequestDependencies', function(resource, dependencies, cb)
     cb(errors);
 end)
 
-
 exports('RegisterComponent', function(resource, Component)
   ZRP[resource] = Component;
   print("Registering Component: ", resource);
+  -- for i,v in pairs(ZRP) do print(i) end
 end)
 
 exports('FetchComponent', function(resource) 
-  -- for i,v in pairs(ZRP) do print(i,v ) end
-  -- print("Fetch: ", ZRP[resource]);
+  
+  -- print("Fetch: ", resource);
   return ZRP[resource];
 end)
 
+RegisterNetEvent("Proxy:Shared:RegisterReady")
+RegisterNetEvent("Core:Shared:Ready")
 function ZRP.WaitForExports(self)
   Citizen.CreateThread(function()
       while true do
         Citizen.Wait(50)
           if exports and exports["zrp-base"] then
+              print("Triggering Event!")
               TriggerEvent("Proxy:Shared:RegisterReady")
               ZRP.ExportsReady = true
               Citizen.Wait(500)
@@ -48,3 +51,41 @@ function ZRP.WaitForExports(self)
 end
 
 ZRP.WaitForExports();
+
+AddEventHandler("Proxy:Shared:RegisterReady", function()
+  exports['zrp-base']:RegisterComponent("Logger", Logger)
+end)
+
+
+Logger = {
+  Error = function(self, mod, msg) 
+    if not tostring(msg) then return end
+    if not tostring(mod) then mod = "No Module" end
+    
+    local pMsg = "[^1ERROR^7]"
+    local msg2 = ("[^4%s^7] %s"):format(mod, msg)
+    if not pMsg then return end
+
+    print(pMsg, msg2)
+  end,
+  Trace = function(self, mod, msg) 
+    if not tostring(msg) then return end
+    if not tostring(mod) then mod = "No Module" end
+    
+    local pMsg = "^7[TRACE]"
+    local msg2 =  ("[^4%s^7] %s"):format(mod, msg)
+    if not pMsg then return end
+
+    print(pMsg, msg2)
+  end,
+  Warn = function(self, mod, msg) 
+    if not tostring(msg) then return end
+    if not tostring(mod) then mod = "No Module" end
+    
+    local pMsg = "[^3TRACE^7]"  
+    local msg2 =  ("[^4%s^7] %s"):format(mod, msg)
+    if not pMsg then return end
+
+    print(pMsg, msg2)
+  end,
+}
