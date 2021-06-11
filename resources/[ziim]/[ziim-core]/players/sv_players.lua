@@ -30,10 +30,18 @@ Players = {
       local key = string.match(v, "(.-):")
       idents[key] = v
     end
-    for i,v in pairs(idents) do
-      -- print(i,v)
-      Logger:Trace("players", ("Key:%s Ident: %s"):format(i,v))
-    end
     return(idents)
+  end, 
+  GetIdent = function(self, player, id)
+    local ident = nil
+    for i,v in ipairs(GetPlayerIdentifiers(player)) do
+      -- Logger:Trace("players", ("Identifiers: %s"):format(string.match(v, "(.-):")))
+      local key = string.match(v, "(.-):")
+      if(key == id) then
+        ident = v
+        break
+      end
+    end
+    return(ident)
   end
 }

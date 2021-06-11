@@ -1,50 +1,103 @@
+local cbs = {}
+local cbResp = {}
+local currReqId = 0
+
+
+function RetrieveComponents()
+  Logger = exports['zrp-base']:FetchComponent('Logger')
+end
+
+AddEventHandler("Core:Shared:Ready", function()
+  exports['zrp-base']:RequestDependencies('Base', {
+    'Logger', 
+  }, function(error)
+    if #error > 0 then
+      print('Error')
+      return
+    end
+    RetrieveComponents()
+  end)
+end)
+
+Callbacks = {
+  TriggerClientCallback = function(self, src, eventName, ...)
+    local requestId = currReqId
+
+    currReqId = currReqId + 1
+    if (currReqId >= 65536) then
+      currReqId = 0
+    end
+
+    local event = eventName .. tostring(requestId)
+
+    cbResp[event] = true
+
+    TriggerClientEvent("__ccb", src, eventName, requestId, { ... })
+
+    local ticket = GetGameTimer()
+
+    while (cbResp[event] == true) do
+      Citizen.Wait(0)
+
+      if(GetGameTimer() > ticket + 5000) then
+        Logger:Error("callbacks", ("ClientCallBack \\%s\\ timed out after %s ms"):format(eventName, tostring(5000)))
+
+        cbResp[event] = "ERROR"
+      end
+    end
+
+    if(cbResp[event] == "ERROR") then
+      return nil
+    end
+
+    local data = cbResp[event]
+    cbResp[event] = nil
+    return table.unpack(data)
+  end,
+  RegisterServerCallback = function(self, eventName, fc)
+    cbs[eventName] = fc
+  end,
+}
+
+RegisterServerEvent("__scb")
+AddEventHandler("__scb", function(eventName, id, data)
+	local src = source
+  print("Name", eventName)
+  print("Id", id)
+	local requestName = eventName .. tostring(id)
+
+	if (cbs[eventName] ~= nil) then
+		-- execute callback function and return its result
+		local result = { cbs[eventName](src, table.unpack(data)) }
+		
+		TriggerClientEvent("__cb:server", src, requestName, result)
+	else
+		-- callback does not exist
+    Logger:Error("callbacks", ("ServerCallback \\%s\\ does not exist"):format(eventName))
+		
+		TriggerClientEvent("__scb:error", src, requestName, eventName)
+	end
+end)
+
+RegisterServerEvent("__cb:client")
+AddEventHandler("__cb:client", function(eventName, data)
+	if (cbResp[eventName] ~= nil) then
+		-- receive data
+		cbResp[eventName] = data
+	end
+end)
+
+RegisterServerEvent("__ccb:error")
+AddEventHandler("__ccb:error", function(eventName, name)
+	if (cbResp[eventName] ~= nil) then
+		cbResp[eventName] = "ERROR"
+		
+		Logger:Error("callbacks", ("ClientCallback \\%s\\ does not exist"):format(eventName))
+	end
+end)
+
+
 AddEventHandler("Proxy:Shared:RegisterReady", function()
 	print("Working?")
-  exports['zrp-base']:RegisterComponent("Callback", Callback)
+  exports['zrp-base']:RegisterComponent("Callbacks", Callbacks)
 end)
-
-
-RegisterNetEvent('__cb:server')
-AddEventHandler('__cb:server', function(eventName, ticket, ...)
-  local src = source
-	local p = promise.new()
-
-	TriggerEvent(('__scb:%s'):format(eventName), function(...)
-		p:resolve({...})
-	end, s, ...)
-
-	local result = Citizen.Await(p)
-	TriggerServerEvent(('__cb:client:%s:%s'):format(eventName, ticket), s, table.unpack(result))
-end)
-
-Callback = {
-  TriggerClientCallback = function(self, src, eventName, ...)
-		assert(type(src) == 'number', 'Invalid Lua type at argument #1, expected number, got '..type(src))
-		assert(type(eventName) == 'string', 'Invalid Lua type at argument #2, expected string, got '..type(eventName))
-
-    local p = promise.new()
-
-    RegisterNetEvent(("__cb:server:%s"):format(eventName))
-    local event = AddEventHandler(("__cb:server:%s"):format(eventName), function(...)
-      local s = source
-      if src == s then
-        p:resolve({...})
-      end
-    end)
-
-    TriggerServerEvent("__cb:client", src, eventName, ...)
-
-    local result = Citizen.Await(p)
-    RemoveEventHandler(event)
-    return table.unpack(result);
-  end,
-  RegisterServerCallback = function(self, eventName, func)
-		assert(type(eventName) == 'string', 'Invalid Lua type at argument #1, expected string, got '..type(eventName))
-		assert(type(func) == 'function', 'Invalid Lua type at argument #2, expected function, got '..type(func))
-
-    AddEventHandler(("__scb:%s"):format(eventName), function(cb, s, ...)
-      local result = {func(s, ...)}
-      cb(table.unpack(result))
-    end)
-  end
-}

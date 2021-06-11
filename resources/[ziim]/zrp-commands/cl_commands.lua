@@ -25,20 +25,20 @@ end)
 
 
 Commands = {
-  Testcb = function(self, type, header, body, duration) 
-    duration = duration or 7500
-    SendNUIMessage({
-      type = "Notify",
-      payload = {type = type, text = body, style = 'notify', header = header, duration = duration},
-    })
-  end,
-  Alert = function(self, type, header, body, duration) 
-    duration = duration or 7500
-    SendNUIMessage({
-      type = "Notify",
-      payload = {type = type, text = body, style = 'alert', header = header, duration = duration},
-    })
-  end
+  -- Testcb = function(self, type, header, body, duration) 
+  --   duration = duration or 7500
+  --   SendNUIMessage({
+  --     type = "Notify",
+  --     payload = {type = type, text = body, style = 'notify', header = header, duration = duration},
+  --   })
+  -- end,
+  -- Alert = function(self, type, header, body, duration) 
+  --   duration = duration or 7500
+  --   SendNUIMessage({
+  --     type = "Notify",
+  --     payload = {type = type, text = body, style = 'alert', header = header, duration = duration},
+  --   })
+  -- end
 }
 
 RegisterCommand("gotols", function(source, args)
@@ -48,7 +48,7 @@ RegisterCommand("gotols", function(source, args)
   Notifications:Alert("warn", "RequestsWork>?", "If you can read this, our object OOP style lua is working!!!")
   Notifications:Notify("info", "Is this Working", "I hope this works!!")
   Logger:Trace("commands", "Is this working?")
-  Notifications:Testcb(function(data)
+  Notifications:Testcb("Test string", function(data)
     print(data);
   end)
   

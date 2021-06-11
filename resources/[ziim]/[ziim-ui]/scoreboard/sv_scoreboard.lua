@@ -1,7 +1,7 @@
 function RetrieveComponents()
   Logger = exports['zrp-base']:FetchComponent('Logger')
   Players = exports['zrp-base']:FetchComponent('Players')
-  Callback = exports['zrp-base']:FetchComponent('Callback')
+  Callbacks = exports['zrp-base']:FetchComponent('Callbacks')
 end
 
 
@@ -9,25 +9,34 @@ AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger',
     'Players',
-    'Callback',
+    'Callbacks',
   }, function(error)
     if #error > 0 then
       print("Errors", error[1])
       return
     end
     RetrieveComponents()
+    print("Type: ", type(RegisterServerCallbacks))
     RegisterServerCallbacks()
+    
   end)
 end)
 
 function RegisterServerCallbacks()
   print("Registering")
-  Callback:RegisterServerCallback("sb:getData", function(source)
-    local idents = Players:GetIdentifiers(source);
+  Callbacks:RegisterServerCallback("sb:getData", function(source)
+    local idents = {}
+    for i, player in ipairs(GetPlayers()) do
+      print("i")
+      local id = Players:GetIdent(player, "license")
+      table.insert( idents, {id = i, license = id})
+    end
     print("Register")
     return idents
   end)
 end
+
+
 
 
 
