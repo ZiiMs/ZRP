@@ -1,11 +1,13 @@
 function RetrieveComponents()
   Logger = exports['zrp-base']:FetchComponent('Logger')
+  Callback = exports['zrp-base']:FetchComponent('Callback')
 end
 
 
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger',
+    'Callback'
   }, function(error)
     if #error > 0 then
       print("Errors", error[1])
@@ -26,15 +28,12 @@ Citizen.CreateThread(function ()
             local temp = { id = i, license = license};
             table.insert( tempPlayers, temp );
           end
-              toggle = not toggle
-              TriggerServerEvent("sb:fetch", function(data)
-                Logger:Trace("scoreboard", ("Data: %s"):format(data))
-              end)
-              SendNUIMessage({
-                type = "scoreboardShow",
-                payload = {show = toggle, players = tempPlayers},
-              })
-              SetNuiFocus(true, false)
+          print("Get sb")
+          local idents = Callback:TriggerServerCallback('sb:getData')
+          for i,v in pairs(idents) do
+            -- print(i,v)
+            Logger:Trace("players", ("Key:%s Ident: %s"):format(i,v))
+          end
       end
   end
 end)
@@ -46,43 +45,11 @@ RegisterNUICallback('closeScoreboard', function(data, cb)
   cb(true)
 end)
 
--- AddEventHandler("Proxy:Shared:RegisterReady", function()
---   -- print("TriggeringEvent?")
---   print("Registering")
---   exports['zrp-base']:RegisterComponent("Textbox", Textbox)
--- end)
-
-
-
--- RegisterCommand("testBox", function(source, args)
---   local title = table.remove(args, 1);
---   local placeholder = table.remove(args, 1);
---   local event = table.remove(args, 1);
---   Textbox:TextBox(title, placeholder, event)
---   -- for i,v in pairs(ZRP["Notifications"]) do print(i,v) end
--- end, false)
-
--- Textbox = {
---   toggle = false;
---   TextBox = function(self, title, placeholder, event, resource, autocomplete)
---     autocomplete = autocomplete or {}
---     self.toggle = not self.toggle
---     SendNUIMessage({
---       type = "Textbox",
---       payload = {show = self.toggle, title = title, placeholder = placeholder, event = event, resource = resource, autocomplete = autocomplete},
---     })
---     SetNuiFocus(self.toggle, self.toggle)
---     print("toggle:", self.toggle)
---     Logger:Trace("textbox", ("toggle: %s"):format(self.toggle))
---   end,
---   Close = function(self)
---     self.toggle = false
---     SetNuiFocus(self.toggle, self.toggle)
---     SendNUIMessage({
---       type = "Textbox",
---       payload = {show = self.toggle},
---     })
---   end
--- }
-
---303
+AddEventHandler("sb:fetch", function(data)
+  toggle = not toggle
+  SendNUIMessage({
+    type = "scoreboardShow",
+    payload = {show = toggle, players = tempPlayers},
+  })
+  SetNuiFocus(true, false)
+end)
