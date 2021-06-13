@@ -44,8 +44,8 @@ const App = () => {
   });
 
   Nui.onEvent('scoreboardUpdate', (payload) => {
-    console.log('Listening to updte?');
-    // store.dispatch({ type: 'scoreboardUpdate', payload });
+    console.log('Listening to updte?', JSON.stringify(payload));
+    store.dispatch({ type: 'scoreboardUpdate', payload });
     const { move } = payload;
     if (move === 'left') {
       const page = current - 1;
