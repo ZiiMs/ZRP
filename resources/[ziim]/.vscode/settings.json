@@ -17,7 +17,7 @@
     "commands": [
       {
         "match": ".*",
-        "isAsync": true,
+        "isAsync": false,
         "cmd": "cd D:/Servers/ZiiMTest/data/resources & gitCommit.bat"
       }
     ]
