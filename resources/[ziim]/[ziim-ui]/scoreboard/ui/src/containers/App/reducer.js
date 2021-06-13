@@ -19,7 +19,6 @@ const scoreboardData = (
     case 'scoreboardShow':
       return { ...state, show: data.payload.show, players: data.payload.players };
     case 'scoreboardUpdate':
-      console.log(JSON.stringify(data.payload));
       return { ...state, move: data.payload.move };
     default:
       return state;

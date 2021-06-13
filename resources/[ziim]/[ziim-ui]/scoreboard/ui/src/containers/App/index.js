@@ -98,7 +98,6 @@ const App = () => {
 
   store.subscribe(() => {
     const { move } = store.getState().Scoreboard;
-    console.log('Move?', JSON.stringify(move));
     if (move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
