@@ -12,4 +12,14 @@
   "eslint.workingDirectories": [
     "./[ziim-ui]/notifications/ui"
   ],
+  "emeraldwalk.runonsave": {
+    
+    "commands": [
+      {
+        "match": ".*",
+        "isAsync": true,
+        "cmd": "cd D:/Servers/ZiiMTest/data/resources & gitCommit.bat"
+      }
+    ]
+  },
 }
