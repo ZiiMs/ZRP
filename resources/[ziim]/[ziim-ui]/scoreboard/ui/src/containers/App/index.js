@@ -47,11 +47,12 @@ const App = () => {
     console.log('Listening to updte?', JSON.stringify(payload));
     // store.dispatch({ type: 'scoreboardUpdate', payload });
     const { move } = payload;
-    console.log(move);
+    console.log(move === 'right');
     if (move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
     } else if (move === 'right') {
+      console.log('Working?');
       const page = current + 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
     }
