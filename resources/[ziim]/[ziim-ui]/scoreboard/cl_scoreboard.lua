@@ -44,13 +44,13 @@ Citizen.CreateThread(function ()
     if toggle then
       if IsControlJustReleased(0, 174) then
         SendNUIMessage({
-          type = "scoreboardShow",
+          type = "scoreboardUpdate",
           payload = {move = "left"},
         })
       end
     elseif IsControlJustReleased(0, 175) then
         SendNUIMessage({
-          type = "scoreboardShow",
+          type = "scoreboardUpdate",
           payload = {move = "left"},
         })
       end
