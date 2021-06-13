@@ -98,6 +98,7 @@ const App = () => {
 
   store.subscribe(() => {
     const { move } = store.getState();
+    console.log('Move?', move);
     if (move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
