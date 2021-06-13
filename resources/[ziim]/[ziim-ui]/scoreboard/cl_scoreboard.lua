@@ -20,27 +20,30 @@ local toggle = false;
 
 Citizen.CreateThread(function () 
   while true do 
-      Wait(0)
-      if IsControlJustReleased(0, 303) then
+    Wait(0)
+    if IsControlJustReleased(0, 303) then
 
-          print("Get sb")
-          local idents = Callbacks:TriggerServerCallback('sb:getData')
-          -- for i=2,255 do
-          --   local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
-          --   local temp = { id = i, license = license};
-          --   table.insert( idents, temp );
-          -- end
-          toggle = not toggle
-          SendNUIMessage({
-            type = "scoreboardShow",
-            payload = {show = toggle, players = idents},
-          })
-          SetNuiFocus(true, false)
-          -- for i,v in pairs(idents) do
-          --   -- print(i,v)
-          --   Logger:Trace("players", ("Key234:%s Ident: %s"):format(i,v))
-          -- end
-      end
+        print("Get sb")
+        local idents = Callbacks:TriggerServerCallback('sb:getData')
+        -- for i=2,255 do
+        --   local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
+        --   local temp = { id = i, license = license};
+        --   table.insert( idents, temp );
+        -- end
+        toggle = not toggle
+        SendNUIMessage({
+          type = "scoreboardShow",
+          payload = {show = toggle, players = idents},
+        })
+        SetNuiFocus(false, false)
+        -- for i,v in pairs(idents) do
+        --   -- print(i,v)
+        --   Logger:Trace("players", ("Key234:%s Ident: %s"):format(i,v))
+        -- end
+    end
+    if toggle then
+      
+    end
   end
 end)
 
