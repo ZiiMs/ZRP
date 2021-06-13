@@ -45,7 +45,15 @@ const App = () => {
 
   Nui.onEvent('scoreboardUpdate', (payload) => {
     console.log('Listening to updte?');
-    store.dispatch({ type: 'scoreboardUpdate', payload });
+    // store.dispatch({ type: 'scoreboardUpdate', payload });
+    const { move } = payload.move;
+    if (move === 'left') {
+      const page = current - 1;
+      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+    } else if (move === 'right') {
+      const page = current + 1;
+      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+    }
   });
 
   // const [loading, setLoading] = useState(true);
@@ -97,14 +105,7 @@ const App = () => {
   );
 
   store.subscribe(() => {
-    const { move } = store.getState().Scoreboard;
-    if (move === 'left') {
-      const page = current - 1;
-      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
-    } else if (move === 'right') {
-      const page = current + 1;
-      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
-    }
+
   });
 
   useEffect(() => {

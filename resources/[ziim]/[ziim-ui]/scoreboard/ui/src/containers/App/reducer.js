@@ -19,7 +19,7 @@ const scoreboardData = (
     case 'scoreboardShow':
       return { ...state, show: data.payload.show, players: data.payload.players };
     case 'scoreboardUpdate':
-      return { move: data.payload.move };
+      return { ...state, move: data.payload.move };
     default:
       return state;
   }
