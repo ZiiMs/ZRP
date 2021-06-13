@@ -34,6 +34,7 @@ import Nui from '../../Nui';
 const App = () => {
   const show = useSelector((state) => state.Scoreboard.show);
   const [current, setCurrent] = useState(1);
+  const [move, setMove] = useState('');
   const pageSize = 15;
   const offset = (current - 1) * pageSize;
   const [data, setData] = useState([]);
@@ -46,7 +47,26 @@ const App = () => {
   Nui.onEvent('scoreboardUpdate', (payload) => {
     console.log('Listening to updte?', JSON.stringify(payload));
     // store.dispatch({ type: 'scoreboardUpdate', payload });
+    setMove(payload.move);
   });
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (move === 'left') {
+        setMove('');
+        const page = current - 1;
+        setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+      } else if (move === 'right') {
+        setMove('');
+        console.log('Working?');
+        const page = current + 1;
+        setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+      }
+    }, 100);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [current, data.length, move, setMove]);
 
   /*
 
