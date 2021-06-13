@@ -52,7 +52,7 @@ Citizen.CreateThread(function ()
         print("Right?")
         SendNUIMessage({
           type = "scoreboardUpdate",
-          payload = {move = "left"},
+          payload = {move = "right"},
         })
       end
     end
