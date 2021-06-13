@@ -17,6 +17,8 @@ const scoreboardData = (
   switch (data.type) {
     case 'scoreboardShow':
       return { ...state, show: data.payload.show, players: data.payload.players };
+    case 'scoreboardUpdate':
+      return { ...state, move: data.payload.move };
     default:
       return state;
   }
