@@ -8,6 +8,7 @@ const IShow = {
 
 const initialState = {
   show: false,
+  move: '',
 };
 
 const scoreboardData = (
