@@ -42,7 +42,7 @@ Citizen.CreateThread(function ()
         -- end
     end
     if toggle then
-      s
+      
     end
   end
 end)
