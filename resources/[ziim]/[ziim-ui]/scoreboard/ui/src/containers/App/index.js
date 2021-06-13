@@ -43,6 +43,10 @@ const App = () => {
     setData(payload.players ? payload.players : []);
   });
 
+  Nui.onEvent('scoreboardUpdate', (payload) => {
+    store.dispatch({ type: 'scoreboardUpdate', payload });
+  });
+
   // const [loading, setLoading] = useState(true);
 
   // const flexBg = useColorModeValue('white', 'gray.800');
@@ -88,8 +92,19 @@ const App = () => {
         const page = current + 1;
         setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
       }
-    }, [current, data.length, show],
+    }, [current, data.length],
   );
+
+  store.subscribe(() => {
+    const { move } = store.getState();
+    if (move === 'left') {
+      const page = current - 1;
+      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+    } else if (move === 'left') {
+      const page = current + 1;
+      setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
+    }
+  });
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress, false);
