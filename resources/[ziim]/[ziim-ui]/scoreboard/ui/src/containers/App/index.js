@@ -102,7 +102,7 @@ const App = () => {
     if (move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
-    } else if (move === 'left') {
+    } else if (move === 'right') {
       const page = current + 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
     }
