@@ -44,6 +44,7 @@ const App = () => {
   });
 
   Nui.onEvent('scoreboardUpdate', (payload) => {
+    console.log('Listening to updte?');
     store.dispatch({ type: 'scoreboardUpdate', payload });
   });
 
