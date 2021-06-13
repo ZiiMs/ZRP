@@ -46,7 +46,7 @@ const App = () => {
   Nui.onEvent('scoreboardUpdate', (payload) => {
     console.log('Listening to updte?');
     // store.dispatch({ type: 'scoreboardUpdate', payload });
-    const { move } = payload.move;
+    const { move } = payload;
     if (move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
