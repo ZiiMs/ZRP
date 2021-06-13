@@ -97,12 +97,12 @@ const App = () => {
   );
 
   store.subscribe(() => {
-    const { move } = store.getState();
-    console.log('Move?', JSON.stringify(store.getState()));
-    if (move === 'left') {
+    const payload = store.getState();
+    console.log('Move?', JSON.stringify(payload.move));
+    if (payload.move === 'left') {
       const page = current - 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
-    } else if (move === 'left') {
+    } else if (payload.move === 'left') {
       const page = current + 1;
       setCurrent(Math.min(Math.max(page, 1), Math.ceil(data.length / pageSize)));
     }
