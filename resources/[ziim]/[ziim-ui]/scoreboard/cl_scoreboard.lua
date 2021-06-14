@@ -33,6 +33,14 @@ local function Init()
           -- end
       end
       if toggle then
+        if IsControlJustReleased(0, Utils.Keys["ESC"]) then
+          print("Left?")
+          toggle = false
+          SendNUIMessage({
+            type = "scoreboardShow",
+            payload = {show = toggle, players = idents},
+          })
+        end
         if IsControlJustReleased(0, Utils.Keys["LEFT"]) then
           print("Left?")
           SendNUIMessage({
