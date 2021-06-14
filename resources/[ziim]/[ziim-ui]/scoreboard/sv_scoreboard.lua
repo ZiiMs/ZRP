@@ -29,7 +29,7 @@ function RegisterServerCallbacks()
     for i, player in ipairs(GetPlayers()) do
       print("i", player)
       local id = Players:GetIdent(player, "license")
-      table.insert( idents, {id = i, license = id})
+      table.insert( idents, {id = player, license = id})
     end
     print("Register")
     return idents
