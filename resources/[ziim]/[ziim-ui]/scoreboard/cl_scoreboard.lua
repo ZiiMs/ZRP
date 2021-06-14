@@ -39,7 +39,7 @@ local function Init()
       end
       if toggle then
         if IsControlJustPressed(0, Utils.Keys["ESC"]) then
-          DisableControlAction(0, Utils.Keys["ESC"], false)
+          DisableControlAction(1, Utils.Keys["ESC"], false)
           print("ESC?")
           toggle = false
           SendNUIMessage({
