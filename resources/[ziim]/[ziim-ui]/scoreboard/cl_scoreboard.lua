@@ -16,7 +16,6 @@ AddEventHandler("Core:Shared:Ready", function()
       return
     end
     RetrieveComponents()
-    Init()
   end)
 end)
 local toggle = false;
@@ -107,13 +106,11 @@ local function Init()
   end)
 end
 
+Init()
+
 
 RegisterNUICallback('closeScoreboard', function(data, cb)
   toggle = false
   SetNuiFocus(toggle, toggle)
   cb(true)
-end)
-
-AddEventHandler("sb:fetch", function(data)
-
 end)
