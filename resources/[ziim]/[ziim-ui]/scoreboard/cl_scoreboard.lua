@@ -66,7 +66,6 @@ end)
 Citizen.CreateThread(function()
   Citizen.Wait(500)
   while true do
-    print("Working?")
     for _, id in ipairs(GetActivePlayers()) do
       local targetPed = GetPlayerPed(id)
       if targetPed ~= PlayerPedId() then
