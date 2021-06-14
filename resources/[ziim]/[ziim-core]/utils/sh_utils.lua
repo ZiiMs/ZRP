@@ -20,7 +20,7 @@ end)
 
 Utils = {
   DrawText3D = function(position, text, r,g,b) 
-    print(position);
+    print("Position: ", position);
     local onScreen,_x,_y=World3dToScreen2d(position.x,position.y,position.z+1)
     local dist = #(GetGameplayCamCoords()-position)
  
