@@ -36,7 +36,7 @@ local function Init()
           end
       end
       if toggle then
-        if IsControlJustReleased(0, Utils.Keys["ESC"]) then
+        if IsControlJustPressed(0, Utils.Keys["ESC"]) then
           print("ESC?")
           toggle = false
           SendNUIMessage({
