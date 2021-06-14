@@ -27,16 +27,19 @@ local function Init()
               type = "scoreboardShow",
               payload = {show = toggle, players = idents},
             })
+            DisableControlAction(0, Utils.Keys["ESC"], true)
           else
             toggle = not toggle
             SendNUIMessage({
               type = "scoreboardShow",
               payload = {show = toggle},
             })
+            DisableControlAction(0, Utils.Keys["ESC"], false)
           end
       end
       if toggle then
         if IsControlJustPressed(0, Utils.Keys["ESC"]) then
+          DisableControlAction(0, Utils.Keys["ESC"], false)
           print("ESC?")
           toggle = false
           SendNUIMessage({
