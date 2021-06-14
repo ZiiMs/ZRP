@@ -64,7 +64,7 @@ Citizen.CreateThread(function ()
 end)
 
 Citizen.CreateThread(function()
-  Citizen.Wait(500)
+  Citizen.Wait(1000)
   while true do
     for _, id in ipairs(GetActivePlayers()) do
       local targetPed = GetPlayerPed(id)
