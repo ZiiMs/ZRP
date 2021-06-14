@@ -12,7 +12,6 @@ local function Init()
   Citizen.CreateThread(function () 
     while true do 
       Wait(0)
-      print()
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
           print("Get sb")
