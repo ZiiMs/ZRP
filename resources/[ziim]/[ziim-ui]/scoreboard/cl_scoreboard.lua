@@ -38,7 +38,7 @@ local function Init()
           toggle = false
           SendNUIMessage({
             type = "scoreboardShow",
-            payload = {show = toggle, players = idents},
+            payload = {show = toggle},
           })
         end
         if IsControlJustReleased(0, Utils.Keys["LEFT"]) then
