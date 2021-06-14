@@ -68,7 +68,6 @@ Citizen.CreateThread(function()
   while true do
     Citizen.Wait(0)
     if toggle then
-      print("Working?")
       for _, id in ipairs(GetActivePlayers()) do
         local targetPed = GetPlayerPed(id)
           if distances[id] then
