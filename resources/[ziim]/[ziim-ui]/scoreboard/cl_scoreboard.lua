@@ -71,7 +71,7 @@ Citizen.CreateThread(function()
         if distances[id] then
             if distances[id] < 5 then
                 local targetPedCords = GetEntityCoords(targetPed)
-                Logger:Trace("scoreboard", ("Coords: %s"):format(tostring(targetPedCords)))
+                -- Logger:Trace("scoreboard", ("Coords: %s"):format(tostring(targetPedCords)))
                 if NetworkIsPlayerTalking(id) then
                     
                     Utils:DrawText3D(targetPedCords, GetPlayerServerId(id), 247,124,24)
