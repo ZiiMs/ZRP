@@ -19,10 +19,11 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
 end)
 
 Utils = {
-  DrawText3D = function(position, text, r,g,b) 
+  DrawText3D = function(x,y,z, text, r,g,b) 
     print("Position: ", position);
     local onScreen,_x,_y=World3dToScreen2d(position.x,position.y,position.z+1)
-    local dist = #(GetGameplayCamCoords()-position)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    local dist = #(vector3(px,py,pz)-vector3(x,y,z))
  
     local scale = (1/dist)*2
     local fov = (1/GetGameplayCamFov())*100
