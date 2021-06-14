@@ -12,6 +12,9 @@ local function Init()
   Citizen.CreateThread(function () 
     while true do 
       Wait(0)
+      if toggle then
+        DisableControlAction(1, Utils.Keys["ESC"], true)
+      end
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
           print("Get sb")
@@ -27,7 +30,7 @@ local function Init()
               type = "scoreboardShow",
               payload = {show = toggle, players = idents},
             })
-            DisableControlAction(1, Utils.Keys["ESC"], true)
+            
           else
             toggle = not toggle
             SendNUIMessage({
