@@ -4,11 +4,11 @@ local currReqId = 0
 
 
 function RetrieveComponents()
-  Logger = exports['zrp-core']:FetchComponent('Logger')
+  Logger = exports['zrp-base']:FetchComponent('Logger')
 end
 
 AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-core']:RequestDependencies('Base', {
+  exports['zrp-base']:RequestDependencies('Base', {
     'Logger', 
   }, function(error)
     if #error > 0 then
@@ -65,28 +65,29 @@ AddEventHandler("__scb", function(eventName, id, data)
   print("Name", eventName)
   print("Id", id)
 	local requestName = eventName .. tostring(id)
-
+  
 	if (cbs[eventName] ~= nil) then
+    print("workine1")
 		-- execute callback function and return its result
 		local result = { cbs[eventName](src, table.unpack(data)) }
-		
+		print("workine2")
 		TriggerClientEvent("__cb:server", src, requestName, result)
+    print("workine3")
 	else
 		-- callback does not exist
+    print("workine4")
     Logger:Error("callbacks", ("ServerCallback \\%s\\ does not exist"):format(eventName))
-		
+		print("workine5")
 		TriggerClientEvent("__scb:error", src, requestName, eventName)
+    print("workine6")
 	end
 end)
 
 RegisterServerEvent("__cb:client")
 AddEventHandler("__cb:client", function(eventName, data)
-  print("workgine1")
 	if (cbResp[eventName] ~= nil) then
 		-- receive data
-    print("workgine2")
 		cbResp[eventName] = data
-    print("workgine3")
 	end
 end)
 
@@ -102,5 +103,5 @@ end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
 	print("Working?")
-  exports['zrp-core']:RegisterComponent("Callbacks", Callbacks)
+  exports['zrp-base']:RegisterComponent("Callbacks", Callbacks)
 end)
