@@ -19,7 +19,7 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
 end)
 
 Utils = {
-  DrawText3D = function(x,y,z, text, r,g,b) 
+  DrawText3D = function(self, x,y,z, text, r,g,b) 
     local onScreen,_x,_y=World3dToScreen2d(x,y,z+1)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
     local dist = #(vector3(px,py,pz)-vector3(x,y,z))
