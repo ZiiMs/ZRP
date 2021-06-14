@@ -81,9 +81,12 @@ end)
 
 RegisterServerEvent("__cb:client")
 AddEventHandler("__cb:client", function(eventName, data)
+  print("workgine1")
 	if (cbResp[eventName] ~= nil) then
 		-- receive data
+    print("workgine2")
 		cbResp[eventName] = data
+    print("workgine3")
 	end
 end)
 
