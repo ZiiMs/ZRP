@@ -66,6 +66,7 @@ end)
 Citizen.CreateThread(function()
   Citizen.Wait(1000)
   while true do
+    Citizen.Wait(0)
     if toggle then
       print("Working?")
       for _, id in ipairs(GetActivePlayers()) do
@@ -84,13 +85,14 @@ Citizen.CreateThread(function()
               end
           end
       end
-      Citizen.Wait(0)
+      
     end
   end
 end)
 
 Citizen.CreateThread(function()
   while true do
+    Citizen.Wait(0)
     if toggle then
       local playerPed = PlayerPedId()
       local playerCoords = GetEntityCoords(playerPed)
