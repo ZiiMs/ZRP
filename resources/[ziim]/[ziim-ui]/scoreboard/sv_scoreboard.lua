@@ -27,7 +27,7 @@ function RegisterServerCallbacks()
   Callbacks:RegisterServerCallback("sb:getData", function(source)
     local idents = {}
     for i, player in ipairs(GetPlayers()) do
-      print("i")
+      print("i", player)
       local id = Players:GetIdent(player, "license")
       table.insert( idents, {id = i, license = id})
     end
