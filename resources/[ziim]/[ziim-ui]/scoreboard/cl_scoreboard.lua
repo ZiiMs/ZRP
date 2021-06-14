@@ -15,18 +15,25 @@ local function Init()
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
           print("Get sb")
-          local idents = Callbacks:TriggerServerCallback('sb:getData')
-          -- for i=2,255 do
-          --   local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
-          --   local temp = { id = i, license = license};
-          --   table.insert( idents, temp );
-          -- end
-          toggle = not toggle
-          SendNUIMessage({
-            type = "scoreboardShow",
-            payload = {show = toggle, players = idents},
-          })
-          SetNuiFocus(false, false)
+          if not toggle then 
+            local idents = Callbacks:TriggerServerCallback('sb:getData')
+            -- for i=2,255 do
+            --   local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
+            --   local temp = { id = i, license = license};
+            --   table.insert( idents, temp );
+            -- end
+            toggle = not toggle
+            SendNUIMessage({
+              type = "scoreboardShow",
+              payload = {show = toggle, players = idents},
+            })
+          else
+            toggle = not toggle
+            SendNUIMessage({
+              type = "scoreboardShow",
+              payload = {show = toggle},
+            })
+          end
       end
       if toggle then
         if IsControlJustReleased(0, Utils.Keys["ESC"]) then
