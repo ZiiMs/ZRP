@@ -67,19 +67,13 @@ AddEventHandler("__scb", function(eventName, id, data)
 	local requestName = eventName .. tostring(id)
   
 	if (cbs[eventName] ~= nil) then
-    print("workine1")
 		-- execute callback function and return its result
 		local result = { cbs[eventName](src, table.unpack(data)) }
-		print("workine2")
 		TriggerClientEvent("__cb:server", src, requestName, result)
-    print("workine3")
 	else
 		-- callback does not exist
-    print("workine4")
     Logger:Error("callbacks", ("ServerCallback \\%s\\ does not exist"):format(eventName))
-		print("workine5")
 		TriggerClientEvent("__scb:error", src, requestName, eventName)
-    print("workine6")
 	end
 end)
 
