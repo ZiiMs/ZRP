@@ -65,7 +65,7 @@ end)
 
 Citizen.CreateThread(function()
   Citizen.Wait(1000)
-  while true do
+  while toggle do
     for _, id in ipairs(GetActivePlayers()) do
       local targetPed = GetPlayerPed(id)
         if distances[id] then
@@ -87,7 +87,7 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-  while true do
+  while toggle do
       local playerPed = PlayerPedId()
       local playerCoords = GetEntityCoords(playerPed)
       
