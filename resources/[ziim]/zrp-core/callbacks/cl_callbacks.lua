@@ -90,12 +90,9 @@ end)
 
 RegisterNetEvent("__cb:server")
 AddEventHandler("__cb:server", function(eventName, data)
-  print("working1")
 	if (cbResp[eventName] ~= nil) then
 		-- receive data
-    print("working2")
 		cbResp[eventName] = data
-    print("working3")
 	end
 end)
 
