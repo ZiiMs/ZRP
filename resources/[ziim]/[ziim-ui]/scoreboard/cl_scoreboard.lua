@@ -4,20 +4,6 @@ function RetrieveComponents()
   Utils = exports['zrp-core']:FetchComponent('Utils')
 end
 
-
-AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-core']:RequestDependencies('Base', {
-    'Logger',
-    'Callbacks',
-    'Utils',
-  }, function(error)
-    if #error > 0 then
-      print("Errors", error[1])
-      return
-    end
-    RetrieveComponents()
-  end)
-end)
 local toggle = false;
 
 local distances = {}
@@ -106,7 +92,20 @@ local function Init()
   end)
 end
 
-Init()
+AddEventHandler("Core:Shared:Ready", function()
+  exports['zrp-core']:RequestDependencies('Base', {
+    'Logger',
+    'Callbacks',
+    'Utils',
+  }, function(error)
+    if #error > 0 then
+      print("Errors", error[1])
+      return
+    end
+    RetrieveComponents()
+    Init()
+  end)
+end)
 
 
 RegisterNUICallback('closeScoreboard', function(data, cb)
