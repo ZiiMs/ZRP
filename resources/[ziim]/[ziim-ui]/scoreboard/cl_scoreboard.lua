@@ -27,10 +27,6 @@ local function Init()
             payload = {show = toggle, players = idents},
           })
           SetNuiFocus(false, false)
-          -- for i,v in pairs(idents) do
-          --   -- print(i,v)
-          --   Logger:Trace("players", ("Key234:%s Ident: %s"):format(i,v))
-          -- end
       end
       if toggle then
         if IsControlJustReleased(0, Utils.Keys["ESC"]) then
