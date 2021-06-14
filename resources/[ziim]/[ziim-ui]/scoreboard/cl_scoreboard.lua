@@ -91,10 +91,8 @@ Citizen.CreateThread(function()
       
       for _, id in ipairs(GetActivePlayers()) do
           local targetPed = GetPlayerPed(id)
-          if targetPed ~= playerPed then
-              local distance = #(playerCoords-GetEntityCoords(targetPed))
-              distances[id] = distance
-          end
+            local distance = #(playerCoords-GetEntityCoords(targetPed))
+            distances[id] = distance
       end
       Wait(1000)
   end
