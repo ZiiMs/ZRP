@@ -23,7 +23,7 @@ shared_script 'utils/sh_utils.lua'
 client_script 'utils/cl_utils.lua'
 
 --Gameplay
-
+client_script 'gameplay/cl_gameplay.lua'
 
 --Density
 client_script 'density/cl_density.lua'
