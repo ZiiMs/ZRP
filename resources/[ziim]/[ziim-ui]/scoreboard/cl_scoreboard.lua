@@ -23,7 +23,7 @@ local toggle = false;
 
 local distances = {}
 
-function Init()
+local function Init()
   Citizen.CreateThread(function () 
     while true do 
       Wait(0)
