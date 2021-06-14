@@ -55,23 +55,42 @@ local function Init()
     while true do
       Citizen.Wait(0)
       if toggle then
+
+        local playerped = PlayerPedId()
+        local HeadBone = 0x796e
+        local playerCoords = GetPedBoneCoords(playerped, HeadBone)
+
         for _, id in ipairs(GetActivePlayers()) do
           local targetPed = GetPlayerPed(id)
+          if targetPed == playerped then
+            Utils:DrawText3D(playerCoords.x, playerCoords.y, playerCoords.z, GetPlayerServerId(id), 152,251,152)
+          else
+            
             if distances[id] then
-                if distances[id] < 5 then
-                    local targetPedCords = GetEntityCoords(targetPed)
-                    -- Logger:Trace("scoreboard", ("Coords: %s,%s,%s"):format(tostring(targetPedCords.x),tostring(targetPedCords.y),tostring(targetPedCords.z)))
-                    if NetworkIsPlayerTalking(id) then
-                        
-                        Utils:DrawText3D(targetPedCords.x, targetPedCords.y, targetPedCords.z, GetPlayerServerId(id), 247,124,24)
-                        DrawMarker(27, targetPedCords.x, targetPedCords.y, targetPedCords.z-0.97, 0, 0, 0, 0, 0, 0, 1.001, 1.0001, 0.5001, 173, 216, 230, 100, 0, 0, 0, 0)
-                    else
-                        Utils:DrawText3D(targetPedCords.x, targetPedCords.y, targetPedCords.z, GetPlayerServerId(id), 255,255,255)
-                    end
+              if distances[id] < 5 then
+                local targetPedCords = GetPedBoneCoords(targetPed, HeadBone)
+                local isDucking = IsPedDucking(targetPed)
+                local cansee = HasEntityClearLosToEntity(playerped, targetPed, 17 )
+                local isReadyToShoot = IsPedWeaponReadyToShoot(targetPed)
+                local isStealth = GetPedStealthMovement(targetPed)
+                local isDriveBy = IsPedDoingDriveby(targetPed)
+                local isInCover = IsPedInCover(targetPed,true)
+
+                if isStealth == nil then
+                  isStealth = 0
                 end
+
+                if isDucking or isStealth == 1 or isDriveBy or isInCover then
+                    cansee = false
+                end
+                  -- Logger:Trace("scoreboard", ("Coords: %s,%s,%s"):format(tostring(targetPedCords.x),tostring(targetPedCords.y),tostring(targetPedCords.z)))
+                if cansee then
+                  Utils:DrawText3D(targetPedCords.x, targetPedCords.y, targetPedCords.z, GetPlayerServerId(id), 255,255,255)
+                end
+              end
             end
+          end
         end
-        
       end
     end
   end)
