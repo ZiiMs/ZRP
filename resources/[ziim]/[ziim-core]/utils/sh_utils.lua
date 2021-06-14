@@ -20,7 +20,7 @@ end)
 
 Utils = {
   DrawText3D = function(x,y,z, text, r,g,b) 
-    print("Position: ", x);
+    print("Position: ", tostring(x));
     local onScreen,_x,_y=World3dToScreen2d(x,y,z+1)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
     local dist = #(vector3(px,py,pz)-vector3(x,y,z))
