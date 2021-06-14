@@ -13,7 +13,7 @@ local function Init()
     while true do 
       Wait(0)
       if toggle then
-        DisableControlAction(0, Utils.Keys["ESC"], true)
+        DisableControlAction(1, Utils.Keys["ESC"], true)
       end
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
@@ -41,7 +41,7 @@ local function Init()
           end
       end
       if toggle then
-        if IsControlJustPressed(0, Utils.Keys["ESC"]) then
+        if IsDisabledControlJustReleased(0, Utils.Keys["ESC"]) then
           DisableControlAction(1, Utils.Keys["ESC"], false)
           print("ESC?")
           toggle = false
