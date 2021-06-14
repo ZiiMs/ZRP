@@ -97,35 +97,3 @@ AddEventHandler("zrp-base:playerSessionStarted", function()
     gamePlayStarted = true
     SetGamePlayVars()
 end)
-
-
-
-
-
--- RegisterNetEvent('robbery:aids')
--- AddEventHandler('robbery:aids', function()
---     local dist = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 2729.47, 1514.56, 23.79,false)
-
---     local myjob = exports["isPed"]:isPed("myjob")
---     if myjob == "ems" or myjob == "doctor" or myjob == "cop"  then
---         allowpolice = 0
---         return
---     end
-
---     if dist < 100.0 then
---         if allowpolice > 0 then
---             allowpolice = 240
---             return
---         else
---             allowpolice = 240
---         end
-
---         while allowpolice > 0 do
---             Wait(1000)
---             allowpolice = allowpolice - 1
---         end
-
---         allowpolice = 0
---     end
-
--- end)
