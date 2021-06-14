@@ -27,7 +27,7 @@ local function Init()
               type = "scoreboardShow",
               payload = {show = toggle, players = idents},
             })
-            DisableControlAction(0, Utils.Keys["ESC"], true)
+            DisableControlAction(1, Utils.Keys["ESC"], true)
           else
             toggle = not toggle
             SendNUIMessage({
