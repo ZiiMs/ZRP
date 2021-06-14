@@ -18,7 +18,7 @@ AddEventHandler("zrp-base:waitForExports", function()
 
     while true do
         Citizen.Wait(50)
-        if exports and exports["zrp-base"] then
+        if exports and exports["zrp-core"] then
             print("ClientRegister")
             Citizen.Wait(100);
             TriggerEvent("Proxy:Shared:RegisterReady")
