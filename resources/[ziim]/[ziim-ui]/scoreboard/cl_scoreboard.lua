@@ -13,7 +13,7 @@ local function Init()
     while true do 
       Wait(0)
       if toggle then
-        DisableControlAction(1, Utils.Keys["ESC"], true)
+        DisableControlAction(0, Utils.Keys["ESC"], true)
       end
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
