@@ -74,17 +74,21 @@ Callbacks = {
 RegisterNetEvent("__ccb")
 AddEventHandler("__ccb", function(evetName, id, data)
 	local requestName = eventName .. tostring(id)
-
+  print("Workign0")
 	if (cbs[evetName] ~= nil) then
+    print("Workign1")
 		-- execute callback function and return its result
 		local result = { cbs[evetName](src, table.unpack(data)) }
-		
+		print("Workign2")
 		TriggerServerEvent("__cb:client", requestName, result)
+    print("Workign3")
 	else
 		-- callback does not exist
+    print("Workign4")
     Logger:Error("callbacks", ("ClientCallback  \\%s\\ does not exist"):format(eventName))
-		
+		print("Workign5")
 		TriggerServerEvent("__ccb:error", requestName, evetName)
+    print("Workign6")
 	end
 end)
 
