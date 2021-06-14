@@ -8,6 +8,7 @@ function Init(self)
         end
     end)
 end
+Init()
 
 RegisterNetEvent("zrp-base:waitForExports")
 AddEventHandler("zrp-base:waitForExports", function()
