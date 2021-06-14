@@ -103,5 +103,5 @@ end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
 	print("Working?")
-  exports['zrp-base']:RegisterComponent("Callbacks", Callbacks)
+  exports['zrp-core']:RegisterComponent("Callbacks", Callbacks)
 end)
