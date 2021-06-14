@@ -87,7 +87,7 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-  while toggle do
+  while true do
       local playerPed = PlayerPedId()
       local playerCoords = GetEntityCoords(playerPed)
       
