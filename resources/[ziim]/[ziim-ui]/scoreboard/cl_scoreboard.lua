@@ -12,8 +12,8 @@ local function Init()
   Citizen.CreateThread(function () 
     while true do 
       Wait(0)
-      print(Utils.Keys["ESC"])
-      if IsControlJustReleased(0, 303) then
+      print()
+      if IsControlJustReleased(0, Utils.Keys["U"]) then
 
           print("Get sb")
           local idents = Callbacks:TriggerServerCallback('sb:getData')
@@ -34,13 +34,13 @@ local function Init()
           -- end
       end
       if toggle then
-        if IsControlJustReleased(0, 174) then
+        if IsControlJustReleased(0, Utils.Keys["LEFT"]) then
           print("Left?")
           SendNUIMessage({
             type = "scoreboardUpdate",
             payload = {move = "left"},
           })
-        elseif IsControlJustReleased(0, 175) then
+        elseif IsControlJustReleased(0, Utils.Keys["RIGHT"]) then
           print("Right?")
           SendNUIMessage({
             type = "scoreboardUpdate",
