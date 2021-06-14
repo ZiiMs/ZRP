@@ -21,3 +21,10 @@ server_script 'players/sv_players.lua'
 --Utils
 shared_script 'utils/sh_utils.lua'
 client_script 'utils/cl_utils.lua'
+
+--Gameplay
+
+
+--Density
+client_script 'density/cl_density.lua'
+server_script 'density/sv_density.lua'
