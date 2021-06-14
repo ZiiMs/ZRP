@@ -1,10 +1,10 @@
 function RetrieveComponents()
-  Logger = exports['zrp-base']:FetchComponent('Logger')
+  Logger = exports['zrp-core']:FetchComponent('Logger')
 end
 
 
 AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-base']:RequestDependencies('Base', {
+  exports['zrp-core']:RequestDependencies('Base', {
     'Logger'
   }, function(error)
     if #error > 0 then
@@ -15,7 +15,7 @@ AddEventHandler("Core:Shared:Ready", function()
 end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
-  exports['zrp-base']:RegisterComponent("Notifications", Notifications)
+  exports['zrp-core']:RegisterComponent("Notifications", Notifications)
 end)
 
 

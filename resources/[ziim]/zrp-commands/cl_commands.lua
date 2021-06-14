@@ -1,12 +1,12 @@
 
 function RetrieveComponents()
-  Notifications = exports['zrp-base']:FetchComponent('Notifications')
-  Textbox = exports['zrp-base']:FetchComponent('Textbox')
-  Logger = exports['zrp-base']:FetchComponent('Logger')
+  Notifications = exports['zrp-core']:FetchComponent('Notifications')
+  Textbox = exports['zrp-core']:FetchComponent('Textbox')
+  Logger = exports['zrp-core']:FetchComponent('Logger')
 end
 
 AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-base']:RequestDependencies('Base', {
+  exports['zrp-core']:RequestDependencies('Base', {
     'Logger', 
     'Textbox',
     'Notifications'
@@ -20,7 +20,7 @@ AddEventHandler("Core:Shared:Ready", function()
 end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
-  exports['zrp-base']:RegisterComponent("Commands", Commands)
+  exports['zrp-core']:RegisterComponent("Commands", Commands)
 end)
 
 

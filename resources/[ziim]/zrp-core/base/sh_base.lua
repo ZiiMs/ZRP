@@ -53,7 +53,7 @@ end
 ZRP.WaitForExports();
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
-  exports['zrp-base']:RegisterComponent("Logger", Logger)
+  exports['zrp-core']:RegisterComponent("Logger", Logger)
 end)
 
 

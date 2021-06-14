@@ -1,12 +1,12 @@
 function RetrieveComponents()
-  Logger = exports['zrp-base']:FetchComponent('Logger')
-  Players = exports['zrp-base']:FetchComponent('Players')
-  Callbacks = exports['zrp-base']:FetchComponent('Callbacks')
+  Logger = exports['zrp-core']:FetchComponent('Logger')
+  Players = exports['zrp-core']:FetchComponent('Players')
+  Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
 end
 
 
 AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-base']:RequestDependencies('Base', {
+  exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
     'Players',
     'Callbacks',
