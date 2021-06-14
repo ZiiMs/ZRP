@@ -63,7 +63,7 @@ local function Init()
         for _, id in ipairs(GetActivePlayers()) do
           local targetPed = GetPlayerPed(id)
           if targetPed == playerped then
-            Utils:DrawText3D(playerCoords.x, playerCoords.y, playerCoords.z, GetPlayerServerId(id), 152,251,152)
+            Utils:DrawText3D(playerCoords.x, playerCoords.y, playerCoords.z+0.5, GetPlayerServerId(id), 152,251,152)
           else
             
             if distances[id] then
@@ -85,7 +85,7 @@ local function Init()
                 end
                   -- Logger:Trace("scoreboard", ("Coords: %s,%s,%s"):format(tostring(targetPedCords.x),tostring(targetPedCords.y),tostring(targetPedCords.z)))
                 if cansee then
-                  Utils:DrawText3D(targetPedCords.x, targetPedCords.y, targetPedCords.z, GetPlayerServerId(id), 255,255,255)
+                  Utils:DrawText3D(targetPedCords.x, targetPedCords.y, targetPedCords.z+0.5, GetPlayerServerId(id), 255,255,255)
                 end
               end
             end
