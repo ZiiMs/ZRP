@@ -86,6 +86,22 @@ Citizen.CreateThread(function()
   end
 end)
 
+Citizen.CreateThread(function()
+  while true do
+      local playerPed = PlayerPedId()
+      local playerCoords = GetEntityCoords(playerPed)
+      
+      for _, id in ipairs(GetActivePlayers()) do
+          local targetPed = GetPlayerPed(id)
+          if targetPed ~= playerPed then
+              local distance = #(playerCoords-GetEntityCoords(targetPed))
+              distances[id] = distance
+          end
+      end
+      Wait(1000)
+  end
+end)
+
 
 RegisterNUICallback('closeScoreboard', function(data, cb)
   toggle = false
