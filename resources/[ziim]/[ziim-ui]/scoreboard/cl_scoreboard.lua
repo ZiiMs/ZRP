@@ -13,7 +13,7 @@ local function Init()
     while true do 
       Wait(0)
       if toggle then
-        DisableControlAction(0, 322, true)
+        DisableControlAction(2, 322, true)
       end
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
@@ -37,10 +37,12 @@ local function Init()
               type = "scoreboardShow",
               payload = {show = toggle},
             })
+            DisableControlAction(2, Utils.Keys["ESC"], false)
           end
       end
       if toggle then
         if IsDisabledControlJustReleased(0, Utils.Keys["ESC"]) then
+          DisableControlAction(2, Utils.Keys["ESC"], false)
           print("ESC?")
           toggle = false
           SendNUIMessage({
