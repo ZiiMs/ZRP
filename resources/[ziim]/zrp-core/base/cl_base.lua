@@ -1,6 +1,7 @@
 function Init(self)
     Citizen.CreateThread(function()
         while true do
+            Wait(0)
             if NetworkIsSessionStarted() then
                 TriggerEvent('zrp-base:playerSessionStarted')
                 TriggerServerEvent('zrp-base:playerSessionStarted')
