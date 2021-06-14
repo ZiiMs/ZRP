@@ -34,7 +34,7 @@ local function Init()
       end
       if toggle then
         if IsControlJustReleased(0, Utils.Keys["ESC"]) then
-          print("Left?")
+          print("ESC?")
           toggle = false
           SendNUIMessage({
             type = "scoreboardShow",
