@@ -36,7 +36,7 @@ function ZRP.WaitForExports(self)
   Citizen.CreateThread(function()
       while true do
         Citizen.Wait(50)
-          if exports and exports["zrp-base"] then
+          if exports and exports["zrp-core"] then
               print("Triggering Event!")
               TriggerEvent("Proxy:Shared:RegisterReady")
               ZRP.ExportsReady = true
