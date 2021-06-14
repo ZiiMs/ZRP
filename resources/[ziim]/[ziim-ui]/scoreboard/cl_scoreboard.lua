@@ -25,6 +25,7 @@ local distances = {}
 Citizen.CreateThread(function () 
   while true do 
     Wait(0)
+    print(Utils.Keys["ESC"])
     if IsControlJustReleased(0, 303) then
 
         print("Get sb")
