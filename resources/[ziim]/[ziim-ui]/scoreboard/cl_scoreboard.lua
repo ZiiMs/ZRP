@@ -1,13 +1,15 @@
 function RetrieveComponents()
   Logger = exports['zrp-base']:FetchComponent('Logger')
   Callbacks = exports['zrp-base']:FetchComponent('Callbacks')
+  Utils = exports['zrp-base']:FetchComponent('Utils')
 end
 
 
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-base']:RequestDependencies('Base', {
     'Logger',
-    'Callbacks'
+    'Callbacks',
+    'Utils',
   }, function(error)
     if #error > 0 then
       print("Errors", error[1])
