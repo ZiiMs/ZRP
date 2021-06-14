@@ -1,3 +1,14 @@
+function Init(self)
+    Citizen.CreateThread(function()
+        while true do
+            if NetworkIsSessionStarted() then
+                TriggerEvent('zrp-base:playerSessionStarted')
+                TriggerServerEvent('zrp-base:playerSessionStarted')
+            end
+        end
+    end)
+end
+
 RegisterNetEvent("zrp-base:waitForExports")
 AddEventHandler("zrp-base:waitForExports", function()
     print("WiatForExports", ZRP.ExportsReady);
