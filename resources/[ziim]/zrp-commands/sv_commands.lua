@@ -65,7 +65,7 @@ RegisterCommand('tet', function(source, args)
 end, false)
 
 
-RegisterCommand('tet', function(source, args)
+RegisterCommand('tetu', function(source, args)
   -- TODO: make a vehicle! fun!
   Database:findOne({ collection="Players", query = { username = "Test" } }, function (success, result)
     if not success then
