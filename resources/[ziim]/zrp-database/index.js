@@ -263,18 +263,8 @@ const Database = {
         safeCallback(callback, false, err.message);
         return;
       }
-      console.log("err: ", err)
-      console.log("res: ", res.value)
       safeCallback(callback, true, res.value);
     });
-    // .then((document) => {
-    //   if(document == null) throw("Document not found.")
-    //   safeCallback(callback, true, exportDocument(document));
-    // }).catch((e) => {
-    //   Logger.Error(self, ` Database.findOneAndUpdate: Error "${e}".`);
-    //   safeCallback(callback, false, e);
-    //   return;
-    // });
     process._tickCallback();
   },
 
