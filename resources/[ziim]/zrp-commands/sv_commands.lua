@@ -34,7 +34,7 @@ end, false)
 RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
 
-  Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result, insertedIds)
+  Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result)
     if not success then
       print("[MongoDB][Example] Error in insertOne: "..tostring(result))
       return
