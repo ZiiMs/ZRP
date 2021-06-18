@@ -22,5 +22,5 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
-
+  Database:Test()
 end, false)
