@@ -126,6 +126,35 @@ const Database = {
     process._tickCallback();
   },
 
+   /**
+ * MongoDB insert method
+ * @param {Object} params - Params object
+ * @param {Array}  params.document - An array of documents to insert.
+ * @param {Object} params.options - Options passed to insert.
+ */
+    insert: function(self, params, callback) {
+      if (!checkDatabaseReady()) return;
+      if (!checkParams(params)) return Logger.Error(self, ` exports.insert: Invalid params object.`);
+      let collection = getParamsCollection(params);
+      if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+  
+      let document = params.document;
+      if (!documents || !Array.isArray(documents))
+          return Logger.Error(self, ` exports.insert: Invalid 'params.document' value. Expected object or array of objects.`);
+  
+      const options = safeObjectArgument(params.options);
+  
+      collection.insertOne(document, options, (err, result) => {
+          if (err) {
+              Logger.Error(self, ` exports.insert: Error "${err.message}".`);
+              safeCallback(callback, false, err.message);
+              return;
+          }
+          safeCallback(callback, true, result.acknowledged, result.insertedId);
+      });
+      process._tickCallback();
+    },
+
   /**
   * MongoDB index method
   * @param {Object} params - Params object
