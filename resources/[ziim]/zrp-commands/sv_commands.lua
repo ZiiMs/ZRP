@@ -67,7 +67,7 @@ end, false)
 
 RegisterCommand('tetu', function(source, args)
   -- TODO: make a vehicle! fun!
-  print(args[1]);
+  local username = args[1] or "Test"
   Database:findOneAndUpdate({ collection="Players", query = { username = username }, update = { ["$set"] = { first_name = "Fierell" }}}, function (success, result)
     if not success then
         print("[MongoDB][Example] Error in findOneAndUpdate: "..tostring(result))
