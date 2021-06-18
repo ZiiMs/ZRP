@@ -212,6 +212,36 @@ const Database = {
     process._tickCallback();
   },
 
+    /**
+  * MongoDB find method
+  * @param {Object} params - Params object
+  * @param {Object} params.query - Query object.
+  * @param {Object} params.options - Options passed to insert.
+  * @param {number} params.limit - Limit documents count.
+  */
+     find: function(self, params, callback) {
+      if (!checkDatabaseReady()) return;
+      if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+  
+      let collection = getParamsCollection(params);
+      if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+  
+      const query = safeObjectArgument(params.query);
+      const options = safeObjectArgument(params.options);
+  
+      let cursor = collection.findOne(query, options);
+      if (params.limit) cursor = cursor.limit(params.limit);
+      cursor.toArray((err, documents) => {
+          if (err) {
+              Logger.Error(self, ` Database.find: Error "${err.message}".`);
+              safeCallback(callback, false, err.message);
+              return;
+          };
+          safeCallback(callback, true, exportDocuments(documents));
+      });
+      process._tickCallback();
+    },
+
   /**
   * MongoDB update method
   * @param {Object} params - Params object
