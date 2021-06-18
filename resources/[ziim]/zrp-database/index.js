@@ -258,6 +258,11 @@ const Database = {
     options = safeObjectArgument(params.options);
 
     collection.findOneAndUpdate(query, update, options, (err, res) => {
+      if (err) {
+        Logger.Error(self, ` Database.findOneAndUpdate: Error "${err.message}".`);
+        safeCallback(callback, false, err.message);
+        return;
+      }
       console.log("err: ", err)
       console.log("res: ", res)
     });
