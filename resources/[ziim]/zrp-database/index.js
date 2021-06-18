@@ -208,6 +208,7 @@ const Database = {
   },
   isConnected: () => !!db,
   insertOne: (params, callback) => {
+    console.log("Before", JSON.stringify(params))
     if (checkParams(params)) {
       params.documents = [params.document];
       params.document = null;
