@@ -28,7 +28,7 @@ const Connect = () => {
       if(error) return Logger.Error('MongoDB', `Failed to connect: ${error.message}`)
       db = client.db(dbName);
 
-      Logger.Trace('MongoDB', `Connected to database ${dbName}`);
+      Logger.Trace('MongoDB', `Connected to database ${dbName}`, "test");
       emit('onDatabaseConnect', dbName);
     });
   } else {
@@ -61,7 +61,7 @@ const Database = {
  * @param {Array}  params.documents - An array of documents to insert.
  * @param {Object} params.options - Options passed to insert.
  */
-  insert: function(params, callback) {
+  insert: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.insert: Invalid params object.`);
 
