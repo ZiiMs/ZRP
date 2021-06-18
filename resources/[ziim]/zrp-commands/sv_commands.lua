@@ -33,7 +33,7 @@ RegisterCommand('tret', function(source, args)
   local username = args[1] or "Test"
   local params = {
     collection = "Players",
-    query = { username = username},
+    query = { {username = username}},
     limit = 5,
     options = {
         -- Include username and exclude _id field
