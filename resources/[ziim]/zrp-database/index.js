@@ -262,7 +262,7 @@ const Database = {
         safeCallback(callback, false, err.message);
         return;
       }
-      console.log(res)
+      console.log(err)
       console.log(res)
       safeCallback(callback, true, res.value);
     });
