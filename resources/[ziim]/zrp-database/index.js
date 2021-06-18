@@ -256,7 +256,7 @@ const Database = {
     query = safeObjectArgument(params.query);
     update = safeObjectArgument(params.update);
     options = safeObjectArgument(params.options);
-    console.log(JSON.stringify(options))
+    console.log(update)
     collection.findOneAndUpdate(query, update, options, (err, res) => {
       if (err) {
         Logger.Error(self, ` Database.findOneAndUpdate: Error "${err.message}".`);
