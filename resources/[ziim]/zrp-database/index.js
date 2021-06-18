@@ -207,7 +207,7 @@ const Database = {
     process._tickCallback();
   },
   isConnected: () => !!db,
-  insertOne: (params, callback) => {
+  insertOne: (self, params, callback) => {
     console.log("Before", JSON.stringify(params))
     if (checkParams(params)) {
       params.documents = [params.document];
