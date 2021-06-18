@@ -27,5 +27,6 @@ on('Proxy:Shared:RegisterReady', () => {
 
 RegisterCommand('ret', (source, args, raw) => {
   // TODO: make a vehicle! fun!
+  console.log("Running test")
   Database.Test();
 }, false);
