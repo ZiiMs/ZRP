@@ -353,7 +353,6 @@ const Database = {
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
-    options.returnNewDocument = true
 
     const cb = (err, res) => {
         if (err) {
