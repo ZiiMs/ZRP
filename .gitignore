@@ -3,3 +3,4 @@ start.sh
 gitCommit.bat
 .vscode/
 node_modules
+.yarn.installed
