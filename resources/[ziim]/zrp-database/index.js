@@ -28,6 +28,7 @@ const Connect = () => {
       mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
         if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
         db = client.db(dbName);
+        
 
         Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
         emit('onDatabaseConnect', dbName);
