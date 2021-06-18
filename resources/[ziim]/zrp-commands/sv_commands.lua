@@ -30,3 +30,15 @@ RegisterCommand('tret', function(source, args)
     print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
   end)
 end, false)
+
+RegisterCommand('tet', function(source, args)
+  -- TODO: make a vehicle! fun!
+
+  Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result, insertedIds)
+    if not success then
+      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+      return
+    end
+    print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+  end)
+end, false)
