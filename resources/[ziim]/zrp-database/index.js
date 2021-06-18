@@ -136,6 +136,7 @@ const Database = {
   * @param {Object} params.options - Options passed to insert.
   */
    createIndex: function(self, params, callback) {
+     console.log(JSON.stringify(params));
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.createIndex: Invalid params object.`);
 
