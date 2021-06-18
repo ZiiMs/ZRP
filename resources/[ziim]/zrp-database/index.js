@@ -230,6 +230,7 @@ const Database = {
       const options = safeObjectArgument(params.options);
   
       let cursor = collection.findOne(query, options).then((document) => {
+        console.log(document)
         if(document == null) throw("Document not found.")
       }).catch((e) => {
         Logger.Error(self, ` Database.findOne: Error "${e}".`);
