@@ -35,19 +35,3 @@ function RegisterServerCallbacks()
     return idents
   end)
 end
-
-
-
-
-
-
-RegisterNetEvent("sb:fetch")
-AddEventHandler("sb:fetch", function()
-  local src = source
-  local idents = Players:GetIdentifiers(src);
-  for k,v in pairs(idents) do
-    Logger:Trace("scoreboard", ("Identifiers %s"):format(v))
-  end
-  
-  TriggerClientEvent("sb:fetch", idents)
-end)
