@@ -40,7 +40,7 @@ Database:insertOne({ collection="Players", document = { username = "Test", passw
 end)
 end, false)
 
-Database:insertOne({ collection="Players", documents = {{ username = "Test", password = "123" }, { username = "Tes2t", password = "123243" } }, function (success, result)
+Database:insert({ collection="Players", documents = {{ username = "Test", password = "123" }, { username = "Tes2t", password = "123243" } }, function (success, result)
   if not success then
     print("[MongoDB][Example] Error in insertOne: "..tostring(result))
     return
