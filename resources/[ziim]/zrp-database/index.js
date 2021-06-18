@@ -253,13 +253,13 @@ const Database = {
   },
   findOne: (self, params, callback) => {
     if (checkParams(params)) params.limit = 1;
-    this.find(params, callback);
+    Database.find(self, params, callback);
   },
   updateOne: (self, params, callback) => {
-    this.update(params, callback, true);
+    Database.update(self, params, callback, true);
   },
   deleteOne: (self, params, callback) => {
-    this.delete(params, callback, true);
+    Database.delete(self, params, callback, true);
   },
   Test: () => { 
     console.log("Test!?!")
