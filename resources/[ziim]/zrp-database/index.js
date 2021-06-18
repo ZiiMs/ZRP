@@ -268,16 +268,16 @@ const Database = {
       safeCallback(callback, false, err);
       return;
     })
-    collection.findOneAndUpdate(query, update, options, (err, res) => {
-      if (err) {
-        Logger.Error(self, 'MongoDB', ` Database.findOneAndUpdate: Error "${err.message}".`);
-        safeCallback(callback, false, err.message);
-        return;
-      }
-      console.log(err)
-      console.log(query)
-      safeCallback(callback, true, res.value);
-    });
+    // collection.findOneAndUpdate(query, update, options, (err, res) => {
+    //   if (err) {
+    //     Logger.Error(self, 'MongoDB', ` Database.findOneAndUpdate: Error "${err.message}".`);
+    //     safeCallback(callback, false, err.message);
+    //     return;
+    //   }
+    //   console.log(err)
+    //   console.log(query)
+    //   safeCallback(callback, true, res.value);
+    // });
     process._tickCallback();
   },
 
