@@ -249,7 +249,7 @@ const Database = {
       params.documents = [params.document];
       params.document = null;
     }
-    Database.insert(params, callback);
+    Database.insert(self, params, callback);
   },
   findOne: (self, params, callback) => {
     if (checkParams(params)) params.limit = 1;
