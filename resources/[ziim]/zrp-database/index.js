@@ -55,6 +55,37 @@ function getParamsCollection(params) {
   return db.collection(params.collection)
 }
 
+function exportDocument(document) {
+  if (!document) return;
+  if (document._id && typeof document._id !== "string") {
+      document._id = document._id.toString();
+  }
+  return document;
+};
+
+function exportDocuments(documents) {
+  if (!Array.isArray(documents)) return;
+  return documents.map((document => exportDocument(document)));
+}
+
+function safeObjectArgument(object) {
+  if (!object) return {};
+  if (Array.isArray(object)) {
+      return object.reduce((acc, value, index) => {
+          acc[index] = value;
+          return acc;
+      }, {});
+  }
+  if (typeof object !== "object") return {};
+  if (object._id) object._id = mongodb.ObjectID(object._id);
+  return object;
+}
+
+function safeCallback(cb, ...args) {
+  if (typeof cb === "function") return setImmediate(() => cb(...args));
+  else return false;
+}
+
 
 const Database = {
   /**
@@ -74,12 +105,12 @@ const Database = {
     if (!documents || !Array.isArray(documents))
         return console.log(`[MongoDB][ERROR] exports.insert: Invalid 'params.documents' value. Expected object or array of objects.`);
 
-    const options = utils.safeObjectArgument(params.options);
+    const options = safeObjectArgument(params.options);
 
     collection.insertMany(documents, options, (err, result) => {
         if (err) {
             console.log(`[MongoDB][ERROR] exports.insert: Error "${err.message}".`);
-            utils.safeCallback(callback, false, err.message);
+            safeCallback(callback, false, err.message);
             return;
         }
         let arrayOfIds = [];
@@ -89,7 +120,7 @@ const Database = {
                 arrayOfIds[parseInt(key)] = result.insertedIds[key].toString();
             }
         }
-        utils.safeCallback(callback, true, result.insertedCount, arrayOfIds);
+        safeCallback(callback, true, result.insertedCount, arrayOfIds);
     });
     process._tickCallback();
   },
@@ -108,18 +139,18 @@ const Database = {
     let collection = getParamsCollection(params);
     if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
 
-    const query = utils.safeObjectArgument(params.query);
-    const options = utils.safeObjectArgument(params.options);
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
 
     let cursor = collection.find(query, options);
     if (params.limit) cursor = cursor.limit(params.limit);
     cursor.toArray((err, documents) => {
         if (err) {
             console.log(`[MongoDB][ERROR] exports.find: Error "${err.message}".`);
-            utils.safeCallback(callback, false, err.message);
+            safeCallback(callback, false, err.message);
             return;
         };
-        utils.safeCallback(callback, true, utils.exportDocuments(documents));
+        safeCallback(callback, true, exportDocuments(documents));
     });
     process._tickCallback();
   },
@@ -138,17 +169,17 @@ const Database = {
     let collection = getParamsCollection(params);
     if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
 
-    query = utils.safeObjectArgument(params.query);
-    update = utils.safeObjectArgument(params.update);
-    options = utils.safeObjectArgument(params.options);
+    query = safeObjectArgument(params.query);
+    update = safeObjectArgument(params.update);
+    options = safeObjectArgument(params.options);
 
     const cb = (err, res) => {
         if (err) {
             console.log(`[MongoDB][ERROR] exports.update: Error "${err.message}".`);
-            utils.safeCallback(callback, false, err.message);
+            safeCallback(callback, false, err.message);
             return;
         }
-        utils.safeCallback(callback, true, res.result.nModified);
+        safeCallback(callback, true, res.result.nModified);
     };
     isUpdateOne ? collection.updateOne(query, update, options, cb) : collection.updateMany(query, update, options, cb);
     process._tickCallback();
@@ -167,16 +198,16 @@ const Database = {
     let collection = getParamsCollection(params);
     if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
 
-    const query = utils.safeObjectArgument(params.query);
-    const options = utils.safeObjectArgument(params.options);
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
 
     collection.countDocuments(query, options, (err, count) => {
         if (err) {
             console.log(`[MongoDB][ERROR] exports.count: Error "${err.message}".`);
-            utils.safeCallback(callback, false, err.message);
+            safeCallback(callback, false, err.message);
             return;
         }
-        utils.safeCallback(callback, true, count);
+        safeCallback(callback, true, count);
     });
     process._tickCallback();
   },
@@ -194,16 +225,16 @@ const Database = {
     let collection = getParamsCollection(params);
     if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
 
-    const query = utils.safeObjectArgument(params.query);
-    const options = utils.safeObjectArgument(params.options);
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
 
     const cb = (err, res) => {
         if (err) {
             console.log(`[MongoDB][ERROR] exports.delete: Error "${err.message}".`);
-            utils.safeCallback(callback, false, err.message);
+            safeCallback(callback, false, err.message);
             return;
         }
-        utils.safeCallback(callback, true, res.result.n);
+        safeCallback(callback, true, res.result.n);
     };
     isDeleteOne ? collection.deleteOne(query, options, cb) : collection.deleteMany(query, options, cb);
     process._tickCallback();
