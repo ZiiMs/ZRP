@@ -261,7 +261,8 @@ const Database = {
       if(updatedDocument.lastErrorObject.n != 0) {
         Logger.Trace(self, "MongoDB", `Updated document ${JSON.stringify(updatedDocument)}.`)
       } else {
-        Logger.Trace(self, "MongoDB", `No document matches the provided query: ${updatedDocument}.`)
+        // Logger.Trace(self, "MongoDB", `No document matches the provided query: ${updatedDocument}.`)
+        throw(`No document matches the provided query`);
       }
       safeCallback(callback, true, updatedDocument);
     }).catch(err => {
