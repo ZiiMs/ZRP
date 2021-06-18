@@ -229,11 +229,13 @@ const Database = {
       const query = safeObjectArgument(params.query);
       const options = safeObjectArgument(params.options);
   
-      let cursor = collection.findOne(query, options);
-      console.log(cursor)
-      for (const i in cursor) {
-        console.log(`${i}: ${cursor}`)
-      }
+      let cursor = collection.findOne(query, options).then((document) => {
+        console.log(document)
+      });
+      // // console.log(cursor)
+      // for (const i in cursor) {
+      //   console.log(`${i}: ${cursor}`)
+      // }
       // cursor.toArray((err, documents) => {
       //     if (err) {
       //         Logger.Error(self, ` Database.find: Error "${err.message}".`);
