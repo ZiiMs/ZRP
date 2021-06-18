@@ -45,7 +45,7 @@ Database:insertOne({ collection="Players", documents = {{ username = "Test", pas
     print("[MongoDB][Example] Error in insertOne: "..tostring(result))
     return
   end
-  print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+  print("[MongoDB][Example] Inserted "..tostring(result).." new users")
 end)
 end, false)
 
@@ -55,5 +55,5 @@ Database:createIndex({ collection="Players", query = { username = 1 }, options =
     print("[MongoDB][Example] Error in insertOne: "..tostring(result))
     return
   end
-  print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+  print("[MongoDB][Example] Index created " ..tostring(result).."!")
 end)
