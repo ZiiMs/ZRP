@@ -258,7 +258,7 @@ const Database = {
     options = safeObjectArgument(params.options);
     collection.findOneAndUpdate(query, update, options).then(updatedDocument => {
       if(updatedDocument) {
-        Logger.Trace(self, "MongoDB", `Updated document ${updatedDocument}.`)
+        Logger.Trace(self, "MongoDB", `Updated document ${JSON.stringify(updatedDocument)}.`)
       } else {
         Logger.Trace(self, "MongoDB", `No document matches the provided query: ${updatedDocument}.`)
       }
