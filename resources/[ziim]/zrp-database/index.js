@@ -24,3 +24,8 @@ on('Proxy:Shared:RegisterReady', () => {
   console.log('Index.js Registering!?!?')
   exports.zrp-core.RegisterComponent('Base', Database)
 })
+
+RegisterCommand('ret', (source, args, raw) => {
+  // TODO: make a vehicle! fun!
+  Database.Test();
+}, false);
