@@ -26,8 +26,8 @@ on('Proxy:Shared:RegisterReady', () => {
   // exports.zrp-core.RegisterComponent('Database', Database)
 })
 
-RegisterCommand('ret', (source, args, raw) => {
-  // TODO: make a vehicle! fun!
-  console.log("Running test")
-  Database.Test();
-}, false);
+// RegisterCommand('ret', (source, args, raw) => {
+//   // TODO: make a vehicle! fun!
+//   console.log("Running test")
+//   Database.Test();
+// }, false);
