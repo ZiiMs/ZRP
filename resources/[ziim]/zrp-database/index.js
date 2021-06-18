@@ -231,8 +231,9 @@ const Database = {
   
       let cursor = collection.find(query, options);
       if (params.limit) cursor = cursor.limit(params.limit);
-      console.log(cursor);
+      // console.log(cursor);
       cursor.toArray((err, documents) => {
+        console.log(documents)
           if (err) {
               Logger.Error(self, ` Database.find: Error "${err.message}".`);
               safeCallback(callback, false, err.message);
