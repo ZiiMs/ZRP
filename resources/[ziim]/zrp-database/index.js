@@ -256,6 +256,13 @@ const Database = {
     query = safeObjectArgument(params.query);
     update = safeObjectArgument(params.update);
     options = safeObjectArgument(params.options);
+    collection.findOneAndUpdate(query, update, options).then(updatedDocument => {
+
+    }).catch(err => {
+      Logger.Error(self, ` Database.findOneAndUpdate: Error "${err}".`);
+      safeCallback(callback, false, err);
+      return;
+    })
     collection.findOneAndUpdate(query, update, options, (err, res) => {
       if (err) {
         Logger.Error(self, ` Database.findOneAndUpdate: Error "${err.message}".`);
