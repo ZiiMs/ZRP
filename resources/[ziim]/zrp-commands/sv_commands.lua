@@ -67,7 +67,16 @@ end, false)
 
 RegisterCommand('tetu', function(source, args)
   -- TODO: make a vehicle! fun!
-
+  Database:findOneAndUpdate({ collection="Players", query = { username = username }, update = { ["$set"] = { first_name = "Fierell" }}}, function (success, result)
+    if not success then
+        print("[MongoDB][Example] Error in findOneAndUpdate: "..tostring(result))
+        return
+    end
+    if result then
+      print("[MongoDB][Example] User is already created " .. tostring(result))
+      return
+    end
+  end)
 end, false)
 
 
