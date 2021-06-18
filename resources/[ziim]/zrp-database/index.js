@@ -27,7 +27,7 @@ const Connect = () => {
     if(!db) {
       mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
         if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
-        db = client.db(dbName);
+        db = client.db(dbName).collection().findOneAndUpdate;
         
         
         Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
@@ -257,7 +257,7 @@ const Database = {
     update = safeObjectArgument(params.update);
     options = safeObjectArgument(params.options);
     options.returnNewDocument = true
-    collection.findOneAndUpdate(query, update, { returnNewDocument: true }).then(updatedDocument => {
+    collection.findOneAndUpdate(query, update, { returnDocument: 'after' }).then(updatedDocument => {
       if(updatedDocument) {
         Logger.Trace(self, "MongoDB", `Updated document ${JSON.stringify(updatedDocument)}.`)
       } else {
