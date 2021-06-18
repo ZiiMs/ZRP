@@ -32,8 +32,8 @@ const Connect = () => {
       emit('onDatabaseConnect', dbName);
     });
   } else {
-    if (uri == '') Logger.Error('MongoDB', `Convar "mongo_uri" not set`, "tests");
-    if (dbName == '') Logger.Error('MongoDB', `Convar "mongo_db" not set`);
+    if (uri == '') Logger.Error(this, 'MongoDB', `Convar "mongo_uri" not set`);
+    if (dbName == '') Logger.Error(this, 'MongoDB', `Convar "mongo_db" not set`);
   }
 }
 
