@@ -1,7 +1,9 @@
 const mongodb = require('mongodb');
 
-const uri = GetConvar('mongo_uri', 'localhost')
-const db = GetConvar('mongo_db', 'empty')
+const uri = GetConvar('mongo_uri', '')
+const dbName = GetConvar('mongo_db', '')
+
+let db;
 
 const RetrieveComponents = () => {
   Logger = exports['zrp-core']['FetchComponent']('Logger')
@@ -18,6 +20,13 @@ on('Core:Shared:Ready', () => {
     RetrieveComponents()
   })
 })
+
+if (url != '' && dbName != '') {
+
+} else {
+  if (url == '') Logger.Error('MongoDB', `Convar "mongo_uri" not set`);
+  if (dbName == '') Logger.Error('MongoDB', `Convar "mongo_db" not set`);
+}
 
 const Database = {
   Test: () => { 
