@@ -14,9 +14,9 @@ AddEventHandler("Core:Shared:Ready", function()
       return
     end
     RetrieveComponents()
-    print("Type: ", type(RegisterServerCallbacks))
-    RegisterServerCallbacks()
-    
+    -- print("Type: ", type(RegisterServerCallbacks))
+    -- RegisterServerCallbacks()
+  
   end)
 end)
 
