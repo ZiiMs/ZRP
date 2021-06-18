@@ -5,7 +5,6 @@ Database:insertOne({ collection="Players", document = { username = "Test", passw
   end
   print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
 end)
-end, false)
 
 Database:insert({ collection="Players", documents = {{ username = "Test", password = "123" }, { username = "Tes2t", password = "123243" } }, function (success, result)
   if not success then
@@ -14,7 +13,6 @@ Database:insert({ collection="Players", documents = {{ username = "Test", passwo
   end
   print("[MongoDB][Example] Inserted "..tostring(result).." new users")
 end)
-end, false)
 
 Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result)
   if not success then
