@@ -231,6 +231,9 @@ const Database = {
   
       let cursor = collection.findOne(query, options);
       console.log(cursor)
+      for (const i in cursor) {
+        console.log(`${i}: ${cursor}`)
+      }
       cursor.toArray((err, documents) => {
           if (err) {
               Logger.Error(self, ` Database.find: Error "${err.message}".`);
