@@ -263,7 +263,7 @@ const Database = {
         return;
       }
       console.log(err)
-      console.log(res)
+      console.log(query)
       safeCallback(callback, true, res.value);
     });
     process._tickCallback();
