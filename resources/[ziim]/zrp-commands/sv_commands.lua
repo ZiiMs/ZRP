@@ -29,6 +29,28 @@ RegisterCommand('tret', function(source, args)
     end
     print("[MongoDB][Example] Current users count: "..tostring(result))
   end)
+
+  local params = {
+    collection = "Players",
+    query = {},
+    limit = 5,
+    options = {
+        -- Include username and exclude _id field
+        projection = {username = 1, _id = 0}
+    }
+  }
+  Database:find(params, function (success, result)
+    if not success then
+        return
+    end
+  
+    print("\n** 5 users")
+    for i, document in ipairs(result) do
+        for k, v in pairs(document) do
+            print("* "..tostring(k).." = \""..tostring(v).."\"")
+        end
+    end
+  end)
 end, false)
 
 RegisterCommand('tet', function(source, args)
