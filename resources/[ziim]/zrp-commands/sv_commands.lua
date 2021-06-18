@@ -30,6 +30,7 @@ RegisterCommand('tret', function(source, args)
     print("[MongoDB][Example] Current users count: "..tostring(result))
   end)
 
+  local username = args[1] or "Test"
   local params = {
     collection = "Players",
     query = { username = username},
