@@ -4,7 +4,7 @@ const RetrieveComponents = () => {
 
 on('Core:Shared:Ready', () => {
   exports.zrp-core.RequestDependencies('Base', {
-    'Logger'
+    'Logger',
   }, (e) => {
     if (e > 0) {
       console.log('Errors', e[1]);
