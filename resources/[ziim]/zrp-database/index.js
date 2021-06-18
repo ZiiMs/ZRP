@@ -263,6 +263,8 @@ const Database = {
         safeCallback(callback, false, err.message);
         return;
       }
+      console.log("err: ", err)
+      console.log("res: ", res)
       safeCallback(callback, true, res.value);
     });
     process._tickCallback();
