@@ -15,9 +15,12 @@ on('Core:Shared:Ready', () => {
 })
 
 const Database = {
-
+  Test = () => { 
+    console.log("Test!?!")
+  },
 }
 
 on('Proxy:Shared:RegisterReady', () => {
+  console.log('Index.js Registering!?!?')
   exports.zrp-core.RegisterComponent('Base', Database)
 })
