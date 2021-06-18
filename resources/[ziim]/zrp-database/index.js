@@ -18,20 +18,21 @@ on('Core:Shared:Ready', () => {
       return;
     }
     RetrieveComponents();
-    
-Connect();
+    Connect();
   })
 })
 
 const Connect = () => {
   if (url != '' && dbName != '') {
-    mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
-      if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
-      db = client.db(dbName);
+    if(!db) {
+      mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
+        if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
+        db = client.db(dbName);
 
-      Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
-      emit('onDatabaseConnect', dbName);
-    });
+        Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
+        emit('onDatabaseConnect', dbName);
+      });
+    }
   } else {
     if (uri == '') Logger.Error('', 'MongoDB', `Convar "mongo_uri" not set`);
     if (dbName == '') Logger.Error('', 'MongoDB', `Convar "mongo_db" not set`);
