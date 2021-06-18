@@ -1,5 +1,8 @@
 const mongodb = require('mongodb');
 
+const uri = GetConvar('mongo_uri', 'localhost')
+const db = GetConvar('mongo_db', 'empty')
+
 const RetrieveComponents = () => {
   Logger = exports['zrp-core']['FetchComponent']('Logger')
 }
