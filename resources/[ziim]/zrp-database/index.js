@@ -219,7 +219,7 @@ const Database = {
   * @param {Object} params.options - Options passed to insert.
   * @param {number} params.limit - Limit documents count.
   */
-     find: function(self, params, callback) {
+    findOne: function(self, params, callback) {
       if (!checkDatabaseReady()) return;
       if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
   
