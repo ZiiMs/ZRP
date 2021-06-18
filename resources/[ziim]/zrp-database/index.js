@@ -335,10 +335,10 @@ const Database = {
   //   }
   //   Database.insert(self, params, callback);
   // },
-  findOne: (self, params, callback) => {
-    if (checkParams(params)) params.limit = 1;
-    Database.find(self, params, callback);
-  },
+  // findOne: (self, params, callback) => {
+  //   if (checkParams(params)) params.limit = 1;
+  //   Database.find(self, params, callback);
+  // },
   updateOne: (self, params, callback) => {
     Database.update(self, params, callback, true);
   },
