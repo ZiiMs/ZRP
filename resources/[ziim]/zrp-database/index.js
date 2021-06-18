@@ -3,5 +3,13 @@ const RetrieveComponents = () => {
 }
 
 on('Core:Shared:Ready', () => {
-  
+  exports.zrp-core.RequestDependencies('Base', {
+
+  }, (e) => {
+    if (e > 0) {
+      console.log('Errors', e[1]);
+      return;
+    }
+    RetrieveComponents()
+  })
 })
