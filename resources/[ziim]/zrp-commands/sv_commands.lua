@@ -22,7 +22,7 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
-  Database:insertOne({ collection="Players", document = { username = username, password = "123" } }, function (success, result, insertedIds)
+  Database:insertOne({ collection="Players", document = { username = "Test", password = "123" } }, function (success, result, insertedIds)
     if not success then
       print("[MongoDB][Example] Error in insertOne: "..tostring(result))
       return
