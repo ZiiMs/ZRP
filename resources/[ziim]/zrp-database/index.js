@@ -22,8 +22,8 @@ const Database = {
 
 on('Proxy:Shared:RegisterReady', () => {
   console.log('Index.js Registering!?!?')
-  exports['zrp-core']['RegisterComponent']()
-  exports.zrp-core.RegisterComponent('Database', Database)
+  exports['zrp-core']['RegisterComponent']('Database', Database)
+  // exports.zrp-core.RegisterComponent('Database', Database)
 })
 
 RegisterCommand('ret', (source, args, raw) => {
