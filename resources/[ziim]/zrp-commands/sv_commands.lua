@@ -22,13 +22,13 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
-
+end, false)
 
 RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
 
-
 end, false)
+
 
 
 
