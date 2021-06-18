@@ -206,6 +206,24 @@ const Database = {
     isDeleteOne ? collection.deleteOne(query, options, cb) : collection.deleteMany(query, options, cb);
     process._tickCallback();
   },
+  isConnected: () => !!db,
+  insertOne: (params, callback) => {
+    if (checkParams(params)) {
+      params.documents = [params.document];
+      params.document = null;
+    }
+    this.insert(params, callback);
+  },
+  findOne: (params, callback) => {
+    if (checkParams(params)) params.limit = 1;
+    this.find(params, callback);
+  },
+  updateOne: (params, callback) => {
+    this.update(params, callback, true);
+  },
+  deleteOne: (params, callback) => {
+    this.delete(params, callback, true);
+  },
   Test: () => { 
     console.log("Test!?!")
   },
