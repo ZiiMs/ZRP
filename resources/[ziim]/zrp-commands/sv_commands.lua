@@ -72,7 +72,7 @@ RegisterCommand('tetu', function(source, args)
         print("[MongoDB][Example] Error in findOne: "..tostring(result))
         return
     end
-    print("[MongoDB][Example] User is already created" .. tostring(result._id))
+    print("[MongoDB][Example] User is already created " .. tostring(result._id))
     -- if #result > 0 then
     --   print("[MongoDB][Example] User is already created" .. tostring(result[1]._id))
     --   Database:updateOne({ collection="Players", query = { _id = result[1]._id }, update = { ["$set"] = { first_name = "Bob" } } })
