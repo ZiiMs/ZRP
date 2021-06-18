@@ -19,21 +19,23 @@ on('Core:Shared:Ready', () => {
     }
     RetrieveComponents();
     
+Connect();
   })
 })
 
 const Connect = () => {
   if (url != '' && dbName != '') {
     mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
-      if(error) return console.log("[MongoDB][ERROR] Failed to connect: " + error.message);
+      if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
       db = client.db(dbName);
 
-      console.log(`[MongoDB] Connected to database "${dbName}".`);
+      Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
       emit('onDatabaseConnect', dbName);
     });
   } else {
-    if (uri == '') console.log(`[MongoDB][ERROR] Convar "mongo_uri" not set`);
-    if (dbName == '') console.log(`[MongoDB][ERROR] Convar "mongodb_database" not set (see README)`);
+    if (uri == '') Logger.Error('', 'MongoDB', `Convar "mongo_uri" not set`);
+    if (dbName == '') Logger.Error('', 'MongoDB', `Convar "mongo_db" not set`);
+  }
 }
 
 function checkDatabaseReady() {
@@ -235,4 +237,3 @@ on('Proxy:Shared:RegisterReady', () => {
   exports['zrp-core']['RegisterComponent']('Database', Database)
 })
 
-Connect();
