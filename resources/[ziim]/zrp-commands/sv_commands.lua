@@ -1,5 +1,6 @@
 function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
+  Database = exports['zrp-core']:FetchComponent('Database')
 end
 
 
@@ -21,4 +22,5 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
+
 end, false)
