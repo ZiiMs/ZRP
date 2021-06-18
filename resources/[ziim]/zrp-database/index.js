@@ -264,7 +264,7 @@ const Database = {
         return;
       }
       console.log("err: ", err)
-      console.log("res: ", res)
+      console.log("res: ", res.value)
       safeCallback(callback, true, res.value);
     });
     // .then((document) => {
