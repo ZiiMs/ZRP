@@ -18,7 +18,7 @@ on('Core:Shared:Ready', () => {
       return;
     }
     RetrieveComponents();
-    Connect();
+    
   })
 })
 
@@ -233,3 +233,5 @@ on('Proxy:Shared:RegisterReady', () => {
   console.log('Index.js Registering!?!?')
   exports['zrp-core']['RegisterComponent']('Database', Database)
 })
+
+Connect();
