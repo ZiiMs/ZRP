@@ -219,7 +219,7 @@ const Database = {
   * @param {Object} params.options - Options passed to insert.
   * @param {number} params.limit - Limit documents count.
   */
-     findOne: function(self, params, callback) {
+    findOne: function(self, params, callback) {
       if (!checkDatabaseReady()) return;
       if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
   
@@ -229,18 +229,22 @@ const Database = {
       const query = safeObjectArgument(params.query);
       const options = safeObjectArgument(params.options);
   
-      let cursor = collection.find(query, options);
-      if (params.limit) cursor = cursor.limit(params.limit);
-      // console.log(cursor);
-      cursor.toArray((err, documents) => {
-        console.log(documents)
-          if (err) {
-              Logger.Error(self, ` Database.find: Error "${err.message}".`);
-              safeCallback(callback, false, err.message);
-              return;
-          };
-          safeCallback(callback, true, exportDocuments(documents));
+      let cursor = collection.findOne(query, options).then((e, document) => {
+        console.log(e)
+        console.log(document)
       });
+      // // console.log(cursor)
+      // for (const i in cursor) {
+      //   console.log(`${i}: ${cursor}`)
+      // }
+      // cursor.toArray((err, documents) => {
+      //     if (err) {
+      //         Logger.Error(self, ` Database.find: Error "${err.message}".`);
+      //         safeCallback(callback, false, err.message);
+      //         return;
+      //     };
+      //     safeCallback(callback, true, exportDocuments(documents));
+      // });
       process._tickCallback();
     },
 
