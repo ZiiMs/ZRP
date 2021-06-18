@@ -22,6 +22,13 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
+  Database:count({collection="Players"}, function(success, result)
+    if not success then
+      print("[MongoDB][Example] Error in count: "..tostring(result))
+      return
+    end
+    print("[MongoDB][Example] Current users count: "..tostring(result))
+  end)
 end, false)
 
 RegisterCommand('tet', function(source, args)
