@@ -5,7 +5,6 @@ function RetrieveComponents()
 end
 
 local toggle = false;
-
 local distances = {}
 
 local function Init()
