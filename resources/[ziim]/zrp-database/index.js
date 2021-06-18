@@ -15,7 +15,7 @@ on('Core:Shared:Ready', () => {
 })
 
 const Database = {
-  Test = () => { 
+  Test: () => { 
     console.log("Test!?!")
   },
 }
