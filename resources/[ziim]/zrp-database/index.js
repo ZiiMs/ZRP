@@ -234,14 +234,14 @@ const Database = {
       for (const i in cursor) {
         console.log(`${i}: ${cursor}`)
       }
-      cursor.toArray((err, documents) => {
-          if (err) {
-              Logger.Error(self, ` Database.find: Error "${err.message}".`);
-              safeCallback(callback, false, err.message);
-              return;
-          };
-          safeCallback(callback, true, exportDocuments(documents));
-      });
+      // cursor.toArray((err, documents) => {
+      //     if (err) {
+      //         Logger.Error(self, ` Database.find: Error "${err.message}".`);
+      //         safeCallback(callback, false, err.message);
+      //         return;
+      //     };
+      //     safeCallback(callback, true, exportDocuments(documents));
+      // });
       process._tickCallback();
     },
 
