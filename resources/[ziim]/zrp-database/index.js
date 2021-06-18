@@ -220,10 +220,10 @@ const Database = {
   */
   findOne: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.findOne: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.findOne: Invalid collection "${params.collection}"`);
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
@@ -248,22 +248,27 @@ const Database = {
   */
   findOneAndUpdate: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.findOneAndUpdate: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.findOneAndUpdate: Invalid collection "${params.collection}"`);
 
-    const query = safeObjectArgument(params.query);
-    const options = safeObjectArgument(params.options);
+    query = safeObjectArgument(params.query);
+    update = safeObjectArgument(params.update);
+    options = safeObjectArgument(params.options);
 
-    collection.findOne(query, options).then((document) => {
-      if(document == null) throw("Document not found.")
-      safeCallback(callback, true, exportDocument(document));
-    }).catch((e) => {
-      Logger.Error(self, ` Database.findOne: Error "${e}".`);
-      safeCallback(callback, false, e);
-      return;
+    collection.findOneAndUpdate(query, update, options, (err, res) => {
+      console.log("err: ", err)
+      console.log("res: ", res)
     });
+    // .then((document) => {
+    //   if(document == null) throw("Document not found.")
+    //   safeCallback(callback, true, exportDocument(document));
+    // }).catch((e) => {
+    //   Logger.Error(self, ` Database.findOneAndUpdate: Error "${e}".`);
+    //   safeCallback(callback, false, e);
+    //   return;
+    // });
     process._tickCallback();
   },
 
