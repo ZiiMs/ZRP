@@ -231,6 +231,9 @@ const Database = {
   
       let cursor = collection.findOne(query, options).then((document) => {
         console.log(document)
+        document.toArray((err, doc) => {
+          console.log("Doc: ", doc)
+        })
       });
       // // console.log(cursor)
       // for (const i in cursor) {
