@@ -29,7 +29,7 @@ const Connect = () => {
         if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
         db = client.db(dbName);
         
-
+        
         Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
         emit('onDatabaseConnect', dbName);
       });
@@ -98,19 +98,19 @@ const Database = {
  */
   insert: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.insert: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.insert: Invalid params object.`);
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.insert: Invalid collection "${params.collection}"`);
 
     let documents = params.documents;
     if (!documents || !Array.isArray(documents))
-        return Logger.Error(self, ` exports.insert: Invalid 'params.documents' value. Expected object or array of objects.`);
+        return Logger.Error(self, ` Database.insert: Invalid 'params.documents' value. Expected object or array of objects.`);
 
     const options = safeObjectArgument(params.options);
 
     collection.insertMany(documents, options, (err, result) => {
         if (err) {
-            Logger.Error(self, ` exports.insert: Error "${err.message}".`);
+            Logger.Error(self, ` Database.insert: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         }
@@ -127,26 +127,26 @@ const Database = {
   },
 
    /**
- * MongoDB insert method
- * @param {Object} params - Params object
- * @param {Array}  params.document - An array of documents to insert.
- * @param {Object} params.options - Options passed to insert.
- */
-    insert: function(self, params, callback) {
+   * MongoDB insertOne method
+   * @param {Object} params - Params object
+   * @param {Array}  params.document - An array of documents to insert.
+   * @param {Object} params.options - Options passed to insert.
+   */
+    insertOne: function(self, params, callback) {
       if (!checkDatabaseReady()) return;
-      if (!checkParams(params)) return Logger.Error(self, ` exports.insert: Invalid params object.`);
+      if (!checkParams(params)) return Logger.Error(self, ` Database.insertOne Invalid params object.`);
       let collection = getParamsCollection(params);
-      if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+      if (!collection) return Logger.Error(self, ` Database.insertOne Invalid collection "${params.collection}"`);
   
       let document = params.document;
       if (!documents || !Array.isArray(documents))
-          return Logger.Error(self, ` exports.insert: Invalid 'params.document' value. Expected object or array of objects.`);
+          return Logger.Error(self, ` Database.insertOne Invalid 'params.document' value. Expected object or array of objects.`);
   
       const options = safeObjectArgument(params.options);
   
       collection.insertOne(document, options, (err, result) => {
           if (err) {
-              Logger.Error(self, ` exports.insert: Error "${err.message}".`);
+              Logger.Error(self, ` Database.insertOne: Error "${err.message}".`);
               safeCallback(callback, false, err.message);
               return;
           }
@@ -163,17 +163,17 @@ const Database = {
   */
    createIndex: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.createIndex: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.createIndex: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.createIndex: Invalid collection "${params.collection}"`);
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
 
     collection.createIndex(query, options, (err, count) => {
         if (err) {
-            Logger.Error(self, ` exports.count: Error "${err.message}".`);
+            Logger.Error(self, ` Database.count: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         }
@@ -191,10 +191,10 @@ const Database = {
   */
   find: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.find: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
@@ -203,7 +203,7 @@ const Database = {
     if (params.limit) cursor = cursor.limit(params.limit);
     cursor.toArray((err, documents) => {
         if (err) {
-            Logger.Error(self, ` exports.find: Error "${err.message}".`);
+            Logger.Error(self, ` Database.find: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         };
@@ -221,10 +221,10 @@ const Database = {
   */
   update: function(self, params, callback, isUpdateOne) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.update: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.update: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.update: Invalid collection "${params.collection}"`);
 
     query = safeObjectArgument(params.query);
     update = safeObjectArgument(params.update);
@@ -232,7 +232,7 @@ const Database = {
 
     const cb = (err, res) => {
         if (err) {
-            Logger.Error(self, ` exports.update: Error "${err.message}".`);
+            Logger.Error(self, ` Database.update: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         }
@@ -250,17 +250,17 @@ const Database = {
   */
   count: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.count: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.count: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.count: Invalid collection "${params.collection}"`);
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
 
     collection.countDocuments(query, options, (err, count) => {
         if (err) {
-            Logger.Error(self, ` exports.count: Error "${err.message}".`);
+            Logger.Error(self, ` Database.count: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         }
@@ -277,17 +277,17 @@ const Database = {
   */
   delete: function(self, params, callback, isDeleteOne) {
     if (!checkDatabaseReady()) return;
-    if (!checkParams(params)) return Logger.Error(self, ` exports.delete: Invalid params object.`);
+    if (!checkParams(params)) return Logger.Error(self, ` Database.delete: Invalid params object.`);
 
     let collection = getParamsCollection(params);
-    if (!collection) return Logger.Error(self, ` exports.insert: Invalid collection "${params.collection}"`);
+    if (!collection) return Logger.Error(self, ` Database.delete: Invalid collection "${params.collection}"`);
 
     const query = safeObjectArgument(params.query);
     const options = safeObjectArgument(params.options);
 
     const cb = (err, res) => {
         if (err) {
-            Logger.Error(self, ` exports.delete: Error "${err.message}".`);
+            Logger.Error(self, ` Database.delete: Error "${err.message}".`);
             safeCallback(callback, false, err.message);
             return;
         }
@@ -296,14 +296,15 @@ const Database = {
     isDeleteOne ? collection.deleteOne(query, options, cb) : collection.deleteMany(query, options, cb);
     process._tickCallback();
   },
+
   isConnected: (self) => !!db,
-  insertOne: (self, params, callback) => {
-    if (checkParams(params)) {
-      params.documents = [params.document];
-      params.document = null;
-    }
-    Database.insert(self, params, callback);
-  },
+  // insertOne: (self, params, callback) => {
+  //   if (checkParams(params)) {
+  //     params.documents = [params.document];
+  //     params.document = null;
+  //   }
+  //   Database.insert(self, params, callback);
+  // },
   findOne: (self, params, callback) => {
     if (checkParams(params)) params.limit = 1;
     Database.find(self, params, callback);
