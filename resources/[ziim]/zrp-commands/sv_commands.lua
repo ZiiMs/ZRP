@@ -30,10 +30,10 @@ RegisterCommand('tret', function(source, args)
     print("[MongoDB][Example] Current users count: "..tostring(result))
   end)
 
-  local name = args[1] or "Test"
+  local username = args[1] or "Test"
   local params = {
     collection = "Players",
-    query = { username = name},
+    query = { username = username},
     limit = 5,
     options = {
         -- Include username and exclude _id field
