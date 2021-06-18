@@ -61,7 +61,7 @@ const Database = {
  * @param {Array}  params.documents - An array of documents to insert.
  * @param {Object} params.options - Options passed to insert.
  */
-  insert: function(self, params, callback) {
+  insert: function(params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.insert: Invalid params object.`);
 
