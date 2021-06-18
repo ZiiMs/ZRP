@@ -13,3 +13,11 @@ on('Core:Shared:Ready', () => {
     RetrieveComponents()
   })
 })
+
+const Database = {
+
+}
+
+on('Proxy:Shared:RegisterReady', () => {
+  exports.zrp-core.RegisterComponent('Base', Database)
+})
