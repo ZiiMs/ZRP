@@ -230,7 +230,7 @@ const Database = {
       const options = safeObjectArgument(params.options);
   
       let cursor = collection.findOne(query, options).then((e, document) => {
-        console.log(e)
+        console.log("E: ", e)
         console.log(document)
       });
       // // console.log(cursor)
