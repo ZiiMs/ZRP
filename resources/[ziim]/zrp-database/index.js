@@ -25,16 +25,15 @@ on('Core:Shared:Ready', () => {
 const Connect = () => {
   if (url != '' && dbName != '') {
     mongodb.MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(error, client) {
-      if(error) return Logger.Error('', 'MongoDB', `Failed to connect: ${error.message}`)
+      if(error) return console.log("[MongoDB][ERROR] Failed to connect: " + error.message);
       db = client.db(dbName);
 
-      Logger.Trace('', 'MongoDB', `Connected to database ${dbName}`, "test");
+      console.log(`[MongoDB] Connected to database "${dbName}".`);
       emit('onDatabaseConnect', dbName);
     });
   } else {
-    if (uri == '') Logger.Error('', 'MongoDB', `Convar "mongo_uri" not set`);
-    if (dbName == '') Logger.Error('', 'MongoDB', `Convar "mongo_db" not set`);
-  }
+    if (uri == '') console.log(`[MongoDB][ERROR] Convar "mongo_uri" not set`);
+    if (dbName == '') console.log(`[MongoDB][ERROR] Convar "mongodb_database" not set (see README)`);
 }
 
 function checkDatabaseReady() {
