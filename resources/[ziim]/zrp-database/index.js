@@ -48,7 +48,7 @@ function checkDatabaseReady() {
 
 function checkParams(params) {
   console.log("First", params !== null)
-  console.log("Second", typeof params === 'object')
+  console.log("Second", typeof params)
   console.log()
   return params !== null && typeof params === 'object';
 }
