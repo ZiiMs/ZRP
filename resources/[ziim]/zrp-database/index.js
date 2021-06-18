@@ -61,7 +61,7 @@ const Database = {
  * @param {Array}  params.documents - An array of documents to insert.
  * @param {Object} params.options - Options passed to insert.
  */
-  insert: function(params, callback) {
+  insert: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.insert: Invalid params object.`);
     console.log(JSON.stringify(params))
@@ -99,7 +99,7 @@ const Database = {
   * @param {Object} params.options - Options passed to insert.
   * @param {number} params.limit - Limit documents count.
   */
-  find: function(params, callback) {
+  find: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.find: Invalid params object.`);
 
@@ -129,7 +129,7 @@ const Database = {
   * @param {Object} params.update - Update query object.
   * @param {Object} params.options - Options passed to insert.
   */
-  update: function(params, callback, isUpdateOne) {
+  update: function(self, params, callback, isUpdateOne) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.update: Invalid params object.`);
 
@@ -158,7 +158,7 @@ const Database = {
   * @param {Object} params.query - Query object.
   * @param {Object} params.options - Options passed to insert.
   */
-  count: function(params, callback) {
+  count: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.count: Invalid params object.`);
 
@@ -185,7 +185,7 @@ const Database = {
   * @param {Object} params.query - Query object.
   * @param {Object} params.options - Options passed to insert.
   */
-  delete: function(params, callback, isDeleteOne) {
+  delete: function(self, params, callback, isDeleteOne) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.delete: Invalid params object.`);
 
@@ -206,7 +206,7 @@ const Database = {
     isDeleteOne ? collection.deleteOne(query, options, cb) : collection.deleteMany(query, options, cb);
     process._tickCallback();
   },
-  isConnected: () => !!db,
+  isConnected: (self) => !!db,
   insertOne: (self, params, callback) => {
     console.log("Before", JSON.stringify(params))
     if (checkParams(params)) {
@@ -215,14 +215,14 @@ const Database = {
     }
     Database.insert(params, callback);
   },
-  findOne: (params, callback) => {
+  findOne: (self, params, callback) => {
     if (checkParams(params)) params.limit = 1;
     this.find(params, callback);
   },
-  updateOne: (params, callback) => {
+  updateOne: (self, params, callback) => {
     this.update(params, callback, true);
   },
-  deleteOne: (params, callback) => {
+  deleteOne: (self, params, callback) => {
     this.delete(params, callback, true);
   },
   Test: () => { 
