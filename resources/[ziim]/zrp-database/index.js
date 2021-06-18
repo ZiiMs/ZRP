@@ -212,45 +212,61 @@ const Database = {
     process._tickCallback();
   },
 
-    /**
+  /**
+* MongoDB find method
+* @param {Object} params - Params object
+* @param {Object} params.query - Query object.
+* @param {Object} params.options - Options passed to insert.
+* @param {number} params.limit - Limit documents count.
+*/
+  findOne: function(self, params, callback) {
+    if (!checkDatabaseReady()) return;
+    if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+
+    let collection = getParamsCollection(params);
+    if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
+
+    collection.findOne(query, options).then((document) => {
+      if(document == null) throw("Document not found.")
+      safeCallback(callback, true, exportDocument(document));
+    }).catch((e) => {
+      Logger.Error(self, ` Database.findOne: Error "${e}".`);
+      safeCallback(callback, false, e);
+      return;
+    });
+    process._tickCallback();
+  },
+
+        /**
   * MongoDB find method
   * @param {Object} params - Params object
   * @param {Object} params.query - Query object.
   * @param {Object} params.options - Options passed to insert.
   * @param {number} params.limit - Limit documents count.
   */
-    findOne: function(self, params, callback) {
-      if (!checkDatabaseReady()) return;
-      if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
-  
-      let collection = getParamsCollection(params);
-      if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
-  
-      const query = safeObjectArgument(params.query);
-      const options = safeObjectArgument(params.options);
-  
-      collection.findOne(query, options).then((document) => {
-        if(document == null) throw("Document not found.")
-        safeCallback(callback, true, exportDocument(document));
-      }).catch((e) => {
-        Logger.Error(self, ` Database.findOne: Error "${e}".`);
-        safeCallback(callback, false, e);
-        return;
-      });
-      // // console.log(cursor)
-      // for (const i in cursor) {
-      //   console.log(`${i}: ${cursor}`)
-      // }
-      // cursor.toArray((err, documents) => {
-      //     if (err) {
-      //         Logger.Error(self, ` Database.find: Error "${err.message}".`);
-      //         safeCallback(callback, false, err.message);
-      //         return;
-      //     };
-      //     safeCallback(callback, true, exportDocuments(documents));
-      // });
-      process._tickCallback();
-    },
+  findOneAndUpdate: function(self, params, callback) {
+  if (!checkDatabaseReady()) return;
+  if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+
+  let collection = getParamsCollection(params);
+  if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+
+  const query = safeObjectArgument(params.query);
+  const options = safeObjectArgument(params.options);
+
+  collection.findOne(query, options).then((document) => {
+    if(document == null) throw("Document not found.")
+    safeCallback(callback, true, exportDocument(document));
+  }).catch((e) => {
+    Logger.Error(self, ` Database.findOne: Error "${e}".`);
+    safeCallback(callback, false, e);
+    return;
+  });
+  process._tickCallback();
+  },
 
   /**
   * MongoDB update method
