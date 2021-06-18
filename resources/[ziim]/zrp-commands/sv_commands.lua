@@ -26,7 +26,13 @@ end, false)
 
 RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
-
+  Database:insert({ collection="Players", documents = {{ username = "Test", password = "123" }, { username = "Tes2t", password = "123243" } }, function (success, result)
+    if not success then
+      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+      return
+    end
+    print("[MongoDB][Example] Inserted "..tostring(result).." new users")
+  end)
 end, false)
 
 
