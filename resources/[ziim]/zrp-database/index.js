@@ -130,6 +130,33 @@ const Database = {
   },
 
   /**
+  * MongoDB index method
+  * @param {Object} params - Params object
+  * @param {Object} params.query - Query object.
+  * @param {Object} params.options - Options passed to insert.
+  */
+   createIndex: function(self, params, callback) {
+    if (!checkDatabaseReady()) return;
+    if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.createIndex: Invalid params object.`);
+
+    let collection = getParamsCollection(params);
+    if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
+
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
+
+    collection.createIndex(query, options, (err, count) => {
+        if (err) {
+            console.log(`[MongoDB][ERROR] exports.count: Error "${err.message}".`);
+            safeCallback(callback, false, err.message);
+            return;
+        }
+        safeCallback(callback, true, count);
+    });
+    process._tickCallback();
+  },
+
+  /**
   * MongoDB find method
   * @param {Object} params - Params object
   * @param {Object} params.query - Query object.
