@@ -229,11 +229,13 @@ const Database = {
       const query = safeObjectArgument(params.query);
       const options = safeObjectArgument(params.options);
   
-      let cursor = collection.findOne(query, options).then((document) => {
-        console.log(document)
+      collection.findOne(query, options).then((document) => {
         if(document == null) throw("Document not found.")
+        safeCallback(callback, true, exportDocument(document));
       }).catch((e) => {
         Logger.Error(self, ` Database.findOne: Error "${e}".`);
+        safeCallback(callback, false, e);
+        return;
       });
       // // console.log(cursor)
       // for (const i in cursor) {
