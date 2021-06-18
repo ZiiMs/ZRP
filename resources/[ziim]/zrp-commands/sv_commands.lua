@@ -22,23 +22,38 @@ end)
 
 RegisterCommand('tret', function(source, args)
   -- TODO: make a vehicle! fun!
-  Database:insertOne({ collection="Players", document = { username = "Test", password = "123" } }, function (success, result, insertedIds)
-    if not success then
-      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
-      return
-    end
-    print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
-  end)
-end, false)
+
 
 RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
 
-  Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result)
-    if not success then
-      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
-      return
-    end
-    print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
-  end)
+
 end, false)
+
+
+Database:insertOne({ collection="Players", document = { username = "Test", password = "123" } }, function (success, result, insertedIds)
+  if not success then
+    print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+    return
+  end
+  print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+end)
+end, false)
+
+Database:insertOne({ collection="Players", documents = {{ username = "Test", password = "123" }, { username = "Tes2t", password = "123243" } }, function (success, result, insertedIds)
+  if not success then
+    print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+    return
+  end
+  print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+end)
+end, false)
+
+
+Database:createIndex({ collection="Players", query = { username = 1 }, options = { unique = true } }, function (success, result)
+  if not success then
+    print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+    return
+  end
+  print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+end)
