@@ -265,6 +265,7 @@ const Database = {
       }
       console.log("err: ", err)
       console.log("res: ", res)
+      safeCallback(callback, true, res.value);
     });
     // .then((document) => {
     //   if(document == null) throw("Document not found.")
