@@ -55,7 +55,8 @@ end, false)
 
 RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
-  Database:insert({ collection="Players", documents = {{ username = "Test", password = "123" }}}, function (success, result)
+  local username = args[1] or "Test"
+  Database:insert({ collection="Players", documents = {{ username = username, password = "123" }}}, function (success, result)
     if not success then
       print("[MongoDB][Example] Error in insertOne: "..tostring(result))
       return
@@ -67,7 +68,7 @@ end, false)
 
 RegisterCommand('tetu', function(source, args)
   -- TODO: make a vehicle! fun!
-  local username = args[1] or "WERRwerTest"
+  local username = args[1] or "Test"
   Database:findOneAndUpdate({ collection="Players", query = { username = username }, update = { ["$set"] = { first_name = "Fierell" }}}, function (success, result)
     if not success then
         print("[MongoDB][Example] Error in findOneAndUpdate: "..tostring(result))
