@@ -213,12 +213,11 @@ const Database = {
   },
 
   /**
-* MongoDB find method
-* @param {Object} params - Params object
-* @param {Object} params.query - Query object.
-* @param {Object} params.options - Options passed to insert.
-* @param {number} params.limit - Limit documents count.
-*/
+  * MongoDB find method
+  * @param {Object} params - Params object
+  * @param {Object} params.query - Query object.
+  * @param {Object} params.options - Options passed to insert.
+  */
   findOne: function(self, params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
@@ -240,32 +239,32 @@ const Database = {
     process._tickCallback();
   },
 
-        /**
+  /**
   * MongoDB find method
   * @param {Object} params - Params object
-  * @param {Object} params.query - Query object.
+  * @param {Object} params.query - Filter query object.
+  * @param {Object} params.update - Update query object.
   * @param {Object} params.options - Options passed to insert.
-  * @param {number} params.limit - Limit documents count.
   */
   findOneAndUpdate: function(self, params, callback) {
-  if (!checkDatabaseReady()) return;
-  if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
+    if (!checkDatabaseReady()) return;
+    if (!checkParams(params)) return Logger.Error(self, ` Database.find: Invalid params object.`);
 
-  let collection = getParamsCollection(params);
-  if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
+    let collection = getParamsCollection(params);
+    if (!collection) return Logger.Error(self, ` Database.find: Invalid collection "${params.collection}"`);
 
-  const query = safeObjectArgument(params.query);
-  const options = safeObjectArgument(params.options);
+    const query = safeObjectArgument(params.query);
+    const options = safeObjectArgument(params.options);
 
-  collection.findOne(query, options).then((document) => {
-    if(document == null) throw("Document not found.")
-    safeCallback(callback, true, exportDocument(document));
-  }).catch((e) => {
-    Logger.Error(self, ` Database.findOne: Error "${e}".`);
-    safeCallback(callback, false, e);
-    return;
-  });
-  process._tickCallback();
+    collection.findOne(query, options).then((document) => {
+      if(document == null) throw("Document not found.")
+      safeCallback(callback, true, exportDocument(document));
+    }).catch((e) => {
+      Logger.Error(self, ` Database.findOne: Error "${e}".`);
+      safeCallback(callback, false, e);
+      return;
+    });
+    process._tickCallback();
   },
 
   /**
