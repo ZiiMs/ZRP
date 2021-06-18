@@ -2,3 +2,4 @@ cache/
 start.sh
 gitCommit.bat
 .vscode/
+node_modules
