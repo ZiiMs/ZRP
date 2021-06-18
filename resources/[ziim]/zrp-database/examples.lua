@@ -58,7 +58,7 @@ Database:findOne({ collection="Players", query = { username = username } }, func
       return
   end
   if result then
-    print("[MongoDB][Example] User is already created" .. tostring(result._id))
+    print("[MongoDB][Example] User is already created " .. tostring(result._id))
     Database:updateOne({ collection="Players", query = { _id = result._id }, update = { ["$set"] = { first_name = "Bob" } } })
     return
   end
