@@ -64,7 +64,7 @@ const Database = {
   insert: function(params, callback) {
     if (!checkDatabaseReady()) return;
     if (!checkParams(params)) return console.log(`[MongoDB][ERROR] exports.insert: Invalid params object.`);
-
+    console.log(JSON.stringify(params))
     let collection = getParamsCollection(params);
     if (!collection) return console.log(`[MongoDB][ERROR] exports.insert: Invalid collection "${params.collection}"`);
 
