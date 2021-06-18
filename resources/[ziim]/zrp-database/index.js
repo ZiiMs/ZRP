@@ -230,7 +230,7 @@ const Database = {
       const options = safeObjectArgument(params.options);
   
       let cursor = collection.findOne(query, options);
-      console.log(cursor);
+      console.log(JSON.stringify(cursor));
       if (params.limit) cursor = cursor.limit(params.limit);
       cursor.toArray((err, documents) => {
           if (err) {
