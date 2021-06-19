@@ -386,9 +386,6 @@ const Database = {
   deleteOne: (self, params, callback) => {
     Database.delete(self, params, callback, true);
   },
-  Test: () => { 
-    console.log("Test!?!")
-  },
 }
 
 on('Proxy:Shared:RegisterReady', () => {
