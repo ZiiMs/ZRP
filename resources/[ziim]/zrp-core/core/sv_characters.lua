@@ -43,7 +43,13 @@ Core = {
 
         callback(result)
       else
-        
+        Database:insertOne({ collection="Players", document = { username = user.name, rank = user.rank } }, function (success, result, insertedIds)
+          if not success then
+            print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+            return
+          end
+          print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+        end)
       end
     end)
 
