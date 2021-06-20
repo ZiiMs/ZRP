@@ -34,7 +34,8 @@ local function setupUser(user)
     return Player.Users[user.source].rank
   end
   function user.sendVar(self, var, data)
-
+    self:setVar(var, data)
+    TriggerClientEvent("zrp-core:getPlayerVars", Player.Users[user.source]:getVar("source"), var, data)
   end
 
   return user
