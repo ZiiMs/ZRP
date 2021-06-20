@@ -151,6 +151,7 @@ const Database = {
               safeCallback(callback, false, err.message);
               return;
           }
+          console.log(JSON.stringify(result))
           safeCallback(callback, true, result.acknowledged, result.insertedId);
       });
       process._tickCallback();
