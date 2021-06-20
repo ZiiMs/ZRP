@@ -32,7 +32,17 @@ Core = {
       if not user then print("Error cant create character") return end
     end
 
-    
+    Database:findOne({ collection="Players", query = { steamid = Players:GetIdent(src, "steamid") } }, function (success, result)
+      if not success then
+          print("[MongoDB][Example] Error in findOne: "..tostring(result))
+          return
+      end
+      if result then
+        print("[MongoDB][Example] User is already created " .. tostring(result._id))
+        Database:updateOne({ collection="Players", query = { _id = result._id }, update = { ["$set"] = { first_name = "Bob" } } })
+        return
+      end
+    end)
 
   end,
 }
