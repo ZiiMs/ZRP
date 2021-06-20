@@ -25,6 +25,6 @@ AddEventHandler('zrp-core:getPlayerVars', function(var, val)
 end)
 
 Player = {
-  LocalPlayer = {},
+  LocalPlayer = LocalPlayer or {},
 }
 
