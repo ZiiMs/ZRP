@@ -23,6 +23,9 @@ end)
 
 Players = {
   Testcb = function(self, cb)
+    for i,v in ipairs(self) do
+      print(i,v)
+    end
     print(self)
     cb("Test string2")
   end,
