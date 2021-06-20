@@ -63,6 +63,7 @@ RegisterCommand('tet', function(source, args)
   -- TODO: make a vehicle! fun!
   local username = args[1] or "Test"
   local user = Players:GetUser(src)
+  print("User: ")
   for k,v in pairs(user) do
     print(k,v)
   end
