@@ -68,7 +68,7 @@ Players = {
   end,
   GetUser = function(self, id)
     print(#self.Users)
-    return self.Users[id] or false
+    return Players.Users[id] or false
   end,
   GetUsers = function(self)
     local tmp = {}
