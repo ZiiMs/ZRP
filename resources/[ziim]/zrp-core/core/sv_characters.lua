@@ -31,6 +31,7 @@ Core = {
       user = Players:CreatePlayer(src, false)
       if not user then print("Error cant create character") return end
     end
+    print(Database)
 
     Database:findOne({ collection="Players", query = { steamid = Players:GetIdent(src, "steamid") } }, function (success, result)
       if not success then
