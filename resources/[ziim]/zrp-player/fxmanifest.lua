@@ -6,4 +6,4 @@ author 'ZiiM'
 version '1.0.0'
 
 
-server_script 'core/sv_characters.lua'
+server_script 'sv_characters.lua'
