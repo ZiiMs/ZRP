@@ -31,5 +31,5 @@ LocalPlayer = {
   getVar = function(self, var)
     return Player.LocalPlayer[var]
   end, 
-},
+}
 
