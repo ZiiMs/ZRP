@@ -23,6 +23,7 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
 end)
 
 local function setupUser(user)
+  if Players.Users[user.source] == nil then Players.Users[user.source] = {} end
   function user.setRank(self, rank)
     print(Players.Users)
     Players.Users[user.source].rank = rank
