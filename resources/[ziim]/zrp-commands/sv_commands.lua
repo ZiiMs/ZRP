@@ -73,7 +73,9 @@ end, false)
 RegisterCommand('tetu', function(source, args)
   local src = source
   -- TODO: make a vehicle! fun!
-  Core:LoadPlayer()
+  Core:LoadPlayer(src, function(data)
+    print(data)
+  end)
 end, false)
 
 
