@@ -10,8 +10,6 @@ client_script 'base/cl_base.lua'
 shared_script 'base/sh_base.lua'
 server_script 'base/sv_base.lua'
 
---Core
-server_script 'core/sv_characters.lua'
 
 --Callbacks
 client_script 'callbacks/cl_callbacks.lua'
