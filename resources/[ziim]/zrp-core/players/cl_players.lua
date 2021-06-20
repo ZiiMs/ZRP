@@ -21,7 +21,7 @@ end)
 
 RegisterNetEvent('zrp-core:getPlayerVars')
 AddEventHandler('zrp-core:getPlayerVars', function(var, val)
-
+  Player.LocalPlayer:setVar(var, val);
 end)
 
 Player = {
