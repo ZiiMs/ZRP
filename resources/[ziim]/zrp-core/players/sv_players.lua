@@ -65,11 +65,11 @@ Players = {
   end,
   setupUser = function(self, user)
     function user.setRank(self, rank)
-      print(Players.Users[user.source])
-      Players.Users[user.source].rank = rank
+      print(self.Users[user.source])
+      self.Users[user.source].rank = rank
     end
     function user.getRank(self)
-      return Players.Users[user.source].rank
+      return self.Users[user.source].rank
     end
   
     return user
