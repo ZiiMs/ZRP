@@ -20,12 +20,21 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
 end)
 
 local function setupUser(user)
+  function user.getVar(self, var)
+    return Player.Users[user.source][var]
+  end
+  function user.setVar(self, var, data)
+    Player.Users[user.source][var] = data
+  end
   function user.setRank(self, rank)
     print(Player.Users)
     Player.Users[user.source].rank = rank
   end
   function user.getRank(self)
     return Player.Users[user.source].rank
+  end
+  function user.sendVar(self, var, data)
+
   end
 
   return user
