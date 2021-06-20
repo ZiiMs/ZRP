@@ -25,6 +25,14 @@ AddEventHandler('zrp-core:getPlayerVars', function(var, val)
 end)
 
 Player = {
-  LocalPlayer = LocalPlayer or {},
+  LocalPlayer = LocalPlayer or {
+    setVar = function(self, var, val)
+      Player.LocalPlayer[var] = val;
+    end, 
+    getVar = function(self, var)
+      return Player.LocalPlayer[var]
+    end, 
+  },
+
 }
 
