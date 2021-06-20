@@ -1,33 +1,33 @@
-function RetrieveComponents()
-  Logger = exports['zrp-core']:FetchComponent('Logger')
-  Database = exports['zrp-core']:FetchComponent('Database')
-  Players = exports['zrp-core']:FetchComponent('Players')
-  -- Core = exports['zrp-core']:FetchComponent('Core')
-end
+-- function RetrieveComponents()
+--   Logger = exports['zrp-core']:FetchComponent('Logger')
+--   Database = exports['zrp-core']:FetchComponent('Database')
+--   Players = exports['zrp-core']:FetchComponent('Players')
+--   -- Core = exports['zrp-core']:FetchComponent('Core')
+-- end
 
 
-AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-core']:RequestDependencies('Base', {
-    'Logger',
-    'Database',
-    'Players',
-    -- 'Core',
-  }, function(error)
-    if #error > 0 then
-      print("Errors", error[1])
-      return
-    end
-    RetrieveComponents()
-    -- print("Type: ", type(RegisterServerCallbacks))
-    -- RegisterServerCallbacks()
+-- AddEventHandler("Core:Shared:Ready", function()
+--   exports['zrp-core']:RequestDependencies('Base', {
+--     'Logger',
+--     'Database',
+--     'Players',
+--     -- 'Core',
+--   }, function(error)
+--     if #error > 0 then
+--       print("Errors", error[1])
+--       return
+--     end
+--     RetrieveComponents()
+--     -- print("Type: ", type(RegisterServerCallbacks))
+--     -- RegisterServerCallbacks()
   
-  end)
-end)
+--   end)
+-- end)
 
-AddEventHandler("Proxy:Shared:RegisterReady", function()
-  print("Tewtwqerwer")
-  exports['zrp-core']:RegisterComponent("Core", Core)
-end)
+-- AddEventHandler("Proxy:Shared:RegisterReady", function()
+--   print("Tewtwqerwer")
+--   exports['zrp-core']:RegisterComponent("Core", Core)
+-- end)
 
 Core = {
   LoadPlayer = function(self, src, cb)
