@@ -19,3 +19,12 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
   exports['zrp-core']:RegisterComponent("Player", Player)
 end)
 
+RegisterNetEvent('zrp-core:getPlayerVars')
+AddEventHandler('zrp-core:getPlayerVars', function(var, val)
+
+end)
+
+Player = {
+  LocalPlayer = {},
+}
+
