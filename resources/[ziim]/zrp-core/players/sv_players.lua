@@ -83,6 +83,6 @@ Players = {
     user.characterLoaded = false
 
     self.Users[src] = user
-    
+    return user
   end,
 }
