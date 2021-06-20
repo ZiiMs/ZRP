@@ -63,7 +63,7 @@ Players = {
     
     return tmp
   end,
-  setupUser = local function(self, user)
+  setupUser = function(self, user)
     function user.setRank(self, rank)
       print(Players.Users[user.source])
       Players.Users[user.source].rank = rank
