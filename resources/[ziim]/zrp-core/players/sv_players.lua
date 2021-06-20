@@ -55,6 +55,12 @@ Players = {
     return self.Users[id] or self.Users[id]
   end,
   GetUsers = function(self)
-    return self.Users[id] or self.Users[id]
+    local tmp = {}
+
+    for k,v in pairs(self.Users) do
+      tmp[#tmp+1] = k
+    end
+    
+    return tmp
   end,
 }
