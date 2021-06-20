@@ -2,7 +2,7 @@ local function RetrieveComponents()
   print("Woerkweori")
   Logger = exports['zrp-core']:FetchComponent('Logger')
   Database = exports['zrp-core']:FetchComponent('Database')
-  Players = exports['zrp-core']:FetchComponent('Players')
+  Player = exports['zrp-core']:FetchComponent('Players')
   -- Core = exports['zrp-core']:FetchComponent('Core')
 end
 

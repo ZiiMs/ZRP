@@ -1,6 +1,6 @@
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
-  Players = exports['zrp-core']:FetchComponent('Players')
+  Player = exports['zrp-core']:FetchComponent('Players')
   Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
 end
 

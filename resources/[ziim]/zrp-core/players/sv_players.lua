@@ -1,4 +1,4 @@
--- Players = Players or {}
+-- Player = Players or {}
 -- Players.Users = Players.Users or {}
 
 local function RetrieveComponents()
@@ -36,7 +36,7 @@ end
 
 
 
-Players = {
+Player = {
   Users = Users or {},
   Testcb = function(self, cb)
     for i,v in pairs(self) do
