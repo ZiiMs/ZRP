@@ -71,6 +71,7 @@ Players = {
   end,
   IsAdmin = function(self, id)
     local user = Players.Users[id];
+    print(user.rank)
     return (user.rank == "admin")
   end,
   GetUsers = function(self)
