@@ -139,7 +139,7 @@ const Database = {
       if (!collection) return Logger.Error(self, 'MongoDB', ` Database.insertOne Invalid collection "${params.collection}"`);
   
       let document = params.document;
-      print(JSON.stringify(document))
+      // print(JSON.stringify(document))
       if (!document)
           return Logger.Error(self, 'MongoDB', ` Database.insertOne Invalid 'params.document' value. Expected object or array of objects.`);
   
