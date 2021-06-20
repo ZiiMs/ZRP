@@ -85,6 +85,7 @@ Players = {
     user.name = GetPlayerName(src)
     user.steamid = self:GetIdent(src, "steam")
     user.license = self:GetIdent(src, "license")
+
     user.ip = GetPlayerEndpoint(src)
     user.rank = "user"
 
@@ -94,9 +95,9 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    print("Users?: ", self.Users[src])
+    print("Users?: ", self.Users)
 
-    self.Users[src] = {}
+    self.Users = {}
 
     local goodUser = setupUser(user)
 
