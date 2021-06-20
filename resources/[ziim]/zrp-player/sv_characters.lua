@@ -66,6 +66,5 @@ Core = {
         callback(result)
       end
     end)
-
   end,
 }
