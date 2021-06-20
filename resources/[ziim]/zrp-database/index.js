@@ -153,7 +153,7 @@ const Database = {
               return;
           }
           console.log(JSON.stringify(result))
-          safeCallback(callback, true, result.acknowledged, result.insertedId);
+          safeCallback(callback, true, result.insertedCount, result.insertedId);
       });
       process._tickCallback();
     },
