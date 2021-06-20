@@ -95,7 +95,7 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    print("Users?: ", self.#Users)
+    print("Users?: ", #self.Users)
 
     self.Users = {}
 
