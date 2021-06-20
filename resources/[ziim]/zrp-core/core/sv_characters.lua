@@ -9,7 +9,7 @@ AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
     'Database',
-    'Player'
+    'Player',
   }, function(error)
     if #error > 0 then
       return
