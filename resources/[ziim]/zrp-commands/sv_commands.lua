@@ -68,7 +68,9 @@ end, false)
 
 
 RegisterCommand('tetu', function(source, args)
+  local src = source
   -- TODO: make a vehicle! fun!
+  user = Players:CreatePlayer(src, false)
   local username = args[1] or "Test"
   Database:insertOne({ collection="Players", document = { 
     name = user.name, 
