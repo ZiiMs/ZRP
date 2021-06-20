@@ -140,7 +140,7 @@ const Database = {
   
       let document = params.document;
       print(JSON.stringify(document))
-      if (!document || !Array.isArray(document))
+      if (!document)
           return Logger.Error(self, 'MongoDB', ` Database.insertOne Invalid 'params.document' value. Expected object or array of objects.`);
   
       const options = safeObjectArgument(params.options);
