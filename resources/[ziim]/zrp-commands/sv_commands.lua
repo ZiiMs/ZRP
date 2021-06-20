@@ -69,6 +69,12 @@ RegisterCommand('tet', function(source, args)
   end
 end, false)
 
+RegisterCommand('admin', function(source, args)
+  local src = source
+  local user = Players:IsAdmin(src)
+  print(user)
+end, false)
+
 
 RegisterCommand('tetu', function(source, args)
   local src = source
