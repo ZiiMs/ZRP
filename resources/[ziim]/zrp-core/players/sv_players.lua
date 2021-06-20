@@ -67,7 +67,6 @@ Players = {
     return(ident)
   end,
   GetUser = function(self, id)
-    print(#Players.Users)
     return Players.Users[id] or false
   end,
   GetUsers = function(self)
