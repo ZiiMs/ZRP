@@ -22,6 +22,7 @@ end)
 
 
 Players = {
+  Users = {},
   Testcb = function(self, cb)
     for i,v in pairs(self) do
       print(i,v)
@@ -49,5 +50,8 @@ Players = {
       end
     end
     return(ident)
+  end,
+  GetUser = function(self, id)
+
   end
 }
