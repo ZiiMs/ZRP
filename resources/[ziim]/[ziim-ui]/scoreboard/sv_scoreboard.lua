@@ -35,3 +35,17 @@ function RegisterServerCallbacks()
     return idents
   end)
 end
+
+
+
+RegisterCommand('selftest', function(source, args)
+  -- TODO: make a vehicle! fun!
+  local username = args[1] or "Test"
+  Database:insert({ collection="Players", documents = {{ username = username, password = "123" }}}, function (success, result)
+    if not success then
+      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
+      return
+    end
+    print("[MongoDB][Example] Inserted "..tostring(result).." new users")
+  end)
+end, false)
