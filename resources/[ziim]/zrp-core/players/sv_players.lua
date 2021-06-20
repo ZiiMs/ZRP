@@ -22,8 +22,8 @@ end)
 local function setupUser(user)
   function user.setRank(self, rank)
     print(Players.Users)
-    for i,v in ipairs(Players.Users) do
-      print(i,v)
+    for i=1,#Players.Users do
+      print(Players.Users[i])
     end
     Players.Users[user.source].rank = rank
   end
