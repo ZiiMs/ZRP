@@ -6,6 +6,8 @@ end
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger'
+    'Database',
+    'Player'
   }, function(error)
     if #error > 0 then
       return
@@ -18,3 +20,9 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
 	print("Working?")
   exports['zrp-core']:RegisterComponent("Core", Core)
 end)
+
+Core = {
+  LoadPlayer = function(self, src, cb)
+
+  end,
+}
