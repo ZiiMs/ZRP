@@ -232,7 +232,6 @@ const Database = {
     const options = safeObjectArgument(params.options);
 
     collection.findOne(query, options).then((document) => {
-      if(document == null) throw("Document not found.")
       safeCallback(callback, true, exportDocument(document));
     }).catch((e) => {
       Logger.Error(self, 'MongoDB', ` Database.findOne: Error "${e}".`);
