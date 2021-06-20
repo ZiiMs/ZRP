@@ -65,6 +65,7 @@ Players = {
     return(ident)
   end,
   GetUser = function(self, id)
+    print(self.Users[id])
     return self.Users[id] or false
   end,
   GetUsers = function(self)
