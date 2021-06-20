@@ -63,7 +63,7 @@ Core = {
             print("[MongoDB][Example] Error in insertOne: "..tostring(result))
             return
           end
-          print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
+          print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds))
         end)
         cb(result)
       end
