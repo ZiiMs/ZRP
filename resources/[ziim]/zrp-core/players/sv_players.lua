@@ -109,9 +109,6 @@ Players = {
     local goodUser = setupUser(user)
 
     Players .Users[src] = goodUser
-    for k,v in pairs(Players.Users[src]) do
-      print(k,v)
-    end
     return goodUser
   end,
 }
