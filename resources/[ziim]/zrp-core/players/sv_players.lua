@@ -26,7 +26,7 @@ Players = {
     for i,v in ipairs(self) do
       print(i,v)
     end
-    print(self)
+    -- print(self)
     cb("Test string2")
   end,
   GetIdentifiers = function(self, player)
