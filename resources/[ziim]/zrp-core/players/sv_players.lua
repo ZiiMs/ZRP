@@ -22,9 +22,6 @@ end)
 local function setupUser(user)
   function user.setRank(self, rank)
     print(Players.Users)
-    for i=1,#Players.Users do
-      print(Players.Users[i])
-    end
     Players.Users[user.source].rank = rank
   end
   function user.getRank(self)
