@@ -3,6 +3,7 @@ local function RetrieveComponents()
   Notifications = exports['zrp-core']:FetchComponent('Notifications')
   Textbox = exports['zrp-core']:FetchComponent('Textbox')
   Logger = exports['zrp-core']:FetchComponent('Logger')
+  Player = exports['zrp-core']:FetchComponent('Player')
 end
 
 AddEventHandler("Core:Shared:Ready", function()
