@@ -70,15 +70,18 @@ end, false)
 RegisterCommand('tetu', function(source, args)
   -- TODO: make a vehicle! fun!
   local username = args[1] or "Test"
-  Database:findOneAndUpdate({ collection="Players", query = { username = username }, update = { ["$set"] = { first_name = "Fierell" }}}, function (success, result)
+  Database:insertOne({ collection="Players", document = { 
+    name = user.name, 
+    rank = user.rank ,
+    steamid = user.steamid,
+    license = user.license,
+    ip = user.ip,
+  }}, function (success, result, insertedIds)
     if not success then
-        print("[MongoDB][Example] Error in findOneAndUpdate: "..tostring(result))
-        return
-    end
-    if result then
-      print("[MongoDB][Example] User is already created " .. tostring(result))
+      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
       return
     end
+    print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
   end)
 end, false)
 
