@@ -6,23 +6,23 @@
 -- end
 
 
--- AddEventHandler("Core:Shared:Ready", function()
---   exports['zrp-core']:RequestDependencies('Base', {
---     'Logger',
---     'Database',
---     'Players',
---     -- 'Core',
---   }, function(error)
---     if #error > 0 then
---       print("Errors", error[1])
---       return
---     end
---     RetrieveComponents()
---     -- print("Type: ", type(RegisterServerCallbacks))
---     -- RegisterServerCallbacks()
+AddEventHandler("Core:Shared:Ready", function()
+  exports['zrp-core']:RequestDependencies('Base', {
+    'Logger',
+    'Database',
+    'Players',
+    -- 'Core',
+  }, function(error)
+    if #error > 0 then
+      print("Errors", error[1])
+      return
+    end
+    RetrieveComponents()
+    -- print("Type: ", type(RegisterServerCallbacks))
+    -- RegisterServerCallbacks()
   
---   end)
--- end)
+  end)
+end)
 
 -- AddEventHandler("Proxy:Shared:RegisterReady", function()
 --   print("Tewtwqerwer")
