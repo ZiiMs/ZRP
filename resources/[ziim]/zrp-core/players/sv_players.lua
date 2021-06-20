@@ -29,6 +29,7 @@ local function setupUser(user)
   function user.setRank(self, rank)
     print(Player.Users)
     Player.Users[user.source].rank = rank
+    self:sendVar("rank", rank)
   end
   function user.getRank(self)
     return Player.Users[user.source].rank
