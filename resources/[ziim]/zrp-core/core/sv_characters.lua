@@ -29,10 +29,10 @@ Core = {
 
     if not user then 
       user = Players:CreatePlayer(src, false)
-
       if not user then print("Error cant create character") return end
-      
     end
+
+    
 
   end,
 }
