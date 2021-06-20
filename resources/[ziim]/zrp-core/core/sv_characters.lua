@@ -17,6 +17,7 @@ AddEventHandler("Core:Shared:Ready", function()
       print("Errors", error[1])
       return
     end
+    print("Running Comps")
     RetrieveComponents()
   end)
 end)
