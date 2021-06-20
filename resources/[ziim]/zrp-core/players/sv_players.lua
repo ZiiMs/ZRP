@@ -19,7 +19,7 @@ end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
 	print("Working?")
-  exports['zrp-core']:RegisterComponent("Players", Players)
+  exports['zrp-core']:RegisterComponent("Player", Players)
 end)
 
 local function setupUser(user)
