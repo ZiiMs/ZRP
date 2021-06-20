@@ -26,6 +26,8 @@ local function setupUser(user)
   function user.getRank(self)
     return Players.Users[user.source].rank
   end
+
+  return user
 end
 
 
@@ -91,7 +93,9 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    self.Users[src] = user
+    local goodUser = setupUser(user)
+
+    self.Users[src] = goodUser
     return user
   end,
 }
