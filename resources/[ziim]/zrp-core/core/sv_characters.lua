@@ -50,7 +50,7 @@ Core = {
         print("[MongoDB][Example] User is already created " .. tostring(result._id))
         user:setRank(result.rank)
 
-        callback(result)
+        cb(result)
       else
         Database:insertOne({ collection="Players", document = { 
           name = user.name, 
@@ -65,7 +65,7 @@ Core = {
           end
           print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
         end)
-        callback(result)
+        cb(result)
       end
     end)
 
