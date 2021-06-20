@@ -116,7 +116,7 @@ const Database = {
         }
         let arrayOfIds = [];
         // Convert object to an array
-        console.log(result)
+        console.log(JSON.stringify(result))
         for (let key in result.insertedIds) {
             if (result.insertedIds.hasOwnProperty(key)) {
                 arrayOfIds[parseInt(key)] = result.insertedIds[key].toString();
