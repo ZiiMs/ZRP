@@ -1,4 +1,3 @@
-Players.Users = Players.Users or {}
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
 end
@@ -20,21 +19,10 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
   exports['zrp-core']:RegisterComponent("Players", Players)
 end)
 
-local function setupUser(user)
-  function user.setRank(self, rank)
-    print(Players.Users[user.source])
-    Players.Users[user.source].rank = rank
-  end
-  function user.getRank(self)
-    return Players.Users[user.source].rank
-  end
-
-  return user
-end
-
 
 
 Players = {
+  Users = {},
   Testcb = function(self, cb)
     for i,v in pairs(self) do
       print(i,v)
@@ -108,3 +96,15 @@ Players = {
     return goodUser
   end,
 }
+
+local function setupUser(user)
+  function user.setRank(self, rank)
+    print(Players.Users[user.source])
+    Players.Users[user.source].rank = rank
+  end
+  function user.getRank(self)
+    return Players.Users[user.source].rank
+  end
+
+  return user
+end
