@@ -62,7 +62,7 @@ RegisterCommand('tet', function(source, args)
   local src = source
   -- TODO: make a vehicle! fun!
   local username = args[1] or "Test"
-  Players:GetUser(src)
+  local user = Players:GetUser(src)
 end, false)
 
 
