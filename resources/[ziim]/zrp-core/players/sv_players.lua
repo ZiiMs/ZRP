@@ -63,4 +63,26 @@ Players = {
     
     return tmp
   end,
+  CreatePlayer = function(self, src, new)
+    if new then self.Users[src] = nil end
+    if self.Users[src] then return self.Users[src] end
+
+    local user = {}
+
+    user.source = src
+    user.name = GetPlayerName(src)
+    user.steamid = self:GetIdent(src, "steamid")
+    user.license = self:GetIdent(src, "license")
+    user.ip = GetPlayerEndpoint(src)
+    user.rank = "user"
+
+    user.characters = {}
+    user.character = {}
+
+    user.charactersLoaded = false
+    user.characterLoaded = false
+
+    table.insert( self.Users, src, user)
+    
+  end,
 }
