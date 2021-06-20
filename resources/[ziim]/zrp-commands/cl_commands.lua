@@ -59,18 +59,8 @@ RegisterCommand("gotols", function(source, args)
 end, false)
 
 RegisterCommand("get", function(source, args)
-  local self = PlayerPedId();
-  SetPedCoordsKeepVehicle(self, 192.662, -941.161, 30.692)
-  FreezeEntityPosition(self, true);
-  Notifications:Alert("warn", "RequestsWork>?", "If you can read this, our object OOP style lua is working!!!")
-  Notifications:Notify("info", "Is this Working", "I hope this works!!")
-  Logger:Trace("commands", "Is this working?")
-  Notifications:Testcb("Test string", function(data)
-    print(data);
-  end)
-  
-  Citizen.Wait(1500);
-  FreezeEntityPosition(self, false);
+  local rank = Player.LocalPlayer:getVar("rank")
+  print(rank)
 end, false)
 
 local toggle = false;
