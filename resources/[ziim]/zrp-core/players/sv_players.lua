@@ -1,5 +1,5 @@
-Players = Players or {}
-Players.Users = Players.Users or {}
+-- Players = Players or {}
+-- Players.Users = Players.Users or {}
 
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
@@ -68,7 +68,7 @@ Players = {
   end,
   GetUser = function(self, id)
     print(#self.Users)
-    return self.Users[id] or false
+    return Players.Users[id] or false
   end,
   GetUsers = function(self)
     local tmp = {}
