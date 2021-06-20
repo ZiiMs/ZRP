@@ -98,7 +98,7 @@ Players = {
     self.Users = {}
     self.Users[src] = {}
 
-    print("Users?: ", #self.Users)
+    print("Users?: ", self.Users[src])
 
     
 
