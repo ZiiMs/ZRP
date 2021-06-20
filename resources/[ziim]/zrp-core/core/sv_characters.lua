@@ -14,6 +14,7 @@ AddEventHandler("Core:Shared:Ready", function()
     'Players',
   }, function(error)
     if #error > 0 then
+      print("Errors", error[1])
       return
     end
     RetrieveComponents()
