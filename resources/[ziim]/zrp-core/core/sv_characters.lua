@@ -56,7 +56,7 @@ Core = {
           end
           print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds[1]))
         end)
-        callback(result.ops)
+        callback(result)
       end
     end)
 
