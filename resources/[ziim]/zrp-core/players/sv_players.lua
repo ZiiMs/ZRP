@@ -97,6 +97,8 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
+    print(self.Users[src])
+
     local goodUser = setupUser(user)
 
     self.Users[src] = goodUser
