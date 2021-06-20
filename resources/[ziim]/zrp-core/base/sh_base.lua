@@ -26,7 +26,9 @@ end)
 
 exports('FetchComponent', function(resource) 
   
-  -- print("Fetch: ", resource);
+  if resource == "Database" then
+    print("Fetch: ", resource);
+  end
   return ZRP[resource];
 end)
 
