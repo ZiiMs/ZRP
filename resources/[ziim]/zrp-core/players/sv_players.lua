@@ -23,7 +23,7 @@ end)
 
 Players = {
   Testcb = function(self, cb)
-    for i,v in ipairs(self) do
+    for i,v in pairs(self) do
       print(i,v)
     end
     -- print(self)
