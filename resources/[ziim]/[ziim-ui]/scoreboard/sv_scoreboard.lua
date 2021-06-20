@@ -40,5 +40,7 @@ end
 
 RegisterCommand('selftest', function(source, args)
   -- TODO: make a vehicle! fun!
-  Players:Testcb()
+  Players:Testcb(function(data)
+    print(data)
+  end)
 end, false)
