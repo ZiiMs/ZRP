@@ -1,9 +1,8 @@
 function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
-  print("Fetching Databases: ", Database)
   Database = exports['zrp-core']:FetchComponent('Database')
-  
   Players = exports['zrp-core']:FetchComponent('Players')
+  Core = exports['zrp-core']:FetchComponent('Core')
 end
 
 
@@ -12,13 +11,16 @@ AddEventHandler("Core:Shared:Ready", function()
     'Logger',
     'Database',
     'Players',
+    'Core',
   }, function(error)
     if #error > 0 then
       print("Errors", error[1])
       return
     end
-    print("Running Comps")
     RetrieveComponents()
+    -- print("Type: ", type(RegisterServerCallbacks))
+    -- RegisterServerCallbacks()
+  
   end)
 end)
 
