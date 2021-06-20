@@ -89,8 +89,8 @@ Player = {
 
     user.source = src
     user.name = GetPlayerName(src)
-    user.steamid = Players:GetIdent(src, "steam")
-    user.license = Players:GetIdent(src, "license")
+    user.steamid = Player:GetIdent(src, "steam")
+    user.license = Player:GetIdent(src, "license")
 
     user.ip = GetPlayerEndpoint(src)
     user.rank = "user"

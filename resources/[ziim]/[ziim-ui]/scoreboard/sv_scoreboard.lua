@@ -28,7 +28,7 @@ function RegisterServerCallbacks()
     local idents = {}
     for i, player in ipairs(GetPlayers()) do
       print("i", player)
-      local id = Players:GetIdent(player, "license")
+      local id = Player:GetIdent(player, "license")
       table.insert( idents, {id = player, license = id})
     end
     print("Register")
@@ -40,7 +40,7 @@ end
 
 RegisterCommand('selftest', function(source, args)
   -- TODO: make a vehicle! fun!
-  Players:Testcb(function(data)
+  Player:Testcb(function(data)
     print(data)
   end)
 end, false)

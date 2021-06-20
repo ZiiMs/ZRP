@@ -33,15 +33,15 @@ end)
 
 Core = {
   LoadPlayer = function(self, src, cb)
-    local user = Players:CreatePlayer(src, false)
+    local user = Player:CreatePlayer(src, false)
 
     if not user then 
-      user = Players:CreatePlayer(src, false)
+      user = Player:CreatePlayer(src, false)
       if not user then print("Error cant create character") return end
     end
     Logger:Trace("characters", Database)
 
-    Database:findOne({ collection="Players", query = { steamid = Players:GetIdent(src, "steamid") } }, function (success, result)
+    Database:findOne({ collection="Players", query = { steamid = Player:GetIdent(src, "steamid") } }, function (success, result)
       if not success then
           print("[MongoDB][Example] Error in findOne: "..tostring(result))
           return

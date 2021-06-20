@@ -62,7 +62,7 @@ RegisterCommand('tet', function(source, args)
   local src = source
   -- TODO: make a vehicle! fun!
   local username = args[1] or "Test"
-  local user = Players:GetUser(src)
+  local user = Player:GetUser(src)
   print("User: ")
   for k,v in pairs(user) do
     print(k,v)
@@ -71,7 +71,7 @@ end, false)
 
 RegisterCommand('admin', function(source, args)
   local src = source
-  local user = Players:IsAdmin(src)
+  local user = Player:IsAdmin(src)
   print(user)
 end, false)
 
