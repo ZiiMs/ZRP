@@ -108,6 +108,7 @@ Players = {
     local goodUser = setupUser(user)
 
     self.Users[src] = goodUser
+    print(self.Users[src])
     return goodUser
   end,
 }
