@@ -1,6 +1,3 @@
--- Player = Players or {}
--- Players.Users = Players.Users or {}
-
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
 end
@@ -24,11 +21,11 @@ end)
 
 local function setupUser(user)
   function user.setRank(self, rank)
-    print(Players.Users)
-    Players.Users[user.source].rank = rank
+    print(Player.Users)
+    Player.Users[user.source].rank = rank
   end
   function user.getRank(self)
-    return Players.Users[user.source].rank
+    return Player.Users[user.source].rank
   end
 
   return user
@@ -48,7 +45,7 @@ Player = {
   GetIdentifiers = function(self, player)
     local idents = {}
     for i,v in ipairs(GetPlayerIdentifiers(player)) do
-      -- Logger:Trace("players", ("Identifiers: %s"):format(string.match(v, "(.-):")))
+      -- Logger:Trace("Player", ("Identifiers: %s"):format(string.match(v, "(.-):")))
       local key = string.match(v, "(.-):")
       idents[key] = v
     end
@@ -57,7 +54,7 @@ Player = {
   GetIdent = function(self, player, id)
     local ident = nil
     for i,v in ipairs(GetPlayerIdentifiers(player)) do
-      -- Logger:Trace("players", ("Identifiers: %s"):format(string.match(v, "(.-):")))
+      -- Logger:Trace("Player", ("Identifiers: %s"):format(string.match(v, "(.-):")))
       local key = string.match(v, "(.-):")
       if(key == id) then
         ident = v
@@ -67,23 +64,23 @@ Player = {
     return(ident)
   end,
   GetUser = function(self, id)
-    return Players.Users[id] or false
+    return Player.Users[id] or false
   end,
   IsAdmin = function(self, id)
-    return (Players.Users[id].rank == "admin")
+    return (Player.Users[id].rank == "admin")
   end,
   GetUsers = function(self)
     local tmp = {}
 
-    for k,v in pairs(Players.Users) do
+    for k,v in pairs(Player.Users) do
       tmp[#tmp+1] = k
     end
     
     return tmp
   end,
   CreatePlayer = function(self, src, new)
-    if new then Players.Users[src] = nil end
-    if Players.Users[src] then return Players.Users[src] end
+    if new then Player.Users[src] = nil end
+    if Player.Users[src] then return Player.Users[src] end
 
     local user = {}
 
@@ -101,17 +98,17 @@ Player = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    Players.Users = {}
-    Players.Users[src] = {}
+    Player.Users = {}
+    Player.Users[src] = {}
     
 
-    print("Users?: ", #Players.Users)
+    print("Users?: ", #Player.Users)
 
     
 
     local goodUser = setupUser(user)
 
-    Players .Users[src] = goodUser
+    Player .Users[src] = goodUser
     return goodUser
   end,
 }
