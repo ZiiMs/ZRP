@@ -58,7 +58,7 @@ RegisterCommand("gotols", function(source, args)
   FreezeEntityPosition(self, false);
 end, false)
 
-RegisterCommand("gotols", function(source, args)
+RegisterCommand("get", function(source, args)
   local self = PlayerPedId();
   SetPedCoordsKeepVehicle(self, 192.662, -941.161, 30.692)
   FreezeEntityPosition(self, true);
