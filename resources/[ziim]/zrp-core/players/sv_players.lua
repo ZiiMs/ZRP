@@ -95,9 +95,12 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
+    self.Users = {}
+    self.Users[src] = {}
+
     print("Users?: ", #self.Users)
 
-    self.Users = {}
+    
 
     local goodUser = setupUser(user)
 
