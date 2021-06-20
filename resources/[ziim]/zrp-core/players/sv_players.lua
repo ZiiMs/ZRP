@@ -1,3 +1,4 @@
+Players.Users = Players.Users or {}
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
 end
@@ -34,7 +35,6 @@ end
 
 
 Players = {
-  Users = {},
   Testcb = function(self, cb)
     for i,v in pairs(self) do
       print(i,v)
