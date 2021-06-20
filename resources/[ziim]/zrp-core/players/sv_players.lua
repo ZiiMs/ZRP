@@ -52,6 +52,6 @@ Players = {
     return(ident)
   end,
   GetUser = function(self, id)
-
+    return self.Users[id] or self.Users[id]
   end
 }
