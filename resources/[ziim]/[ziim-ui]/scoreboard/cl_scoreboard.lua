@@ -1,4 +1,4 @@
-function RetrieveComponents()
+local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
   Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
   Utils = exports['zrp-core']:FetchComponent('Utils')

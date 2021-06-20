@@ -1,4 +1,4 @@
-function RetrieveComponents()
+local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
   Database = exports['zrp-core']:FetchComponent('Database')
   Players = exports['zrp-core']:FetchComponent('Players')

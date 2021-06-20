@@ -1,5 +1,5 @@
 
-function RetrieveComponents()
+local function RetrieveComponents()
   Notifications = exports['zrp-core']:FetchComponent('Notifications')
   Textbox = exports['zrp-core']:FetchComponent('Textbox')
   Logger = exports['zrp-core']:FetchComponent('Logger')

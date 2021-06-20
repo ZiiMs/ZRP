@@ -2,7 +2,7 @@ local cbs = {}
 local cbResp = {}
 local currReqId = 0
 
-function RetrieveComponents()
+local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
 end
 
