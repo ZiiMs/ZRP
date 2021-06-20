@@ -39,8 +39,11 @@ Core = {
       end
       if result then
         print("[MongoDB][Example] User is already created " .. tostring(result._id))
-        Database:updateOne({ collection="Players", query = { _id = result._id }, update = { ["$set"] = { first_name = "Bob" } } })
-        return
+        user:setRank(result.rank)
+
+        callback(result)
+      else
+        
       end
     end)
 
