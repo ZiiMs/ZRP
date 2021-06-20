@@ -67,13 +67,13 @@ Players = {
     return(ident)
   end,
   GetUser = function(self, id)
-    print(#self.Users)
+    print(#Players.Users)
     return Players.Users[id] or false
   end,
   GetUsers = function(self)
     local tmp = {}
 
-    for k,v in pairs(self.Users) do
+    for k,v in pairs(Players.Users) do
       tmp[#tmp+1] = k
     end
     
