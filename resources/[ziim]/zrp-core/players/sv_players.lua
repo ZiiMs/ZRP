@@ -53,5 +53,8 @@ Players = {
   end,
   GetUser = function(self, id)
     return self.Users[id] or self.Users[id]
-  end
+  end,
+  GetUsers = function(self)
+    return self.Users[id] or self.Users[id]
+  end,
 }
