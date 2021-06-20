@@ -71,7 +71,7 @@ Players = {
 
     user.source = src
     user.name = GetPlayerName(src)
-    user.steamid = self:GetIdent(src, "license2")
+    user.steamid = self:GetIdent(src, "steamid")
     user.license = self:GetIdent(src, "license")
     user.ip = GetPlayerEndpoint(src)
     user.rank = "user"
