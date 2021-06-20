@@ -63,6 +63,17 @@ Players = {
     
     return tmp
   end,
+  setupUser = local function(self, user)
+    function user.setRank(self, rank)
+      print(Players.Users[user.source])
+      Players.Users[user.source].rank = rank
+    end
+    function user.getRank(self)
+      return Players.Users[user.source].rank
+    end
+  
+    return user
+  end,
   CreatePlayer = function(self, src, new)
     if new then self.Users[src] = nil end
     if self.Users[src] then return self.Users[src] end
@@ -90,7 +101,7 @@ Players = {
 
     
 
-    local goodUser = setupUser(user)
+    local goodUser = self:setupUser(user)
 
     self.Users[src] = goodUser
     return goodUser
@@ -98,13 +109,5 @@ Players = {
 }
 
 local function setupUser(user)
-  function user.setRank(self, rank)
-    print(Players.Users[user.source])
-    Players.Users[user.source].rank = rank
-  end
-  function user.getRank(self)
-    return Players.Users[user.source].rank
-  end
 
-  return user
 end
