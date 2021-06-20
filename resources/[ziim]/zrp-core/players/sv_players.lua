@@ -65,7 +65,7 @@ Players = {
     return(ident)
   end,
   GetUser = function(self, id)
-    return self.Users[id] or self.Users[id]
+    return self.Users[id] or false
   end,
   GetUsers = function(self)
     local tmp = {}
