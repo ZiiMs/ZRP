@@ -11,6 +11,7 @@ AddEventHandler("Core:Shared:Ready", function()
     'Logger',
     'Database',
     'Players',
+    'Core',
   }, function(error)
     if #error > 0 then
       print("Errors", error[1])
