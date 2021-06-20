@@ -96,6 +96,6 @@ Players = {
     local goodUser = setupUser(user)
 
     self.Users[src] = goodUser
-    return user
+    return goodUser
   end,
 }
