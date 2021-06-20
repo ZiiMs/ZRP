@@ -1,6 +1,3 @@
-Players = Players or {}
-Players.Users = Players.Users or {}
-
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
 end
