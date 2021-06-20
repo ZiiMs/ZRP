@@ -25,7 +25,7 @@ AddEventHandler("Core:Shared:Ready", function()
 end)
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()
-  print("Registering?!?!?!?!?")
+  print("Tewtwqerwer")
   exports['zrp-core']:RegisterComponent("Core", Core)
 end)
 
