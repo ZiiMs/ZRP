@@ -139,7 +139,7 @@ const Database = {
       if (!collection) return Logger.Error(self, 'MongoDB', ` Database.insertOne Invalid collection "${params.collection}"`);
   
       let document = params.document;
-      if (!documents || !Array.isArray(documents))
+      if (!document || !Array.isArray(document))
           return Logger.Error(self, 'MongoDB', ` Database.insertOne Invalid 'params.document' value. Expected object or array of objects.`);
   
       const options = safeObjectArgument(params.options);
