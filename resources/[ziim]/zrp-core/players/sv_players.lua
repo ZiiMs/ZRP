@@ -69,6 +69,9 @@ Players = {
   GetUser = function(self, id)
     return Players.Users[id] or false
   end,
+  IsAdmin = function(self, id)
+    local user = Players.Users[id];
+  end,
   GetUsers = function(self)
     local tmp = {}
 
