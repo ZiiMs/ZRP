@@ -19,6 +19,15 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
   exports['zrp-core']:RegisterComponent("Players", Players)
 end)
 
+local function setupUser(user)
+  function user.setRank(self, rank)
+    Players.Users[user.source].rank = rank
+  end
+  function user.getRank(self)
+    return Players.Users[user.source].rank
+  end
+end
+
 
 
 Players = {
