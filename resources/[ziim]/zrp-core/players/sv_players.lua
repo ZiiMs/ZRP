@@ -108,7 +108,9 @@ Players = {
     local goodUser = setupUser(user)
 
     self.Users[src] = goodUser
-    print(self.Users[src])
+    for k,v in pairs(self.Users[src]) do
+      print(k,v)
+    end
     return goodUser
   end,
 }
