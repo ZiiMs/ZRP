@@ -73,21 +73,7 @@ end, false)
 RegisterCommand('tetu', function(source, args)
   local src = source
   -- TODO: make a vehicle! fun!
-  user = Players:CreatePlayer(src, false)
-  local username = args[1] or "Test"
-  Database:insertOne({ collection="Players", document = { 
-    name = user.name, 
-    rank = user.rank ,
-    steamid = user.steamid,
-    license = user.license,
-    ip = user.ip,
-  }}, function (success, result, insertedIds)
-    if not success then
-      print("[MongoDB][Example] Error in insertOne: "..tostring(result))
-      return
-    end
-    print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds))
-  end)
+  Core:LoadPlayer()
 end, false)
 
 
