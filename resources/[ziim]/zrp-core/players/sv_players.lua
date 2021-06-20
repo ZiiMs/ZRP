@@ -99,6 +99,8 @@ Players = {
 
     print("Users?: ", self.Users[src])
 
+    self.Users[src] = {}
+
     local goodUser = setupUser(user)
 
     self.Users[src] = goodUser
