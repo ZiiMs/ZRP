@@ -19,8 +19,11 @@ AddEventHandler("Proxy:Shared:RegisterReady", function()
   exports['zrp-core']:RegisterComponent("Players", Players)
 end)
 
+
+
 Players = {
   Testcb = function(self, cb)
+    print(self)
     cb("Test string2")
   end,
   GetIdentifiers = function(self, player)
