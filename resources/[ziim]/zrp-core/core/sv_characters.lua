@@ -18,6 +18,7 @@ AddEventHandler("Core:Shared:Ready", function()
       print("Errors", error[1])
       return
     end
+    print("Wowerkoweriwoer")
     RetrieveComponents()
     -- print("Type: ", type(RegisterServerCallbacks))
     -- RegisterServerCallbacks()
