@@ -1,6 +1,6 @@
 local function RetrieveComponents()
   Logger = exports['zrp-core']:FetchComponent('Logger')
-  Player = exports['zrp-core']:FetchComponent('Players')
+  Player = exports['zrp-core']:FetchComponent('Player')
   Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
 end
 
@@ -8,7 +8,7 @@ end
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
-    'Players',
+    'Player',
     'Callbacks',
   }, function(error)
     if #error > 0 then

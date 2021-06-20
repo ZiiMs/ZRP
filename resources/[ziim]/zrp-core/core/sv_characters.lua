@@ -2,7 +2,7 @@ local function RetrieveComponents()
   print("Woerkweori")
   Logger = exports['zrp-core']:FetchComponent('Logger')
   Database = exports['zrp-core']:FetchComponent('Database')
-  Player = exports['zrp-core']:FetchComponent('Players')
+  Player = exports['zrp-core']:FetchComponent('Player')
   -- Core = exports['zrp-core']:FetchComponent('Core')
 end
 
@@ -11,7 +11,7 @@ AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
     'Database',
-    'Players',
+    'Player',
     -- 'Core',
   }, function(error)
     if #error > 0 then
