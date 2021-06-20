@@ -82,7 +82,7 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    table.insert( self.Users, src, user)
+    self.Users[src] = user
     
   end,
 }
