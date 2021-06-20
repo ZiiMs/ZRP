@@ -70,9 +70,7 @@ Players = {
     return Players.Users[id] or false
   end,
   IsAdmin = function(self, id)
-    local user = Players.Users[id];
-    print(user.rank)
-    return (user.rank == "admin")
+    return (Players.Users[id].rank == "admin")
   end,
   GetUsers = function(self)
     local tmp = {}
