@@ -44,6 +44,7 @@ Players = {
     for i,v in ipairs(GetPlayerIdentifiers(player)) do
       -- Logger:Trace("players", ("Identifiers: %s"):format(string.match(v, "(.-):")))
       local key = string.match(v, "(.-):")
+      print(key)
       if(key == id) then
         ident = v
         break
