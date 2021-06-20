@@ -1,4 +1,4 @@
-function RetrieveComponents()
+function RetrieveComponentss()
   print("Woerkweori")
   Logger = exports['zrp-core']:FetchComponent('Logger')
   Database = exports['zrp-core']:FetchComponent('Database')
@@ -19,7 +19,7 @@ AddEventHandler("Core:Shared:Ready", function()
       return
     end
     print("Wowerkoweriwoer")
-    RetrieveComponents()
+    RetrieveComponentss()
     -- print("Type: ", type(RegisterServerCallbacks))
     -- RegisterServerCallbacks()
   
