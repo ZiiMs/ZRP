@@ -78,15 +78,15 @@ Players = {
     return tmp
   end,
   CreatePlayer = function(self, src, new)
-    if new then self.Users[src] = nil end
-    if self.Users[src] then return self.Users[src] end
+    if new then Players.Users[src] = nil end
+    if Players.Users[src] then return Players.Users[src] end
 
     local user = {}
 
     user.source = src
     user.name = GetPlayerName(src)
-    user.steamid = self:GetIdent(src, "steam")
-    user.license = self:GetIdent(src, "license")
+    user.steamid = Players:GetIdent(src, "steam")
+    user.license = Players:GetIdent(src, "license")
 
     user.ip = GetPlayerEndpoint(src)
     user.rank = "user"
@@ -97,18 +97,18 @@ Players = {
     user.charactersLoaded = false
     user.characterLoaded = false
 
-    self.Users = {}
-    self.Users[src] = {}
+    Players.Users = {}
+    Players.Users[src] = {}
     
 
-    print("Users?: ", #self.Users)
+    print("Users?: ", #Players.Users)
 
     
 
     local goodUser = setupUser(user)
 
-    self.Users[src] = goodUser
-    for k,v in pairs(self.Users[src]) do
+    Players.Users[src] = goodUser
+    for k,v in pairs(Players.Users[src]) do
       print(k,v)
     end
     return goodUser
