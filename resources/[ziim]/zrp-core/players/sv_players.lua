@@ -37,7 +37,7 @@ end
 
 
 Players = {
-  Users = {},
+  Users = Players.Users or {},
   Testcb = function(self, cb)
     for i,v in pairs(self) do
       print(i,v)
