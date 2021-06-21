@@ -42,7 +42,6 @@ RegisterNUICallback('FetchData', function(data, cb)
     })
     SetNuiFocus(true, true);
     value = false
-
   else
     SendNUIMessage({
       app = "login",
