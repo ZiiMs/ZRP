@@ -16,7 +16,13 @@ RegisterNUICallback('FetchData', function(data, cb)
       SendNUIMessage({
         app = "login",
         method = "FetchDataError",
-        data = not value,
+        data = "Error fetching data!",
+      })
+    else
+      SendNUIMessage({
+        app = "login",
+        method = "FetchDataSuccess",
+        data = ,
       })
     end
   end)
