@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'index.js'
@@ -14,17 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true
-          }
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
@@ -40,7 +31,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       inject: true
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: { extensions: [".tsx", ".ts", ".js", ".jsx" ] },
 }
