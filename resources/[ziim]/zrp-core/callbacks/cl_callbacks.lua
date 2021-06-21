@@ -33,6 +33,7 @@ end)
 
 Callbacks = {
   TriggerServerCallback = function(self, eventName, ...)
+    local timeout = 5000
     local requestId = currReqId
 
     currReqId = currReqId + 1
@@ -51,8 +52,43 @@ Callbacks = {
     while (cbResp[event] == true) do
       Citizen.Wait(0)
 
-      if(GetGameTimer() > ticket + 5000) then
-        Logger:Error("callbacks", ("ServerCallback  \\%s\\ timed out after %s ms"):format(eventName, tostring(5000)))
+      if(GetGameTimer() > ticket + timeout) then
+        Logger:Error("callbacks", ("ServerCallback  \\%s\\ timed out after %s ms"):format(eventName, tostring(timeout)))
+
+        cbResp[event] = "ERROR"
+      end
+    end
+
+    if(cbResp[event] == "ERROR") then
+      return nil
+    end
+
+    local data = cbResp[event]
+    cbResp[event] = nil
+    return table.unpack(data)
+  end,
+  TriggerServerCallbackTimeout = function(self, eventName, Timeout, ...)
+    Timeout = Timeout or 5000
+    local requestId = currReqId
+
+    currReqId = currReqId + 1
+    if (currReqId >= 65536) then
+      currReqId = 0
+    end
+
+    local event = eventName .. tostring(requestId)
+
+    cbResp[event] = true
+    print("Name21", eventName)
+    TriggerServerEvent("__scb", eventName, requestId, { ... })
+
+    local ticket = GetGameTimer()
+
+    while (cbResp[event] == true) do
+      Citizen.Wait(0)
+
+      if(GetGameTimer() > ticket + Timeout) then
+        Logger:Error("callbacks", ("ServerCallback  \\%s\\ timed out after %s ms"):format(eventName, tostring(Timeout)))
 
         cbResp[event] = "ERROR"
       end
