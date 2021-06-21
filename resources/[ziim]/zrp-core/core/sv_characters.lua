@@ -33,6 +33,7 @@ end)
 
 Core = {
   LoadPlayer = function(self, src, cb)
+    print("Fetching?!?!")
     local user = Player:CreatePlayer(src, false)
 
     if not user then 
