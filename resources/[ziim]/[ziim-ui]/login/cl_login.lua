@@ -33,7 +33,7 @@ RegisterCommand("login", function(source, args)
 end, false)
 
 RegisterNUICallback('FetchData', function(data, cb)
-  local data = Callbacks:TriggerServerCallback("login:FetchData")
+  local data = Callbacks:TriggerServerCallbackTimeout("login:FetchData", 25000)
   print("Data?: ", data)
   if data then 
     SendNUIMessage({
