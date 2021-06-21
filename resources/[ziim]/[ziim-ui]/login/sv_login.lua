@@ -26,23 +26,9 @@ end)
 
 local function RegisterServerCallbacks()
   print("Registering")
-  Callbacks:RegisterServerCallback("sb:getData", function(source)
+  Callbacks:RegisterServerCallback("login:FetchData", function(source)
     Core:LoadPlayer(source, function(data)
-      if not data then 
-        SendNUIMessage({
-          app = "login",
-          method = "FetchDataError",
-          data = "Error fetching data!",
-        })
-      else
-        SendNUIMessage({
-          app = "login",
-          method = "FetchDataSuccess",
-          data = false,
-        })
-        SetNuiFocus(true, true);
-        value = false
-      end
+      print("Working?: ", data)
     end)
   end)
 end
