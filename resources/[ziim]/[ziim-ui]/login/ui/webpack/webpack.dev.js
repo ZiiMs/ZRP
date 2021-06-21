@@ -9,8 +9,10 @@ module.exports = {
     filename: 'index.js'
   },
   devServer: {
-    port: 3000,
-    watchContentBase: true
+    historyApiFallback: true,
+    watchContentBase: true,
+    open: true,
+    overlay: true,
   },
   module: {
     rules: [

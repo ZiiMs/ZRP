@@ -7,11 +7,11 @@ import theme from './theme';
 
 ReactDOM.render(
   <>
-    <ChakraProvider theme={theme}>
-      <NuiProvider resource="login">
+    <NuiProvider resource="login">
+      <ChakraProvider theme={theme}>
         <App />
-      </NuiProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </NuiProvider>
   </>,
   document.getElementById('app')
 )
