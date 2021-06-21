@@ -30,7 +30,7 @@ const App = () => {
   );
 
   const onSubmit = () => {
-    
+    fetchMyMethod();
   }
 
   useEffect(() => {
