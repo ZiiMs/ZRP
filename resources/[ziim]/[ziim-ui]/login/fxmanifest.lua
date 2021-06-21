@@ -12,4 +12,4 @@ files {
 }
 
 client_script 'cl_login.lua'
--- server_script 'sv_scoreboard.lua'
+server_script 'sv_login.lua'
