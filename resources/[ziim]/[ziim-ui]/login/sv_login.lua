@@ -9,10 +9,12 @@ local function RegisterServerCallbacks()
   print("Registering")
   Callbacks:RegisterServerCallback("login:FetchData", function(source)
     local src = source
+    local user = nil
     Core:LoadPlayer(src, function(data)
       print("Working?: ", data)
-      return data;
+      user = data
     end)
+    return user
   end)
 end
 
