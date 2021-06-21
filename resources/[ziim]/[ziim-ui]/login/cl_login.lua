@@ -33,23 +33,23 @@ RegisterCommand("login", function(source, args)
 end, false)
 
 RegisterNUICallback('FetchData', function(data, cb)
-  Core:LoadPlayer(src, function(data)
-    if not data then 
-      SendNUIMessage({
-        app = "login",
-        method = "FetchDataError",
-        data = "Error fetching data!",
-      })
-    else
-      SendNUIMessage({
-        app = "login",
-        method = "FetchDataSuccess",
-        data = false,
-      })
-      SetNuiFocus(true, true);
-      value = false
-    end
-  end)
+  local data = Callbacks:TriggerServerCallback("login:FetchData")
+  if data then 
+    SendNUIMessage({
+      app = "login",
+      method = "FetchDataSuccess",
+      data = false,
+    })
+    SetNuiFocus(true, true);
+    value = false
+
+  else
+    SendNUIMessage({
+      app = "login",
+      method = "FetchDataError",
+      data = "Error fetching data!",
+    })
+  end
   cb()
 end)
 
