@@ -8,7 +8,8 @@ end
 local function RegisterServerCallbacks()
   print("Registering")
   Callbacks:RegisterServerCallback("login:FetchData", function(source)
-    Core:LoadPlayer(source, function(data)
+    local src = source
+    Core:LoadPlayer(src, function(data)
       print("Working?: ", data)
       return data;
     end)
