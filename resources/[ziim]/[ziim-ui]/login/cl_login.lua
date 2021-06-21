@@ -34,6 +34,7 @@ end, false)
 
 RegisterNUICallback('FetchData', function(data, cb)
   local data = Callbacks:TriggerServerCallback("login:FetchData")
+  print("Data?: ", data)
   if data then 
     SendNUIMessage({
       app = "login",
