@@ -91,6 +91,9 @@ const App = () => {
                 Start playing today.
               </chakra.span>
               </chakra.h1>
+              {error ? (
+                <chakra.span>{error}</chakra.span>
+              ):
             <Box display="inline-flex" rounded="md" shadow="md">
               {loading ? (
                 <Spinner
@@ -120,7 +123,7 @@ const App = () => {
               >
                 Get started
               </Box>}
-            </Box>
+            </Box>}
           </Box>
         </Flex>
       </Flex>
