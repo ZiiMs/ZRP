@@ -50,6 +50,6 @@ RegisterNUICallback('FetchData', function(data, cb)
       data = "Error fetching data!",
     })
   end
-  cb()
+  cb(true)
 end)
 
