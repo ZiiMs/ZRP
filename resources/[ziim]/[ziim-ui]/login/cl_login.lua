@@ -22,7 +22,7 @@ RegisterNUICallback('FetchData', function(data, cb)
       SendNUIMessage({
         app = "login",
         method = "FetchDataSuccess",
-        data = ,
+        data = false,
       })
     end
   end)
