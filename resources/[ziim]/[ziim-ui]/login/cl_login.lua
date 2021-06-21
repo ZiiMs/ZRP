@@ -15,7 +15,7 @@ RegisterNUICallback('FetchData', function(data, cb)
     if not data then 
       SendNUIMessage({
         app = "login",
-        method = "FetchData",
+        method = "FetchDataError",
         data = not value,
       })
     end
