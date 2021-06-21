@@ -10,7 +10,7 @@ local function RegisterServerCallbacks()
   Callbacks:RegisterServerCallback("login:FetchData", function(source)
     Core:LoadPlayer(source, function(data)
       print("Working?: ", data)
-      return data
+      return data;
     end)
   end)
 end
