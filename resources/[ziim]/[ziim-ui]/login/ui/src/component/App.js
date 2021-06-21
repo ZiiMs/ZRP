@@ -9,7 +9,7 @@ import {   chakra,
 
 
 const App = () => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [error, setError] = useState();
   const [fetchMyMethod, { loading }] = useNuiCallback("login", "FetchData", setShow, setError)
   useNuiEvent('login', 'setShow', setShow);
