@@ -26,11 +26,6 @@ RegisterNUICallback('FetchData', function(data, cb)
       })
     end
   end)
-  SendNUIMessage({
-    app = "login",
-    method = "setShow",
-    data = not value,
-  })
   cb()
 end)
 
