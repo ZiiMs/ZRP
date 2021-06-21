@@ -14,7 +14,6 @@ local function RegisterServerCallbacks()
   end)
 end
 
-
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
