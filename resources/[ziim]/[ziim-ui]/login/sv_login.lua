@@ -23,3 +23,17 @@ AddEventHandler("Core:Shared:Ready", function()
     
   end)
 end)
+
+local function RegisterServerCallbacks()
+  print("Registering")
+  Callbacks:RegisterServerCallback("sb:getData", function(source)
+    local idents = {}
+    for i, player in ipairs(GetPlayers()) do
+      print("i", player)
+      local id = Player:GetIdent(player, "license")
+      table.insert( idents, {id = player, license = id})
+    end
+    print("Register")
+    return idents
+  end)
+end
