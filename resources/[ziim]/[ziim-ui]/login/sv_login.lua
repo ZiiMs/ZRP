@@ -5,6 +5,15 @@ local function RetrieveComponents()
   Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
 end
 
+local function RegisterServerCallbacks()
+  print("Registering")
+  Callbacks:RegisterServerCallback("login:FetchData", function(source)
+    Core:LoadPlayer(source, function(data)
+      print("Working?: ", data)
+    end)
+  end)
+end
+
 
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
@@ -23,12 +32,3 @@ AddEventHandler("Core:Shared:Ready", function()
     
   end)
 end)
-
-local function RegisterServerCallbacks()
-  print("Registering")
-  Callbacks:RegisterServerCallback("login:FetchData", function(source)
-    Core:LoadPlayer(source, function(data)
-      print("Working?: ", data)
-    end)
-  end)
-end
