@@ -1,4 +1,4 @@
-local value = true;
+local value = false;
 
 RegisterCommand("login", function(source, args)
   SendNUIMessage({
