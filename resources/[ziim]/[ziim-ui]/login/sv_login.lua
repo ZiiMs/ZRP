@@ -31,6 +31,5 @@ AddEventHandler("Core:Shared:Ready", function()
     end
     RetrieveComponents()
     RegisterServerCallbacks()
-    
   end)
 end)
