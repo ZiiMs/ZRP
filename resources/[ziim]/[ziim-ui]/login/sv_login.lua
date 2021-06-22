@@ -14,6 +14,7 @@ local function RegisterServerCallbacks()
       print("Working?: ", data)
       user = data
     end)
+    print(user)
     return user
   end)
 end
