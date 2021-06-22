@@ -5,24 +5,6 @@ local function RetrieveComponents()
   Callbacks = exports['zrp-core']:FetchComponent('Callbacks')
 end
 
-
-AddEventHandler("Core:Shared:Ready", function()
-  exports['zrp-core']:RequestDependencies('Base', {
-    'Logger',
-    'Callbacks',
-  }, function(error)
-    if #error > 0 then
-      print("Errors", error[1])
-      return
-    end
-    RetrieveComponents()
-    Init()
-    -- print("Type: ", type(RegisterServerCallbacks))
-    -- RegisterServerCallbacks()
-  
-  end)
-end)
-
 RegisterCommand("login", function(source, args)
   SendNUIMessage({
     app = "login",
@@ -56,4 +38,22 @@ local function Init()
     cb(true)
   end)
 end
+
+
+AddEventHandler("Core:Shared:Ready", function()
+  exports['zrp-core']:RequestDependencies('Base', {
+    'Logger',
+    'Callbacks',
+  }, function(error)
+    if #error > 0 then
+      print("Errors", error[1])
+      return
+    end
+    RetrieveComponents()
+    Init()
+    -- print("Type: ", type(RegisterServerCallbacks))
+    -- RegisterServerCallbacks()
+  
+  end)
+end)
 
