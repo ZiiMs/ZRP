@@ -21,7 +21,6 @@ end
 AddEventHandler("Core:Shared:Ready", function()
   exports['zrp-core']:RequestDependencies('Base', {
     'Logger',
-    'Database',
     'Core',
     'Callbacks',
   }, function(error)
