@@ -30,7 +30,6 @@ AddEventHandler("Core:Shared:Ready", function()
       return
     end
     RetrieveComponents()
-    print("Type: ", type(RegisterServerCallbacks))
     RegisterServerCallbacks()
     
   end)
