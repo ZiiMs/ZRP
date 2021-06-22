@@ -12,7 +12,7 @@ local function RegisterServerCallbacks()
     print("BeforeLOAD??")
     Core:LoadPlayer(src, function(data)
       print("Working?: ", data)
-      user = data
+      return data
     end)
     print("User: ", user)
     return user
