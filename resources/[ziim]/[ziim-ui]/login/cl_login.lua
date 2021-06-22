@@ -16,6 +16,7 @@ AddEventHandler("Core:Shared:Ready", function()
       return
     end
     RetrieveComponents()
+    Init()
     -- print("Type: ", type(RegisterServerCallbacks))
     -- RegisterServerCallbacks()
   
@@ -32,24 +33,27 @@ RegisterCommand("login", function(source, args)
   value = not value
 end, false)
 
-RegisterNUICallback('FetchData', function(data, cb)
-  local data = Callbacks:TriggerServerCallbackTimeout("login:FetchData", 25000)
-  print("Data?: ", data)
-  if data then 
-    SendNUIMessage({
-      app = "login",
-      method = "FetchDataSuccess",
-      data = false,
-    })
-    SetNuiFocus(true, true);
-    value = false
-  else
-    SendNUIMessage({
-      app = "login",
-      method = "FetchDataError",
-      data = "Error fetching data!",
-    })
-  end
-  cb(true)
-end)
+
+local function Init()
+  RegisterNUICallback('FetchData', function(data, cb)
+    local data = Callbacks:TriggerServerCallbackTimeout("login:FetchData", 25000)
+    print("Data?: ", data)
+    if data then 
+      SendNUIMessage({
+        app = "login",
+        method = "FetchDataSuccess",
+        data = false,
+      })
+      SetNuiFocus(true, true);
+      value = false
+    else
+      SendNUIMessage({
+        app = "login",
+        method = "FetchDataError",
+        data = "Error fetching data!",
+      })
+    end
+    cb(true)
+  end)
+end
 
