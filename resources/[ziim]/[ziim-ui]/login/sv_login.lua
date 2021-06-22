@@ -6,7 +6,7 @@ local function RetrieveComponents()
 end
 
 local function RegisterServerCallbacks()
-  print("Registering")
+  print("RegisteringCallbacks!!")
   Callbacks:RegisterServerCallback("login:FetchData", function(source)
     local src = source
     local user = nil
