@@ -6,7 +6,7 @@ end
 
 local function RegisterServerCallbacks()
   print("RegisteringCallbacks!!")
-  Callbacks:RegisterServerCallback("login:FetchData", function(source)
+  Callbacks:RegisterServerCallback("login:getData", function(source)
     local src = source
     local user = nil
     print("BeforeLOAD??")
