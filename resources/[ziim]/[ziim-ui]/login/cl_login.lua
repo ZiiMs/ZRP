@@ -18,6 +18,7 @@ end, false)
 
 local function Init()
   RegisterNUICallback('FetchData', function(data, cb)
+    print("Before CB:!:!")
     local data = Callbacks:TriggerServerCallbackTimeout("login:FetchData", 25000)
     print("Data?: ", data)
     if data then 
