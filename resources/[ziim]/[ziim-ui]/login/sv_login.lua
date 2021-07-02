@@ -12,7 +12,7 @@ local function RegisterServerCallbacks()
     print("BeforeLOAD??")
     user = Core:LoadPlayer(src, function(data)
       print("Working?: ", data)
-      return data
+      user = data
     end)
     while (user == nil) do
       Wait(500)
