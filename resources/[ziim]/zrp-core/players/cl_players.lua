@@ -21,18 +21,15 @@ end)
 
 RegisterNetEvent('zrp-core:getPlayerVars')
 AddEventHandler('zrp-core:getPlayerVars', function(var, val)
-  Player.LocalPlayer:setVar(var, val);
+  Player:setVar(var, val);
 end)
 
 Player = {
-  LocalPlayer = {
-    setVar = function(self, var, val)
-      Player.LocalPlayer[var] = val;
-    end, 
-    getVar = function(self, var)
-      return Player.LocalPlayer[var]
-    end, 
-  },
-
-}
+  setVar = function(self, var, val)
+    Player.LocalPlayer[var] = val;
+  end, 
+  getVar = function(self, var)
+    return Player.LocalPlayer[var]
+  end, 
+},
 
