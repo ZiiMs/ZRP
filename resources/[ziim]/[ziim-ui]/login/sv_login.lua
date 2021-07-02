@@ -10,7 +10,7 @@ local function RegisterServerCallbacks()
     local src = source
     local user = nil
     print("BeforeLOAD??")
-    Core:LoadPlayer(src, function(data)
+    user = Core:LoadPlayer(src, function(data)
       print("Working?: ", data)
       return data
     end)
