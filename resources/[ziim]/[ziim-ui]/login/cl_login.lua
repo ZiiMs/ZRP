@@ -27,7 +27,7 @@ local function Init()
         method = "FetchDataSuccess",
         data = false,
       })
-      SetNuiFocus(true, true);
+      SetNuiFocus(false, false);
       value = false
     else
       SendNUIMessage({
