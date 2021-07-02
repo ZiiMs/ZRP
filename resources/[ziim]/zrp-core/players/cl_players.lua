@@ -32,7 +32,7 @@ LocalPlayer = {
     return LocalPlayer[var]
   end, 
   IsAdmin = function(self)
-    return LocalPlayer["rank"]
+    return (LocalPlayer["rank"] == "admin")
   end, 
 }
 
