@@ -65,8 +65,9 @@ Core = {
             return
           end
           print("[MongoDB][Example] User created. New ID: "..tostring(insertedIds))
+          cb(result)
         end)
-        cb(result)
+        
       end
     end)
 
