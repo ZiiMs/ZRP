@@ -15,6 +15,7 @@ local function RegisterServerCallbacks()
       return data
     end)
     while (user == nil) do
+      Wait(500)
       print("User is nil")
     end
     print("User: ", user)
