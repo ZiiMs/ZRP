@@ -26,10 +26,10 @@ end)
 
 LocalPlayer = {
   setVar = function(self, var, val)
-    Player.LocalPlayer[var] = val;
+    LocalPlayer[var] = val;
   end, 
   getVar = function(self, var)
-    return Player.LocalPlayer[var]
+    return LocalPlayer[var]
   end, 
 },
 
