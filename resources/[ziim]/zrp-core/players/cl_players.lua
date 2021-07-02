@@ -31,7 +31,7 @@ LocalPlayer = {
   getVar = function(self, var)
     return LocalPlayer[var]
   end, 
-  IsAdmin = function(self, var)
+  IsAdmin = function(self)
     return LocalPlayer["rank"]
   end, 
 }
