@@ -59,7 +59,7 @@ RegisterCommand("gotols", function(source, args)
 end, false)
 
 RegisterCommand("get", function(source, args)
-  local rank = Player.LocalPlayer:getVar("rank")
+  local rank = Player:getVar("rank")
   print(rank)
 end, false)
 
