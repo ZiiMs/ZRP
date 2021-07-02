@@ -14,6 +14,9 @@ local function RegisterServerCallbacks()
       print("Working?: ", data)
       return data
     end)
+    while user = nil do
+
+    end
     print("User: ", user)
     return user
   end)
