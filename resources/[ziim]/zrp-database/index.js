@@ -1,3 +1,7 @@
+// Modified version of https://github.com/alcoholiclobster/fivem-mongodb
+//Credits to Nikita (alcoholiclobster) Bredikhin 
+
+
 const mongodb = require('mongodb');
 
 const uri = GetConvar('mongo_uri', '')
