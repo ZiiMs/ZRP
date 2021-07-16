@@ -31,7 +31,7 @@ function RegisterServerCallbacks()
       local id = Player:GetIdent(player, "license")
       table.insert( idents, {id = player, license = id})
     end
-    print("Register")
+    print("Return Idents")
     return idents
   end)
 end

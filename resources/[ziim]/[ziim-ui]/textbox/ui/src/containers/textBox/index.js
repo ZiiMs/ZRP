@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef,
+  useState, useRef, useEffect, useCallback,
 } from 'react';
 import {
   Modal,
@@ -62,26 +62,6 @@ const TextBox = () => {
   //   setOpen(show);
   // }, [show]);
 
-  // const handleKeyPress = useCallback(
-  //   (e) => {
-  //     // Press U to trigger Event
-  //     if (e.keyCode === 85) {
-  //       e.preventDefault();
-  //       console.log(show);
-  //       Nui.emitEvent('Textbox', { show: !show });
-  //       // toggle = !toggle;
-  //     }
-  //   }, [show],
-  // );
-
-  // useEffect(() => {
-  //   document.addEventListener('keydown', handleKeyPress, false);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyPress, false);
-  //   };
-  // }, [handleKeyPress]);
-
   const onClose = () => {
     // store.dispatch({ type: 'Textbox', payload: { show: false } });
     // dispatch({ type: 'SHOW',  });
@@ -97,6 +77,24 @@ const TextBox = () => {
 
     console.log('Closing', show);
   };
+
+  const handleKeyPress = useCallback(
+    (e) => {
+      // Press U to trigger Event
+      if (e.keyCode === 27) {
+        e.preventDefault();
+        onClose();
+      }
+    }, [show],
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress, false);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress, false);
+    };
+  }, [handleKeyPress]);
 
   const handleSubmit = () => {
     // store.dispatch({ type: 'Textbox', payload: { show: false } });
@@ -114,6 +112,7 @@ const TextBox = () => {
       });
       if (resp.msg) {
         setErrorMsg(resp.msg);
+        focus.current.focus();
       }
       if (!resp.state) {
         setInput('');

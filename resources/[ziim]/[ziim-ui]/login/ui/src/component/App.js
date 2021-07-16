@@ -30,7 +30,8 @@ const App = () => {
     }, [show],
   );
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    // e.preventDefault();
     fetchMyMethod();
   }
 
@@ -116,6 +117,7 @@ const App = () => {
                 border="solid transparent"
                 fontWeight="bold"
                 rounded="md"
+                // onClick={onSubmit()}
                 color={useColorModeValue("white")}
                 bg={useColorModeValue("brand.600", "brand.500")}
                 _hover={{

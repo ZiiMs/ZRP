@@ -104,7 +104,7 @@ RegisterCommand('car', function(source, args)
   "caddy3", "docktug", "forklift", "mower", "ripley", "sadler", "sadler2", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utillitruck2", "utillitruck3", "slamtruck", "bison", "bison2", "bison3", 
   "bobcatxl", "boxville", "boxville2", "boxville3", "boxville4", "boxville5", "burrito", "burrito2", "burrito3", "burrito4", "burrito5", "camper", "gburrito", "gburrito2", "journey", "minivan", "minivan2", "paradise", "pony", 
   "pony2", "rumpo", "rumpo2", "rumpo3", "speedo", "speedo2", "speedo4", "surfer", "surfer2", "taco", "youga", "youga2", "youga3"}
-  Textbox:TextBox("Spawn Car", "Enter a vehicle", "spawnCarBox", GetCurrentResourceName(), cars)
+  Textbox:TextBox("Spawn Car", "Enter a vehicle", "spawnCarBox", GetCurrentResourceName())
 end, false)
 
 RegisterNUICallback('spawnCarBox', function(data, cb)

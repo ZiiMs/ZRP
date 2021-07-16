@@ -33,113 +33,37 @@ end)
 
 Callbacks = {
   TriggerServerCallback = function(self, eventName, ...)
-    local timeout = 5000
-    local requestId = currReqId
+    assert(type(eventName) == 'string', 'Invalid Lua type at argument #1, expected string, got '..type(eventName))
+    local p = promise.new()
+		local ticket = GetGameTimer()
+    Logger:Trace("callbacks", "Is this working?")
 
-    currReqId = currReqId + 1
-    if (currReqId >= 65536) then
-      currReqId = 0
+    RegisterNetEvent(('__cb:client:%s:%s'):format(eventName, ticket))
+		local e = AddEventHandler(('__cb:client:%s:%s'):format(eventName, ticket), function(...)
+			p:resolve({...})
+		end)
+    Logger:Trace("callbacks", "Get here?")
+
+    TriggerServerEvent('__cb:server', eventName, ticket, ...)
+
+    Logger:Trace("callbacks", ("TERtewwer: "))
+    for k,v in pairs(p) do
+      print(k,v)
     end
+    local result = Citizen.Await(p)
+    Logger:Trace("callbacks", "Await!?!?")
+		RemoveEventHandler(e)
+		return table.unpack(result)
 
-    local event = eventName .. tostring(requestId)
-
-    cbResp[event] = true
-    print("Name21", eventName)
-    TriggerServerEvent("__scb", eventName, requestId, { ... })
-
-    local ticket = GetGameTimer()
-
-    while (cbResp[event] == true) do
-      Citizen.Wait(0)
-
-      if(GetGameTimer() > ticket + timeout) then
-        Logger:Error("callbacks", ("ServerCallback  \\%s\\ timed out after %s ms"):format(eventName, tostring(timeout)))
-
-        cbResp[event] = "ERROR"
-      end
-    end
-
-    if(cbResp[event] == "ERROR") then
-      return nil
-    end
-
-    local data = cbResp[event]
-    cbResp[event] = nil
-    return table.unpack(data)
-  end,
-  TriggerServerCallbackTimeout = function(self, eventName, Timeout, ...)
-    Timeout = Timeout or 5000
-    local requestId = currReqId
-
-    currReqId = currReqId + 1
-    if (currReqId >= 65536) then
-      currReqId = 0
-    end
-
-    local event = eventName .. tostring(requestId)
-
-    cbResp[event] = true
-    print("Name21", eventName)
-    TriggerServerEvent("__scb", eventName, requestId, { ... })
-
-    local ticket = GetGameTimer()
-
-    while (cbResp[event] == true) do
-      Citizen.Wait(0)
-
-      if(GetGameTimer() > ticket + Timeout) then
-        Logger:Error("callbacks", ("ServerCallback  \\%s\\ timed out after %s ms"):format(eventName, tostring(Timeout)))
-
-        cbResp[event] = "ERROR"
-      end
-    end
-
-    if(cbResp[event] == "ERROR") then
-      return nil
-    end
-
-    local data = cbResp[event]
-    cbResp[event] = nil
-    return table.unpack(data)
   end,
   RegisterClientCallback = function(self, eventName, fc)
-    cbs[eventName] = fc
+    assert(type(eventName) == 'string', 'Invalid Lua type at argument #1, expected string, got '..type(eventName))
+		assert(type(fc) == 'function', 'Invalid Lua type at argument #2, expected function, got '..type(fn))
+		AddEventHandler(('__ccb:%s'):format(eventName), function(cb, ...)
+			cb(fc(...))
+		end)
   end
 }
-
-RegisterNetEvent("__ccb")
-AddEventHandler("__ccb", function(evetName, id, data)
-	local requestName = eventName .. tostring(id)
-
-	if (cbs[evetName] ~= nil) then
-		-- execute callback function and return its result
-		local result = { cbs[evetName](src, table.unpack(data)) }
-		
-		TriggerServerEvent("__cb:client", requestName, result)
-	else
-		-- callback does not exist
-    Logger:Error("callbacks", ("ClientCallback  \\%s\\ does not exist"):format(eventName))
-		
-		TriggerServerEvent("__ccb:error", requestName, evetName)
-	end
-end)
-
-RegisterNetEvent("__cb:server")
-AddEventHandler("__cb:server", function(eventName, data)
-	if (cbResp[eventName] ~= nil) then
-		-- receive data
-		cbResp[eventName] = data
-	end
-end)
-
-RegisterNetEvent("__scb:error")
-AddEventHandler("__scb:error", function(eventName, name)
-	if (cbResp[eventName] ~= nil) then
-		cbResp[eventName] = "ERROR"
-		
-		Logger:Error("callbacks", ("ServerCallback  \\%s\\ does not exist"):format(eventName))
-	end
-end)
 
 
 AddEventHandler("Proxy:Shared:RegisterReady", function()

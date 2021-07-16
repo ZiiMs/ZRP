@@ -11,13 +11,15 @@ local function Init()
   Citizen.CreateThread(function () 
     while true do 
       Wait(0)
+      -- print("Not working!?")
       if toggle then
         DisableControlAction(2, 322, true)
       end
       if IsControlJustReleased(0, Utils.Keys["U"]) then
 
-          print("Get sb")
-          if not toggle then 
+          print("Get sb", toggle)
+          if not toggle then
+            Citizen.Wait(150)
             local idents = Callbacks:TriggerServerCallback('sb:getData')
             -- for i=2,255 do
             --   local license = ("license:7e5a718514a9dfd78920a66998a036b14b3a2a3%s"):format(i);
