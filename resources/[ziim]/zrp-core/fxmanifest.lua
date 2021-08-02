@@ -5,17 +5,22 @@ author 'ZiiM'
 version '1.0.0'
 
 
+--Callbacks
+client_script 'callbacks/cl_callbacks.lua'
+server_script 'callbacks/sv_callbacks.lua'
+
 -- Base
+client_script 'spawnmanager/cl_spawnmanager.lua'
+server_script 'spawnmanager/sv_spawnmanager.lua'
+
 client_script 'base/cl_base.lua'
 shared_script 'base/sh_base.lua'
 server_script 'base/sv_base.lua'
 
-server_script 'core/sv_characters.lua'
+server_script 'characters/sv_characters.lua'
 
 
---Callbacks
-client_script 'callbacks/cl_callbacks.lua'
-server_script 'callbacks/sv_callbacks.lua'
+
 
 --Player
 client_script 'players/cl_players.lua'

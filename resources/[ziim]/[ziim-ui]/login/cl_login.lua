@@ -6,14 +6,26 @@ local function RetrieveComponents()
 end
 
 RegisterCommand("login", function(source, args)
+  loginScreen()
+end, false)
+
+local function loginScreen()
   SendNUIMessage({
     app = "login",
     method = "setShow",
-    data = not value,
+    data = true,
   })
   SetNuiFocus(true, true);
-  value = not value
-end, false)
+  value = true
+  Citizen.CreateThread(function()
+    while value do
+      Citizen.Wait(0)
+      HideHudAndRadarThisFrame();
+      DisableAllControlActions(0);
+    end
+  end)
+    
+end
 
 
 local function Init()
@@ -22,6 +34,7 @@ local function Init()
     local data = Callbacks:TriggerServerCallback("login:getData")
     print("Data?: ", data)
     if data then 
+      TriggerEvent("zrp-base:InitSpawn")
       SendNUIMessage({
         app = "login",
         method = "FetchDataSuccess",
@@ -29,6 +42,8 @@ local function Init()
       })
       SetNuiFocus(false, false);
       value = false
+      EnableAllControlActions(0)
+      
     else
       SendNUIMessage({
         app = "login",
@@ -39,6 +54,12 @@ local function Init()
     cb(true)
   end)
 end
+
+RegisterNetEvent("zrp-base:spawnInitialized")
+AddEventHandler("zrp-base:spawnInitialized", function()
+  print("Init, Loading screen")
+  loginScreen()
+end)
 
 
 AddEventHandler("Core:Shared:Ready", function()

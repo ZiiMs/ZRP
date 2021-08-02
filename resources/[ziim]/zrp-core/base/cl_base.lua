@@ -5,11 +5,13 @@ function Init(self)
             if NetworkIsSessionStarted() then
                 TriggerEvent('zrp-base:playerSessionStarted')
                 TriggerServerEvent('zrp-base:playerSessionStarted')
+                break
             end
         end
     end)
 end
 Init()
+
 
 RegisterNetEvent("zrp-base:waitForExports")
 AddEventHandler("zrp-base:waitForExports", function()

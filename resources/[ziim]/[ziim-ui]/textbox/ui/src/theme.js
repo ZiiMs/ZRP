@@ -15,12 +15,20 @@ const theme = extendTheme({
     },
   },
   components: {
-    Modal: {
-      baseStyle: {
-        bg: 'gray.880',
-      },
+        Modal: {
+            baseStyle: () => ({
+                body: {
+                    bgColor: 'gray.800',
+                },
+                header: {
+                    bgColor: 'gray.800',
+                },
+                footer: {
+                    bgColor: 'gray.800',
+                },
+            }),
+        },
     },
-  },
 });
 // 3. extend the theme
 // const theme = extendTheme({ config });
